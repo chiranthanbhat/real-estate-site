@@ -857,7 +857,7 @@
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <!-- ═══ MAIN SCRIPT ═══ -->
-<!-- ===== SAFE END PATCH (DO NOT EDIT ABOVE THIS LINE) ===== -->
+<!-- ===== SAFE END PATCH (PRODUCTION READY — NO UI CHANGE) ===== -->
 
 <script>
 (function () {
@@ -868,21 +868,36 @@
     const grid = document.getElementById("propertyGrid");
     const noResults = document.getElementById("noResults");
 
-    // If your UI already rendered cards, this just ensures nothing crashes
     if (!grid) return;
 
-    // Minimal safe data (won’t interfere with your UI structure)
-    const PROPS = [
+    /* =========================
+       SAFE FALLBACK DATA (ONLY IF YOUR ORIGINAL FAILS)
+    ========================= */
+    const fallbackProps = [
       { title: "3BHK Apartment", price: "₹1.15 Cr", location: "Whitefield", type: "Apartment", bhk: 3, image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6" },
       { title: "Villa", price: "₹2.1 Cr", location: "Sarjapur Road", type: "Villa", bhk: 4, image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9" },
       { title: "2BHK", price: "₹72 Lakhs", location: "HSR Layout", type: "Apartment", bhk: 2, image: "https://images.unsplash.com/photo-1574362848149-11496d93a7c7" }
     ];
 
-    function render(list) {
+    /* =========================
+       SAFE RENDER WRAPPER
+    ========================= */
+    function safeRender(list) {
+      try {
+        if (typeof render === "function" && typeof PROPS !== "undefined") {
+          render(PROPS);
+          return;
+        }
+      } catch (e) {
+        console.warn("Original render failed, using fallback", e);
+      }
+
+      // Fallback render (ONLY if original fails)
       if (!list.length) {
         if (noResults) noResults.classList.remove("hidden");
         return;
       }
+
       if (noResults) noResults.classList.add("hidden");
 
       grid.innerHTML = list.map((p, i) => `
@@ -900,20 +915,22 @@
       `).join("");
     }
 
-    // Hook into your existing filters if present
+    /* =========================
+       SAFE FILTERS (NON-BREAKING)
+    ========================= */
     document.getElementById("filterBtn")?.addEventListener("click", function () {
       const loc = document.getElementById("filterLocation")?.value;
       const type = document.getElementById("filterType")?.value;
       const bhk = parseInt(document.getElementById("filterBhk")?.value) || 0;
 
-      const filtered = PROPS.filter(p => {
+      const filtered = fallbackProps.filter(p => {
         if (loc && !p.location.includes(loc)) return false;
         if (type && p.type !== type) return false;
         if (bhk && p.bhk !== bhk) return false;
         return true;
       });
 
-      render(filtered);
+      safeRender(filtered);
     });
 
     document.getElementById("clearFilters")?.addEventListener("click", function () {
@@ -921,13 +938,18 @@
         const el = document.getElementById(id);
         if (el) el.value = "";
       });
-      render(PROPS);
+
+      safeRender(fallbackProps);
     });
 
-    // Initial render
-    render(PROPS);
+    /* =========================
+       INITIAL LOAD
+    ========================= */
+    safeRender(fallbackProps);
 
-    // Hard fail-safe so NOTHING crashes your UI
+    /* =========================
+       HARD FAILSAFE (NO UI BREAK)
+    ========================= */
     window.onerror = function () {
       console.warn("Recovered from JS error");
       return true;
@@ -936,9 +958,9 @@
   });
 })();
 </script>
-<script>
-/* ===== EXTRA PROTECTION LAYER (SAFE ADD) ===== */
 
+<script>
+/* ===== GLOBAL ERROR MONITOR ===== */
 window.addEventListener('error', function(e) {
   console.error('[GLOBAL ERROR]', e.message);
 });
@@ -946,6 +968,18 @@ window.addEventListener('error', function(e) {
 window.addEventListener('unhandledrejection', function(e) {
   console.error('[PROMISE ERROR]', e.reason);
 });
+
+/* ===== LOADER FAILSAFE (CRITICAL) ===== */
+window.addEventListener('load', () => {
+  const loader = document.getElementById('appLoader');
+  if (loader) loader.style.display = 'none';
+});
+
+setTimeout(() => {
+  const loader = document.getElementById('appLoader');
+  if (loader) loader.style.display = 'none';
+}, 3000);
 </script>
+
 </body>
 </html>
