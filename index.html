@@ -2404,5 +2404,37 @@ window.addEventListener("load", () => {
     if (loader) loader.remove();
 });
 </script>
+<script>
+(function () {
+  "use strict";
+
+  function killLoader() {
+    const loader = document.getElementById("loader");
+    if (!loader) return;
+
+    loader.classList.add("hidden");
+
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 800);
+  }
+
+  // Run AFTER everything loads
+  window.addEventListener("load", killLoader);
+
+  // FALLBACK (if load fails)
+  setTimeout(killLoader, 3000);
+
+})();
+</script>
+<script>
+function openModal() {
+  console.warn("Modal not implemented yet");
+}
+
+function toggleFavorite(btn) {
+  btn.classList.toggle("active");
+}
+</script>
 </body>
 </html>
