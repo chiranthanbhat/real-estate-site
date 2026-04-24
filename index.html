@@ -1730,5 +1730,37 @@ document.querySelectorAll('.magnetic-btn').forEach(btn => {
 
 })();
 </script>
+<script>
+/* ===== ACTIVATE UI (CRITICAL FIX) ===== */
+
+(function () {
+  "use strict";
+
+  function activateUI() {
+    // Reveal elements
+    document.querySelectorAll('.reveal').forEach(el => {
+      el.classList.add('active');
+    });
+
+    document.querySelectorAll('.img-reveal').forEach(el => {
+      el.classList.add('active');
+    });
+
+    document.querySelectorAll('.section-fade').forEach(el => {
+      el.classList.add('visible');
+    });
+
+    // Remove any accidental overlay opacity locks
+    document.body.style.opacity = "1";
+  }
+
+  // Run immediately
+  document.addEventListener("DOMContentLoaded", activateUI);
+
+  // Backup
+  window.addEventListener("load", activateUI);
+
+})();
+</script>
 </body>
 </html>
