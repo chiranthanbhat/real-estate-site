@@ -1,984 +1,148 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>[Client Name] Properties — Verified Homes in Bangalore</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif']}}}}</script>
-    <style>
-        *{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-        ::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#d4d4d4;border-radius:2px}::-webkit-scrollbar-thumb:hover{background:#a3a3a3}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Properties</title>
 
-        @media(pointer:fine){.cd{position:fixed;top:0;left:0;width:6px;height:6px;background:linear-gradient(135deg,#1d1d1f,#10b981);border-radius:50%;pointer-events:none;z-index:9999;will-change:transform;transition:width .3s cubic-bezier(.25,.1,.25,1),height .3s cubic-bezier(.25,.1,.25,1),background .3s ease}.cd.cursor-link{width:12px;height:12px;background:#10b981}.cd.cursor-drag{width:16px;height:16px;background:#1d1d1f;border-radius:4px}.cd.cursor-text{width:3px;height:3px;background:#6e6e73}.cr{position:fixed;top:0;left:0;width:36px;height:36px;border:1.5px solid rgba(29,29,31,.15);border-radius:50%;pointer-events:none;z-index:9998;will-change:transform;transition:width .3s cubic-bezier(.25,.1,.25,1),height .3s cubic-bezier(.25,.1,.25,1),border-color .3s ease,border-width .3s ease}.cr.hovering{width:56px;height:56px;border-color:rgba(16,185,129,.35);border-width:2px}.cr.dragging{width:64px;height:64px;border-color:rgba(29,29,31,.3);border-style:dashed}.cursor-particle{position:absolute;width:4px;height:4px;background:rgba(16,185,129,.5);border-radius:50%;pointer-events:none;will-change:transform,opacity}body{cursor:none}a,button,select,input,textarea,[data-h],[data-m]{cursor:none}}
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
 
-        [data-reveal]{opacity:0;will-change:transform,opacity}
-        #sp{position:fixed;top:0;left:0;height:1px;background:linear-gradient(90deg,#1d1d1f,#10b981);z-index:101;width:0;transition:width .08s linear}
-
-        .noise::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.01;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px}
-
-        .ld{position:relative}.ld::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;background:#1d1d1f;transition:width .6s cubic-bezier(.25,.1,.25,1)}.ld:hover::after{width:100%}
-
-        .fg{position:relative}.fg input,.fg select,.fg textarea{padding-top:1.4rem}.fg label{position:absolute;top:50%;left:1rem;transform:translateY(-50%);font-size:.875rem;color:#a1a1a6;pointer-events:none;transition:all .3s cubic-bezier(.25,.1,.25,1);transform-origin:left center}.fg textarea~label{top:1.4rem;transform:translateY(0)}.fg input:focus~label,.fg input:not(:placeholder-shown)~label,.fg select:focus~label,.fg select:valid~label,.fg textarea:focus~label,.fg textarea:not(:placeholder-shown)~label{top:.45rem;transform:translateY(0) scale(.72);color:#6e6e73}.fg select~label{top:.45rem;transform:translateY(0) scale(.72);color:#6e6e73}.fg select option{color:#1d1d1f}
-
-        #btt{opacity:0;pointer-events:none;will-change:opacity;transition:opacity .3s}#btt.vis{opacity:1;pointer-events:auto}
-        .tbar{height:2px;background:linear-gradient(90deg,#10b981,#1d1d1f);border-radius:1px;transform-origin:left;animation:tbs 3s linear forwards}@keyframes tbs{from{transform:scaleX(1)}to{transform:scaleX(0)}}
-        #toast{transform:translateY(100px);opacity:0;transition:all .6s cubic-bezier(.25,.1,.25,1)}#toast.show{transform:translateY(0);opacity:1}
-
-        @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}.mqt{animation:mq 45s linear infinite}.mqt:hover{animation-play-state:paused}
-
-        #nav{will-change:transform;transition:box-shadow .4s ease,transform .3s ease}#nav.hid{transform:translateY(-100%)}#nav.vis{transform:translateY(0)}
-        .mm{transform:translateX(100%);transition:transform .5s cubic-bezier(.25,.1,.25,1)}.mm.open{transform:translateX(0)}
-        .cc{position:relative;overflow:hidden}.cc::before{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(to bottom,#1d1d1f,#10b981);border-radius:0 2px 2px 0;transform:scaleY(0);transform-origin:top;transition:transform .8s cubic-bezier(.25,.1,.25,1)}.cc.rv::before{transform:scaleY(1)}
-        .shim{position:relative;overflow:hidden}.shim::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);transition:left .8s ease}.shim:hover::after{left:100%}
-        .mo{opacity:0;transition:opacity .5s ease}.mo.act{opacity:1}.mp{transform:translateY(20px) scale(.985);opacity:0;transition:all .6s cubic-bezier(.25,.1,.25,1)}.mp.act{transform:translateY(0) scale(1);opacity:1}
-        .cg{text-shadow:0 0 25px rgba(16,185,129,.06)}
-
-        .wa-float{position:fixed;z-index:50;will-change:transform}.wa-float .wa-ring{position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(37,211,102,.3);animation:waRing 2.5s ease-out infinite}@keyframes waRing{0%{transform:scale(1);opacity:1}100%{transform:scale(1.6);opacity:0}}
-        .wa-float{animation:waFloat 3s ease-in-out infinite}@keyframes waFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-
-        .sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:45;transform:translateY(100%);transition:transform .5s cubic-bezier(.25,.1,.25,1);padding-bottom:env(safe-area-inset-bottom)}.sticky-bar.vis{transform:translateY(0)}
-
-        .hscroll{-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none}.hscroll::-webkit-scrollbar{display:none}
-        .hscroll-item{flex-shrink:0;scroll-snap-align:start}
-
-        @keyframes cardIn{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}.card-enter{animation:cardIn .6s cubic-bezier(.25,.1,.25,1) both}
-
-        /* ── NEW ANIMATIONS ── */
-        @keyframes floatSlow{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-12px) rotate(1deg)}75%{transform:translateY(8px) rotate(-1deg)}}.float-slow{animation:floatSlow 6s ease-in-out infinite}
-        @keyframes floatMed{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}.float-med{animation:floatMed 4s ease-in-out infinite}
-        @keyframes floatFast{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}.float-fast{animation:floatFast 2.5s ease-in-out infinite}
-        @keyframes pulse-ring{0%{transform:scale(.9);opacity:.6}50%{transform:scale(1.1);opacity:.2}100%{transform:scale(.9);opacity:.6}}.pulse-ring{animation:pulse-ring 3s ease-in-out infinite}
-        @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}.shimmer-bg{background:linear-gradient(90deg,transparent 30%,rgba(255,255,255,.15) 50%,transparent 70%);background-size:200% 100%;animation:shimmer 2.5s ease-in-out infinite}
-        @keyframes borderDraw{from{stroke-dashoffset:600}to{stroke-dashoffset:0}}.border-draw{stroke-dasharray:600;stroke-dashoffset:600;animation:borderDraw 1.5s ease forwards}
-        @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-        @keyframes scaleIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
-        @keyframes slideRight{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
-        @keyframes slideLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
-        @keyframes spin-slow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}.spin-slow{animation:spin-slow 20s linear infinite}
-        @keyframes orbit{from{transform:rotate(0deg) translateX(120px) rotate(0deg)}to{transform:rotate(360deg) translateX(120px) rotate(-360deg)}}.orbit{animation:orbit 15s linear infinite}
-        @keyframes textGlow{0%,100%{text-shadow:0 0 20px rgba(16,185,129,0)}50%{text-shadow:0 0 30px rgba(16,185,129,.15)}}.text-glow{animation:textGlow 3s ease-in-out infinite}
-        @keyframes starPop{0%{transform:scale(0) rotate(-30deg);opacity:0}60%{transform:scale(1.3) rotate(5deg);opacity:1}100%{transform:scale(1) rotate(0deg);opacity:1}}.star-pop{animation:starPop .4s cubic-bezier(.25,.1,.25,1) both}
-        @keyframes badgeBounce{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}.badge-bounce{animation:badgeBounce 2s ease-in-out infinite}
-        @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}.gradient-shift{background-size:200% 200%;animation:gradientShift 4s ease infinite}
-        @keyframes marquee-reverse{from{transform:translateX(-50%)}to{transform:translateX(0)}}.mqt-reverse{animation:marquee-reverse 40s linear infinite}.mqt-reverse:hover{animation-play-state:paused}
-        @keyframes wiggle{0%,100%{transform:rotate(0deg)}25%{transform:rotate(3deg)}75%{transform:rotate(-3deg)}}.wiggle:hover{animation:wiggle .4s ease-in-out}
-        @keyframes ripple{to{transform:scale(2.5);opacity:0}}.ripple-btn{position:relative;overflow:hidden}.ripple-btn .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.3);transform:scale(0);animation:ripple .6s linear;pointer-events:none}
-
-        /* Draggable */
-        .draggable{touch-action:none;user-select:none;transition:box-shadow .3s,transform .1s}.draggable.dragging{box-shadow:0 12px 40px rgba(0,0,0,.15);z-index:80;transition:box-shadow .3s}
-        
-        /* Premium Loading Skeleton */
-        #loadingSkeleton{background:linear-gradient(135deg,#fafafa 0%,#ffffff 100%)}
-        
-        /* Hero Immersive Effects */
-        .hero-section{perspective:1000px;overflow:hidden}
-        .hero-bg-container{transform-style:preserve-3d}
-        .hero-bg-image{will-change:transform;transition:transform .1s linear}
-        .hero-overlay{mix-blend-mode:multiply}
-        
-        /* Character Reveal Animation */
-        .hero-char{display:inline-block;opacity:0;transform:translateY(30px);transition:none}
-        
-        /* Enhanced Stat Cards with Gauge */
-        .stat-card{position:relative;cursor:grab}
-        .stat-card:active{cursor:grabbing}
-        .stat-gauge-fill{transition:stroke-dasharray 2s cubic-bezier(.25,.1,.25,1)}
-        
-        /* Deal Card Flip Styles */
-        .deal-card{position:relative;transform-style:preserve-3d;perspective:1000px}
-        .deal-front,.deal-back{backface-visibility:hidden;-webkit-backface-visibility:hidden}
-        .deal-back{position:absolute;top:0;left:0;width:100%;height:100%;transform:rotateY(-180deg);pointer-events:none}
-        .deal-card[data-deal-flip]:hover .deal-front::after{content:'';position:absolute;top:12px;right:12px;width:20px;height:20px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23999' stroke-width='2'%3E%3Cpath d='M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15'/%3E%3C/svg%3E") center/contain no-repeat;opacity:.6;animation:flipHint 2s ease-in-out infinite}
-        @keyframes flipHint{0%,100%{opacity:.4;transform:rotate(0deg)}50%{opacity:.8;transform:rotate(180deg)}}
-        
-        /* Deal Ring Animation */
-        .deal-ring-fill{stroke-dasharray:0,100;transition:stroke-dasharray 1.5s cubic-bezier(.25,.1,.25,1)}
-        
-        /* Quick Filter Chips Enhancement */
-        .quick-filter-chip{position:relative;overflow:hidden;transition:all .3s cubic-bezier(.25,.1,.25,1)}
-        .quick-filter-chip::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(16,185,129,.1);border-radius:50%;transform:translate(-50%,-50%);transition:width .4s ease,height .4s ease}
-        .quick-filter-chip:hover::before{width:200%;height:200%}
-        .quick-filter-chip.active::before{width:200%;height:200%;background:rgba(255,255,255,.2)}
-        
-        /* Filter Select Styling */
-        .filter-select{border-radius:12px!important;transition:all .3s cubic-bezier(.25,.1,.25,1)!important}
-        .filter-select:focus{box-shadow:0 0 0 3px rgba(16,185,129,.1),0 4px 12px rgba(16,185,129,.1)!important;border-color:#10b981!important}
-        
-        /* Search Button States */
-        .search-btn{position:relative;overflow:hidden}
-        .search-btn.loading .btn-text{opacity:0}
-        .search-btn.loading .btn-loader{display:block!important;position:absolute}
-        
-        /* Back to Top Percentage */
-        #btt{position:relative;overflow:hidden}
-        .btt-pct{font-variant-numeric:tabular-nums}
-        
-        /* WhatsApp FAB Menu */
-        .wa-menu{min-width:220px;z-index:60}
-        .wa-menu a{transition:all .2s ease}
-        .wa-menu a:hover{padding-left:1.25rem}
-        
-        /* Glass Morphism for Cards */
-        .glass-card{background:rgba(255,255,255,.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2)}
-        
-        /* Interactive card hover */
-        .icard{transition:all .5s cubic-bezier(.25,.1,.25,1);transform-style:preserve-3d;perspective:1000px}.icard:hover{transform:translateY(-8px);box-shadow:0 24px 70px rgba(0,0,0,.12),0 0 40px rgba(16,185,129,.08)}
-        .tc{position:relative;overflow:hidden;transform-style:preserve-3d;perspective:1200px;transition:transform .4s cubic-bezier(.25,.1,.25,1),box-shadow .4s ease}.tc::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transition:left .6s ease;z-index:10;pointer-events:none}.tc:hover::before{left:100%}
-        .tc:hover{box-shadow:0 28px 80px rgba(0,0,0,.14),0 0 50px rgba(16,185,129,.08)}
-        .timg{transition:transform .7s cubic-bezier(.25,.1,.25,1),filter .4s ease}.tc:hover .timg{transform:scale(1.08) translateZ(20px);filter:brightness(1.05)}
-        .card-shine{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:15;opacity:0;transition:opacity .3s ease;background:radial-gradient(circle at var(--shine-x,50%) var(--shine-y,50%),rgba(255,255,255,.2) 0%,transparent 60%)}.tc:hover .card-shine{opacity:1}
-
-        /* Print Styles */
-        @media print{
-            nav,#btt,.wa-float,#stickyBar,.floating-shapes,.cursor-trail,#loadingSkeleton{display:none!important}
-            body{background:white;color:black;font-size:12pt}
-            a{text-decoration:underline;color:blue}
-            .tc{break-inside:avoid;page-break-inside:avoid}
-        }
-        
-        /* Focus Visible for Accessibility */
-        *:focus-visible{outline:2px solid #10b981;outline-offset:2px}
-        
-        /* Selection Color */
-        ::selection{background:rgba(16,185,129,.2);color:#1d1d1f}
-        
-        /* Smooth Scroll Behavior */
-        html{scroll-behavior:smooth}
-        @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-
-        @media(max-width:767px){
-            .hero-h1{font-size:2rem !important;line-height:1.1 !important}
-            .hero-p{font-size:1rem !important}
-            .hero-ctas{flex-direction:column !important}
-            .hero-ctas a{width:100%;justify-content:center}
-            .stat-row{gap:1.5rem !important}
-            .prop-grid{grid-template-columns:1fr !important;gap:1.25rem !important}
-            .filter-grid{grid-template-columns:1fr 1fr !important}
-            .filter-grid .flex.items-end{grid-column:span 2}
-            .how-grid{grid-template-columns:1fr 1fr !important;gap:1.5rem !important}
-            .founder-grid{grid-template-columns:1fr !important;gap:2rem !important}
-            .founder-grid>div:first-child{order:-1}
-            .founder-img{max-height:400px;aspect-ratio:4/3 !important}
-            .contact-grid{grid-template-columns:1fr !important;gap:2rem !important}
-            .emi-wrap{padding:1.25rem !important}
-            .footer-grid{grid-template-columns:1fr 1fr !important;gap:2rem !important}
-            .nav-links{display:none !important}
-            .nav-phone{display:none !important}
-            .nav-cta{display:none !important}
-            .wa-float{bottom:5rem !important;left:1rem !important}
-            .wa-float .wa-btn{width:3.25rem;height:3.25rem}
-            #btt{bottom:5rem !important;right:1rem !important;width:2.75rem;height:2.75rem}
-            .floating-shapes{display:none !important}
-            .draggable-section{display:none !important}
-            .cursor-trail{display:none !important}
-        }
-        @media(min-width:768px){.sticky-bar{display:none !important}}
-    </style>
+<style>
+body { font-family: Inter, sans-serif; }
+.icard { transition: all .4s ease; }
+.icard:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(20px);}
+  to { opacity:1; transform: translateY(0);}
+}
+.card-enter { animation: fadeUp .6s ease both; }
+.mqt { animation: marquee 25s linear infinite; }
+@keyframes marquee {
+  from { transform: translateX(0);}
+  to { transform: translateX(-50%);}
+}
+</style>
 </head>
-    
-<body class="font-sans text-neutral-800 bg-white noise">
 
-<div class="cd hidden md:block" id="cdot"></div>
-<div class="cr hidden md:block" id="cring"></div>
-<div id="sp"></div>
+<body class="bg-white text-neutral-800">
 
-<!-- ═══ CURSOR PARTICLE TRAIL SYSTEM ═══ -->
-<div class="cursor-trail fixed inset-0 pointer-events-none z-[9997] overflow-hidden" id="cursorTrail"></div>
-
-<!-- ═══ FLOATING SHAPES (desktop) - ENHANCED ═══ -->
-<div class="floating-shapes fixed inset-0 pointer-events-none z-[1] overflow-hidden" id="floatingShapes">
-    <div class="shape shape-1 absolute top-[12%] left-[6%] w-24 h-24 border-2 border-neutral-200/60 rounded-2xl spin-slow opacity-30 float-slow backdrop-blur-sm bg-white/20 cursor-pointer" data-shape style="--rot-speed:20s"><div class="absolute inset-0 rounded-2xl shimmer-bg opacity-0 hover:opacity-100 transition-opacity"></div></div>
-    <div class="shape shape-2 absolute top-[38%] right-[5%] w-16 h-16 bg-gradient-to-br from-emerald-100/70 to-emerald-200/50 rounded-full float-med opacity-50 cursor-pointer shadow-lg shadow-emerald-100/30" data-shape style="--float-speed:4s"><div class="absolute inset-0 rounded-full pulse-ring"></div></div>
-    <div class="shape shape-3 absolute top-[62%] left-[3%] w-20 h-20 border-2 border-emerald-200/40 rounded-xl float-fast opacity-35 cursor-pointer backdrop-blur-sm bg-white/10" data-shape style="animation-delay:.5s;--float-speed:2.5s"></div>
-    <div class="shape shape-4 absolute top-[78%] right-[10%] w-11 h-11 bg-gradient-to-br from-neutral-100 to-neutral-200/60 rounded-xl float-slow opacity-45 cursor-pointer shadow-md" data-shape style="animation-delay:1s;--float-speed:6s"></div>
-    <div class="shape shape-5 absolute top-[22%] right-[18%] w-8 h-8 bg-gradient-to-br from-emerald-100/60 to-teal-100/40 rounded-full float-med opacity-50 cursor-pointer" data-shape style="animation-delay:1.5s;--float-speed:3.5s"></div>
-    <div class="shape shape-6 absolute top-[52%] left-[14%] w-14 h-14 border-2 border-neutral-300/30 rounded-full spin-slow opacity-25 cursor-pointer backdrop-blur-sm" data-shape style="animation-delay:2s;--rot-speed:25s"></div>
-    <!-- New morphing blob -->
-    <div class="shape shape-7 absolute top-[85%] left-[25%] w-9 h-9 bg-gradient-to-r from-amber-100/50 to-orange-100/30 rounded-full float-slow opacity-40 cursor-pointer blur-[1px]" data-shape style="animation-delay:2.5s;--float-speed:7s"></div>
-    <!-- Wireframe diamond -->
-    <div class="shape shape-8 absolute top-[18%] left-[45%] w-12 h-12 border border-neutral-200/50 rotate-45 float-med opacity-30 cursor-pointer" data-shape style="animation-delay:3s;--float-speed:4.5s"></div>
+<!-- LOADER -->
+<div id="loadingSkeleton" class="fixed inset-0 bg-white flex items-center justify-center z-50">
+  <div class="animate-spin w-10 h-10 border-4 border-black border-t-transparent rounded-full"></div>
 </div>
 
-<!-- ═══ NAVIGATION ═══ -->
-<nav id="nav" class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-neutral-100">
-    <div class="max-w-[1440px] mx-auto px-5 md:px-6 h-14 md:h-16 flex items-center justify-between">
-        <a href="#" class="flex items-center gap-2.5 magnetic" data-h>
-            <div class="w-7 h-7 md:w-8 md:h-8 bg-neutral-900 rounded-lg flex items-center justify-center shimmer-bg"><span class="text-white text-[10px] md:text-[11px] font-semibold tracking-tight">CP</span></div>
-            <div class="flex flex-col"><span class="text-[12px] md:text-[13px] font-semibold tracking-[-0.01em] leading-none text-neutral-900">[Client Name] Properties</span><span class="text-[8px] md:text-[9px] text-neutral-400 tracking-[.1em] mt-0.5">BANGALORE · SINCE 2012</span></div>
-        </a>
-        <div class="nav-links hidden md:flex items-center gap-8">
-            <a href="#properties" class="text-[13px] text-neutral-500 hover:text-neutral-900 transition-colors duration-300 ld magnetic" data-h>Properties</a>
-            <a href="#closed-deals" class="text-[13px] text-neutral-500 hover:text-neutral-900 transition-colors duration-300 ld magnetic" data-h>Closed Deals</a>
-            <a href="#about" class="text-[13px] text-neutral-500 hover:text-neutral-900 transition-colors duration-300 ld magnetic" data-h>About</a>
-            <a href="#testimonials" class="text-[13px] text-neutral-500 hover:text-neutral-900 transition-colors duration-300 ld magnetic" data-h>Reviews</a>
-            <a href="#contact" class="text-[13px] text-neutral-500 hover:text-neutral-900 transition-colors duration-300 ld magnetic" data-h>Contact</a>
-        </div>
-        <div class="hidden md:flex items-center gap-3">
-            <a href="tel:+919876543210" class="nav-phone flex items-center gap-1.5 text-[13px] text-neutral-500 hover:text-neutral-900 transition-colors duration-300 magnetic" data-h><span class="iconify w-3.5 h-3.5" data-icon="lucide:phone"></span>+91 98765 43210</a>
-            <a href="#contact" class="mb nav-cta ripple-btn shim bg-neutral-900 text-white text-[11px] font-medium px-5 py-2.5 rounded-lg hover:bg-neutral-800 transition-colors duration-300 magnetic" data-h data-m>Schedule Visit</a>
-        </div>
-        <button id="menubtn" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-neutral-50 transition-colors duration-300" data-h><span class="iconify w-5 h-5" data-icon="lucide:menu"></span></button>
-    </div>
+<!-- NAV -->
+<nav class="p-4 border-b flex justify-between">
+  <h1 class="font-semibold">Elite Properties</h1>
+  <button id="filterBtn" class="text-sm bg-black text-white px-4 py-2 rounded">Search</button>
 </nav>
 
-<!-- ═══ MOBILE MENU ═══ -->
-<div id="mmenu" class="mm fixed inset-0 z-[60] bg-white">
-    <div class="flex items-center justify-between px-6 h-14 border-b border-neutral-100"><span class="text-sm font-medium text-neutral-900">Menu</span><button id="cmenubtn" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-neutral-50 transition-colors" data-h><span class="iconify w-5 h-5" data-icon="lucide:x"></span></button></div>
-    <div class="flex flex-col p-6 gap-1">
-        <a href="#properties" class="ml py-3.5 text-lg font-medium text-neutral-700 border-b border-neutral-100">Properties</a>
-        <a href="#closed-deals" class="ml py-3.5 text-lg font-medium text-neutral-700 border-b border-neutral-100">Closed Deals</a>
-        <a href="#about" class="ml py-3.5 text-lg font-medium text-neutral-700 border-b border-neutral-100">About</a>
-        <a href="#testimonials" class="ml py-3.5 text-lg font-medium text-neutral-700 border-b border-neutral-100">Reviews</a>
-        <a href="#contact" class="ml py-3.5 text-lg font-medium text-neutral-700 border-b border-neutral-100">Contact</a>
-        <a href="https://wa.me/919876543210" target="_blank" class="flex items-center gap-2 py-3.5 text-lg font-medium text-emerald-600 border-b border-neutral-100"><span class="iconify w-4 h-4" data-icon="lucide:message-circle"></span>WhatsApp Us</a>
-        <a href="tel:+919876543210" class="flex items-center gap-2 py-3.5 text-lg font-medium text-neutral-700 border-b border-neutral-100"><span class="iconify w-4 h-4" data-icon="lucide:phone"></span>+91 98765 43210</a>
-        <a href="#contact" class="ml mt-6 bg-neutral-900 text-white text-center text-sm font-medium px-5 py-3.5 rounded-lg">Schedule Visit</a>
-    </div>
-</div>
+<!-- MARQUEE -->
+<section class="border-b py-3 overflow-hidden">
+  <div class="mqt flex gap-10 whitespace-nowrap">
+    <span>✔ Verified Properties</span>
+    <span>✔ No Hidden Charges</span>
+    <span>✔ Legal Support</span>
+    <span>✔ 500+ Families</span>
 
-<!-- ═══ LOADING SKELETON ═══ -->
-<div id="loadingSkeleton" class="fixed inset-0 z-[10000] bg-white flex items-center justify-center transition-opacity duration-700">
-    <div class="text-center">
-        <div class="w-12 h-12 mx-auto mb-4 border-3 border-neutral-200 border-t-neutral-900 rounded-full animate-spin" style="border-width:3px"></div>
-        <div class="text-sm text-neutral-400 font-medium tracking-wide">Loading Experience</div>
-    </div>
-</div>
-
-<!-- ═══ HERO - IMMERSIVE ═══ -->
-<section class="relative min-h-[100dvh] flex items-center overflow-hidden hero-section" id="hero">
-    <div class="absolute inset-0 hero-bg-container">
-        <img src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=1920&h=1080&fit=crop&q=80" alt="" class="w-full h-full object-cover parallax-layer hero-bg-image" id="himg" loading="eager"/>
-        <div class="absolute inset-0 bg-gradient-to-br from-neutral-900/92 via-neutral-900/65 to-neutral-900/25 hero-overlay"></div>
-        <!-- Ambient light overlay that follows mouse -->
-        <div class="ambient-light absolute inset-0 pointer-events-none opacity-30 mix-blend-screen" id="ambientLight"></div>
-        <!-- Grain texture overlay -->
-        <div class="grain-overlay absolute inset-0 pointer-events-none opacity-[0.03]" style="background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22g%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23g)%22/%3E%3C/svg%3E');background-repeat:repeat;background-size:128px"></div>
-    </div>
-    <!-- Hero floating badges -->
-    <div class="absolute top-[30%] right-[8%] hidden lg:block float-slow" style="animation-delay:.3s">
-        <div class="ibadge bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl px-4 py-3 flex items-center gap-2.5"><span class="iconify w-5 h-5 text-emerald-400" data-icon="lucide:shield-check"></span><span class="text-[11px] text-white/80 font-medium">100% Verified</span></div>
-    </div>
-    <div class="absolute bottom-[35%] right-[15%] hidden lg:block float-med" style="animation-delay:1s">
-        <div class="ibadge bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl px-4 py-3 flex items-center gap-2.5"><span class="iconify w-5 h-5 text-amber-400" data-icon="lucide:star"></span><span class="text-[11px] text-white/80 font-medium">4.9 Rating</span></div>
-    </div>
-    <div class="absolute top-[55%] right-[5%] hidden xl:block float-fast" style="animation-delay:2s">
-        <div class="ibadge bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl px-4 py-3 flex items-center gap-2.5"><span class="iconify w-5 h-5 text-emerald-400" data-icon="lucide:clock"></span><span class="text-[11px] text-white/80 font-medium">21 Day Avg.</span></div>
-    </div>
-    <div class="relative z-10 max-w-[1440px] mx-auto px-5 md:px-6 pt-28 md:pt-32 pb-20 md:pb-24 w-full">
-        <div class="max-w-2xl">
-            <div data-reveal="up" class="inline-flex items-center gap-2 bg-white/[.07] border border-white/10 rounded-full px-4 py-2 mb-8 md:mb-10 badge-bounce hero-badge">
-                <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
-                <span class="text-[11px] md:text-xs text-white/80 font-medium tracking-wide" id="heroAvailCount">12 VERIFIED HOMES AVAILABLE NOW</span>
-            </div>
-            <h1 data-reveal="up" class="hero-h1 text-[2.25rem] md:text-[3.5rem] lg:text-[4.25rem] font-medium text-white leading-[1.08] tracking-[-0.02em] mb-6 md:mb-8 text-glow" id="heroTitle"><span class="hero-char inline-block opacity-0">F</span><span class="hero-char inline-block opacity-0">i</span><span class="hero-char inline-block opacity-0">n</span><span class="hero-char inline-block opacity-0">d</span><span class="hero-char inline-block opacity-0"> </span><span class="hero-char inline-block opacity-0">V</span><span class="hero-char inline-block opacity-0">e</span><span class="hero-char inline-block opacity-0">r</span><span class="hero-char inline-block opacity-0">i</span><span class="hero-char inline-block opacity-0">f</span><span class="hero-char inline-block opacity-0">i</span><span class="hero-char inline-block opacity-0">e</span><span class="hero-char inline-block opacity-0">d</span><span class="hero-char inline-block opacity-0"> </span><span class="hero-char inline-block opacity-0">H</span><span class="hero-char inline-block opacity-0">o</span><span class="hero-char inline-block opacity-0">m</span><span class="hero-char inline-block opacity-0">e</span><span class="hero-char inline-block opacity-0">s</span><span class="hero-char inline-block opacity-0"> </span><span class="hero-char inline-block opacity-0">i</span><span class="hero-char inline-block opacity-0">n</span><span class="hero-char inline-block opacity-0"> </span><span class="hero-char inline-block opacity-0">B</span><span class="hero-char inline-block opacity-0">a</span><span class="hero-char inline-block opacity-0">n</span><span class="hero-char inline-block opacity-0">g</span><span class="hero-char inline-block opacity-0">a</span><span class="hero-char inline-block opacity-0">l</span><span class="hero-char inline-block opacity-0">o</span><span class="hero-char inline-block opacity-0">r</span><span class="hero-char inline-block opacity-0">e</span><span class="hero-char inline-block opacity-0"> </span><span class="hero-char inline-block opacity-0 text-emerald-400">W</span><span class="hero-char inline-block opacity-0 text-emerald-400">i</span><span class="hero-char inline-block opacity-0 text-emerald-400">t</span><span class="hero-char inline-block opacity-0 text-emerald-400">h</span><span class="hero-char inline-block opacity-0 text-emerald-400">o</span><span class="hero-char inline-block opacity-0 text-emerald-400">u</span><span class="hero-char inline-block opacity-0 text-emerald-400">t</span><span class="hero-char inline-block opacity-0 text-emerald-400"> </span><span class="hero-char inline-block opacity-0 text-emerald-400">B</span><span class="hero-char inline-block opacity-0 text-emerald-400">r</span><span class="hero-char inline-block opacity-0 text-emerald-400">o</span><span class="hero-char inline-block opacity-0 text-emerald-400">k</span><span class="hero-char inline-block opacity-0 text-emerald-400">e</span><span class="hero-char inline-block opacity-0 text-emerald-400">r</span><span class="hero-char inline-block opacity-0 text-emerald-400"> </span><span class="hero-char inline-block opacity-0 text-emerald-400">C</span><span class="hero-char inline-block opacity-0 text-emerald-400">h</span><span class="hero-char inline-block opacity-0 text-emerald-400">a</span><span class="hero-char inline-block opacity-0 text-emerald-400">o</span><span class="hero-char inline-block opacity-0 text-emerald-400">s</span></h1>
-            <p data-reveal="up" class="hero-p text-base md:text-xl text-white/50 leading-[1.7] mb-8 md:mb-12 max-w-[520px]">No fake listings. No hidden charges. No endless follow-ups. Just genuine properties, verified in person, with complete paperwork support.</p>
-            <div data-reveal="up" class="hero-ctas flex flex-col sm:flex-row gap-3 mb-12 md:mb-16">
-                <a href="#contact" class="mb shim ripple-btn inline-flex items-center justify-center gap-2 bg-white text-neutral-900 text-sm font-semibold px-6 md:px-8 py-3.5 md:py-4 rounded-xl hover:bg-neutral-100 transition-colors duration-300 shadow-lg shadow-black/5 magnetic" data-h data-m><span class="iconify w-4 h-4" data-icon="lucide:calendar-check"></span>Schedule a Free Visit</a>
-                <a href="https://wa.me/919876543210" target="_blank" class="mb ripple-btn inline-flex items-center justify-center gap-2 bg-[#25D366]/90 text-white text-sm font-medium px-6 md:px-8 py-3.5 md:py-4 rounded-xl hover:bg-[#25D366] transition-colors duration-300 magnetic" data-h data-m><span class="iconify w-4 h-4" data-icon="lucide:message-circle"></span>Chat on WhatsApp</a>
-            </div>
-            <div data-reveal="fade" class="stat-row flex items-center gap-6 md:gap-10 pt-8 md:pt-10 border-t border-white/10">
-                <div class="flex-1 stat-card moveable-stat" data-drag-stat data-stat-gauge="500"><div class="relative inline-block"><svg class="w-16 h-16 md:w-20 md:h-20 -rotate-90 absolute -top-2 -left-2" viewBox="0 0 36 36"><path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/><path class="stat-gauge-fill" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#10b981" stroke-width="2.5" stroke-dasharray="0, 100" stroke-linecap="round"/></svg><div class="text-2xl md:text-3xl font-medium text-white cg relative z-10" data-counter="500" data-suffix="+">0</div></div><div class="text-[10px] md:text-[11px] text-white/30 mt-1.5 tracking-[.08em] uppercase">Homes Closed</div></div>
-                <div class="w-px h-10 bg-white/8"></div>
-                <div class="flex-1 stat-card moveable-stat" data-drag-stat data-stat-gauge="12"><div class="relative inline-block"><svg class="w-16 h-16 md:w-20 md:h-20 -rotate-90 absolute -top-2 -left-2" viewBox="0 0 36 36"><path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/><path class="stat-gauge-fill" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#10b981" stroke-width="2.5" stroke-dasharray="0, 100" stroke-linecap="round"/></svg><div class="text-2xl md:text-3xl font-medium text-white cg relative z-10" data-counter="12" data-suffix="+">0</div></div><div class="text-[10px] md:text-[11px] text-white/30 mt-1.5 tracking-[.08em] uppercase">Years in Bangalore</div></div>
-                <div class="w-px h-10 bg-white/8"></div>
-                <div class="flex-1 stat-card moveable-stat" data-drag-stat><div class="text-2xl md:text-3xl font-medium text-white cg" data-counter="0">0</div><div class="text-[10px] md:text-[11px] text-white/30 mt-1.5 tracking-[.08em] uppercase">Fake Listings</div></div>
-            </div>
-        </div>
-    </div>
-    <div id="hshint" class="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-25"><span class="text-[10px] text-white/40 tracking-[.2em] uppercase">Scroll</span><div class="w-px h-8 bg-gradient-to-b from-white/20 to-transparent animate-pulse"></div></div>
-</section>
-
-<!-- ═══ MARQUEE ═══ -->
-<section class="border-b border-neutral-100 bg-neutral-50/50 py-3 md:py-4 overflow-hidden">
-  <div class="mqt flex items-center gap-10 md:gap-12 whitespace-nowrap" style="width:max-content">
-
-    <!-- ORIGINAL CONTENT -->
-    <div class="flex items-center gap-10 md:gap-12">
-      <span class="flex items-center gap-2 text-[10px] md:text-[11px] text-neutral-400 font-medium tracking-wide">
-        <span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:shield-check"></span>
-        Every Property Verified In Person
-      </span>
-
-      <span class="text-neutral-200">·</span>
-
-      <span class="flex items-center gap-2 text-[10px] md:text-[11px] text-neutral-400 font-medium tracking-wide">
-        <span class="iconify w-3 h-3 text-emerald-500" data-icon="mdi:currency-inr"></span>
-        No Hidden Charges — Ever
-      </span>
-
-      <span class="text-neutral-200">·</span>
-
-      <span class="flex items-center gap-2 text-[10px] md:text-[11px] text-neutral-400 font-medium tracking-wide">
-        <span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:file-check"></span>
-        Complete Legal & Registration Support
-      </span>
-
-      <span class="text-neutral-200">·</span>
-
-      <span class="flex items-center gap-2 text-[10px] md:text-[11px] text-neutral-400 font-medium tracking-wide">
-        <span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:handshake"></span>
-        We Advise, Not Push
-      </span>
-
-      <span class="text-neutral-200">·</span>
-
-      <span class="flex items-center gap-2 text-[10px] md:text-[11px] text-neutral-400 font-medium tracking-wide">
-        <span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:users"></span>
-        500+ Families Served
-      </span>
-
-      <span class="text-neutral-200">·</span>
-
-      <span class="flex items-center gap-2 text-[10px] md:text-[11px] text-neutral-400 font-medium tracking-wide">
-        <span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:clock"></span>
-        Avg. Closing Time: 21 Days
-      </span>
-    </div>
-
-    <!-- DUPLICATE FOR LOOP (CLEAN WAY) -->
-    <div class="flex items-center gap-10 md:gap-12">
-      <!-- SAME BLOCK AGAIN -->
-      <span class="flex items-center gap-2 text-[10px] md:text-[11px] text-neutral-400 font-medium tracking-wide">
-        <span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:shield-check"></span>
-        Every Property Verified In Person
-      </span>
-
-      <span class="text-neutral-200">·</span>
-
-      <span class="flex items-center gap-2 text-[10px] md:text-[11px] text-neutral-400 font-medium tracking-wide">
-        <span class="iconify w-3 h-3 text-emerald-500" data-icon="mdi:currency-inr"></span>
-        No Hidden Charges — Ever
-      </span>
-
-      <span class="text-neutral-200">·</span>
-
-      <span class="flex items-center gap-2 text-[10px] md:text-[11px] text-neutral-400 font-medium tracking-wide">
-        <span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:file-check"></span>
-        Complete Legal & Registration Support
-      </span>
-
-      <span class="text-neutral-200">·</span>
-
-      <span class="flex items-center gap-2 text-[10px] md:text-[11px] text-neutral-400 font-medium tracking-wide">
-        <span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:handshake"></span>
-        We Advise, Not Push
-      </span>
-
-      <span class="text-neutral-200">·</span>
-
-      <span class="flex items-center gap-2 text-[10px] md:text-[11px] text-neutral-400 font-medium tracking-wide">
-        <span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:users"></span>
-        500+ Families Served
-      </span>
-
-      <span class="text-neutral-200">·</span>
-
-      <span class="flex items-center gap-2 text-[10px] md:text-[11px] text-neutral-400 font-medium tracking-wide">
-        <span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:clock"></span>
-        Avg. Closing Time: 21 Days
-      </span>
-    </div>
-
+    <span>✔ Verified Properties</span>
+    <span>✔ No Hidden Charges</span>
+    <span>✔ Legal Support</span>
+    <span>✔ 500+ Families</span>
   </div>
 </section>
-<!-- ═══ FILTERS - ENHANCED ═══ -->
-<section class="py-10 md:py-16 bg-white border-b border-neutral-100 section-progress relative overflow-hidden" id="filterSection">
-    <!-- Quick filter presets -->
-    <div class="max-w-[1440px] mx-auto px-5 md:px-6 mb-6">
-        <div data-reveal="up" class="flex flex-wrap gap-2" id="quickFilters">
-            <button class="quick-filter-chip active px-4 py-2 rounded-full text-xs font-medium border border-neutral-200 bg-white hover:bg-neutral-50 hover:border-emerald-300 hover:text-emerald-700 transition-all duration-300 magnetic" data-filter="all" data-h>All Properties</button>
-            <button class="quick-filter-chip px-4 py-2 rounded-full text-xs font-medium border border-neutral-200 bg-white hover:bg-neutral-50 hover:border-emerald-300 hover:text-emerald-700 transition-all duration-300 magnetic" data-filter="budget" data-h>Budget Friendly</button>
-            <button class="quick-filter-chip px-4 py-2 rounded-full text-xs font-medium border border-neutral-200 bg-white hover:bg-neutral-50 hover:border-emerald-300 hover:text-emerald-700 transition-all duration-300 magnetic" data-filter="luxury" data-h>Luxury Homes</button>
-            <button class="quick-filter-chip px-4 py-2 rounded-full text-xs font-medium border border-neutral-200 bg-white hover:bg-neutral-50 hover:border-emerald-300 hover:text-emerald-700 transition-all duration-300 magnetic" data-filter="new" data-h>New Listings</button>
-            <button class="quick-filter-chip px-4 py-2 rounded-full text-xs font-medium border border-neutral-200 bg-white hover:bg-neutral-50 hover:border-emerald-300 hover:text-emerald-700 transition-all duration-300 magnetic" data-filter="verified" data-h>Verified Only</button>
-        </div>
-    </div>
-    
-    <div class="max-w-[1440px] mx-auto px-5 md:px-6">
-        <div data-reveal="up" class="mb-6 md:mb-10"><h2 class="text-xl md:text-2xl font-medium tracking-[-0.015em] text-neutral-900">Explore Properties</h2><p class="text-sm text-neutral-500 mt-2 max-w-md leading-relaxed">Every listing is verified in person. No surprises on site visit.</p></div>
-        <div data-reveal="up" class="filter-grid grid grid-cols-2 md:grid-cols-5 gap-2.5 md:gap-3">
-            <div class="filter-group"><label class="block text-[10px] font-semibold uppercase tracking-[.12em] text-neutral-400 mb-1.5">Location</label><div class="relative"><select id="filterLocation" class="filter-select w-full h-10 md:h-11 px-3 pr-9 text-sm bg-white border border-neutral-200 rounded-xl appearance-none focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-300 cursor-pointer" data-h><option value="">All Areas</option><option>Whitefield</option><option>Sarjapur Road</option><option>HSR Layout</option><option>Electronic City</option><option>Marathahalli</option><option>Harlur Road</option></select><span class="iconify absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none transition-transform duration-300" data-icon="lucide:chevron-down"></span></div></div>
-            <div class="filter-group"><label class="block text-[10px] font-semibold uppercase tracking-[.12em] text-neutral-400 mb-1.5">Type</label><div class="relative"><select id="filterType" class="filter-select w-full h-10 md:h-11 px-3 pr-9 text-sm bg-white border border-neutral-200 rounded-xl appearance-none focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-300 cursor-pointer" data-h><option value="">All Types</option><option>Apartment</option><option>Villa</option><option>Penthouse</option><option>Plot</option></select><span class="iconify absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none transition-transform duration-300" data-icon="lucide:chevron-down"></span></div></div>
-            <div class="filter-group"><label class="block text-[10px] font-semibold uppercase tracking-[.12em] text-neutral-400 mb-1.5">Budget</label><div class="relative"><select id="filterBudget" class="filter-select w-full h-10 md:h-11 px-3 pr-9 text-sm bg-white border border-neutral-200 rounded-xl appearance-none focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-300 cursor-pointer" data-h><option value="">Any Budget</option><option value="60000000">₹40L — ₹60L</option><option value="85000000">₹60L — ₹85L</option><option value="120000000">₹85L — ₹1.2Cr</option><option value="200000000">₹1.2Cr — ₹2Cr</option><option value="200000001">₹2Cr+</option></select><span class="iconify absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none transition-transform duration-300" data-icon="lucide:chevron-down"></span></div></div>
-            <div class="filter-group"><label class="block text-[10px] font-semibold uppercase tracking-[.12em] text-neutral-400 mb-1.5">BHK</label><div class="relative"><select id="filterBhk" class="filter-select w-full h-10 md:h-11 px-3 pr-9 text-sm bg-white border border-neutral-200 rounded-xl appearance-none focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all duration-300 cursor-pointer" data-h><option value="">Any BHK</option><option value="1">1 BHK</option><option value="2">2 BHK</option><option value="3">3 BHK</option><option value="4">4 BHK</option></select><span class="iconify absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none transition-transform duration-300" data-icon="lucide:chevron-down"></span></div></div>
-            <div class="flex items-end"><button id="filterBtn" class="mb ripple-btn search-btn w-full h-10 md:h-11 bg-gradient-to-r from-neutral-900 to-neutral-800 text-white text-sm font-medium rounded-xl hover:from-neutral-800 hover:to-neutral-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-neutral-900/20 hover:shadow-xl hover:shadow-neutral-900/30 magnetic overflow-hidden relative" data-h data-m><span class="iconify w-4 h-4 btn-icon" data-icon="lucide:search"></span><span class="btn-text">Search</span><span class="btn-loader hidden"><span class="iconify w-4 h-4 animate-spin" data-icon="lucide:loader-2"></span></span></button></div>
-        </div>
-        <div id="filterStatus" class="hidden mt-4 flex items-center justify-between p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
-            <div class="flex items-center gap-2"><span class="iconify w-4 h-4 text-emerald-600" data-icon="lucide:check-circle"></span><span id="filterCount" class="text-sm text-emerald-700 font-medium"></span></div>
-            <button id="clearFilters" class="text-xs text-emerald-700 hover:text-emerald-900 underline font-medium transition-colors" data-h>Clear all filters</button>
-        </div>
-    </div>
-</section>
 
-<!-- ═══ PROPERTIES ═══ -->
-<section id="properties" class="py-16 md:py-24 bg-white">
-    <div class="max-w-[1440px] mx-auto px-5 md:px-6">
-        <div data-reveal="up" class="flex items-end justify-between mb-10 md:mb-14">
-            <div><span class="text-[10px] font-semibold uppercase tracking-[.12em] text-emerald-600 mb-3 md:mb-4 block">Handpicked for You</span><h2 class="text-xl md:text-2xl font-medium tracking-[-0.015em] text-neutral-900">Verified Properties in Bangalore</h2><p class="text-sm text-neutral-500 mt-2 max-w-md leading-relaxed">Each property is personally inspected, legally verified, and priced fairly.</p></div>
-            <div class="hidden md:flex items-center gap-2">
-                <button class="w-9 h-9 border border-neutral-200 rounded-lg flex items-center justify-center hover:bg-neutral-50 transition-colors magnetic" onclick="document.getElementById('propScroll').scrollBy({left:-360,behavior:'smooth'})" data-h><span class="iconify w-4 h-4 text-neutral-500" data-icon="lucide:chevron-left"></span></button>
-                <button class="w-9 h-9 border border-neutral-200 rounded-lg flex items-center justify-center hover:bg-neutral-50 transition-colors magnetic" onclick="document.getElementById('propScroll').scrollBy({left:360,behavior:'smooth'})" data-h><span class="iconify w-4 h-4 text-neutral-500" data-icon="lucide:chevron-right"></span></button>
-            </div>
-        </div>
-        <div id="propScroll" class="hscroll md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 overflow-x-auto flex md:overflow-visible" style="scroll-snap-type:x mandatory">
-            <div id="propertyGrid" class="contents"></div>
-        </div>
-        <div id="noResults" class="hidden text-center py-20"><span class="iconify w-12 h-12 text-neutral-300 mx-auto mb-4" data-icon="lucide:search-x"></span><p class="text-sm text-neutral-500">No properties match your filters.</p><button id="noResClear" class="mt-3 text-sm text-neutral-900 underline" data-h>Clear filters</button></div>
-    </div>
-</section>
+<!-- FILTERS -->
+<div class="p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+  <select id="filterLocation" class="border p-2 rounded">
+    <option value="">Location</option>
+    <option>Whitefield</option>
+    <option>HSR Layout</option>
+  </select>
 
-<!-- ═══ CLOSED DEALS - ENHANCED WITH TIMELINE ═══ -->
-<section id="closed-deals" class="py-16 md:py-24 bg-gradient-to-br from-neutral-50 to-white section-progress relative overflow-hidden">
-    <!-- Decorative background elements -->
-    <div class="absolute top-20 right-10 w-32 h-32 bg-emerald-100/30 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-20 left-10 w-40 h-40 bg-amber-100/20 rounded-full blur-3xl"></div>
-    
-    <div class="max-w-[1440px] mx-auto px-5 md:px-6 relative z-10">
-        <div data-reveal="up" class="text-center mb-12 md:mb-18">
-            <span class="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[.12em] text-emerald-600 mb-3 md:mb-4 block"><span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>Proof, Not Promises</span>
-            <h2 class="text-xl md:text-2xl lg:text-3xl font-medium tracking-[-0.015em] text-neutral-900 mb-3 md:mb-4">Recently Closed Deals</h2>
-            <p class="text-sm text-neutral-500 max-w-lg mx-auto leading-[1.7]">Real transactions. Real savings. What our advisory helped families achieve in the last 90 days.</p>
-        </div>
-        
-        <div id="dealsScroll" class="hscroll md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 overflow-x-auto flex md:overflow-visible relative z-10" style="scroll-snap-type:x mandatory">
-            <div class="deal-card cc icard bg-white/80 backdrop-blur-sm rounded-2xl p-5 md:p-6 border border-neutral-200/60 hscroll-item w-[280px] md:w-auto flex-shrink-0 shadow-lg hover:shadow-xl transition-all duration-500 group cursor-pointer" data-reveal="up" data-deal-flip data-celebrate>
-                <div class="deal-front">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="ibadge bg-gradient-to-r from-emerald-50 to-emerald-100 text-emerald-700 text-[10px] font-bold px-3 py-1.5 rounded-full tracking-wide cursor-default border border-emerald-200 shadow-sm">✓ CLOSED</span>
-                        <span class="text-xs text-neutral-400 font-medium">2w ago</span>
-                    </div>
-                    <div class="relative mb-4">
-                        <h4 class="text-sm md:text-[15px] font-semibold text-neutral-900 mb-1 group-hover:text-emerald-700 transition-colors">3 BHK Apartment</h4>
-                        <p class="text-xs text-neutral-500 flex items-center gap-1.5"><span class="iconify w-3.5 h-3.5 text-emerald-500" data-icon="lucide:map-pin"></span>Prestige Shantiniketan, Whitefield</p>
-                    </div>
-                    <div class="flex items-center justify-between pt-4 border-t border-neutral-100">
-                        <div class="flex-1">
-                            <div class="text-[10px] text-neutral-400 mb-1 uppercase tracking-wider">Final Price</div>
-                            <div class="text-base font-bold text-neutral-900">₹1.08 Cr</div>
-                        </div>
-                        <div class="relative w-14 h-14">
-                            <svg class="w-14 h-14 -rotate-90" viewBox="0 0 36 36">
-                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" stroke-width="2.5"/>
-                                <path class="deal-ring-fill" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#10b981" stroke-width="2.5" stroke-dasharray="0, 100" stroke-linecap="round"/>
-                            </svg>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <span class="text-[10px] font-bold text-emerald-600">21d</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="deal-back absolute inset-0 bg-gradient-to-br from-emerald-50 to-white rounded-2xl p-5 md:p-6 border border-emerald-200 transform rotateY(180deg opacity-0 backface-hidden">
-                    <div class="text-center h-full flex flex-col justify-center">
-                        <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="iconify w-6 h-6 text-emerald-600" data-icon="lucide:party-popper"></span></div>
-                        <h5 class="font-semibold text-neutral-900 mb-2">Deal Successfully Closed!</h5>
-                        <p class="text-xs text-neutral-600 leading-relaxed">Client saved ₹8L through our negotiation and received complete legal support.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="deal-card cc icard bg-white/80 backdrop-blur-sm rounded-2xl p-5 md:p-6 border border-neutral-200/60 hscroll-item w-[280px] md:w-auto flex-shrink-0 shadow-lg hover:shadow-xl transition-all duration-500 group cursor-pointer" data-reveal="up" data-deal-flip>
-                <div class="deal-front">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="ibadge bg-gradient-to-r from-emerald-50 to-emerald-100 text-emerald-700 text-[10px] font-bold px-3 py-1.5 rounded-full tracking-wide cursor-default border border-emerald-200 shadow-sm">✓ CLOSED</span>
-                        <span class="text-xs text-neutral-400 font-medium">1mo ago</span>
-                    </div>
-                    <div class="relative mb-4">
-                        <h4 class="text-sm md:text-[15px] font-semibold text-neutral-900 mb-1 group-hover:text-emerald-700 transition-colors">4 BHK Villa</h4>
-                        <p class="text-xs text-neutral-500 flex items-center gap-1.5"><span class="iconify w-3.5 h-3.5 text-emerald-500" data-icon="lucide:map-pin"></span>Sobha Royal Pavilion, Sarjapur</p>
-                    </div>
-                    <div class="flex items-center justify-between pt-4 border-t border-neutral-100">
-                        <div class="flex-1">
-                            <div class="text-[10px] text-emerald-600 mb-1 uppercase tracking-wider font-semibold">💰 You Saved</div>
-                            <div class="text-base font-bold text-emerald-600">₹12L below ask</div>
-                        </div>
-                        <div class="relative w-14 h-14">
-                            <svg class="w-14 h-14 -rotate-90" viewBox="0 0 36 36">
-                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" stroke-width="2.5"/>
-                                <path class="deal-ring-fill" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="0, 100" stroke-linecap="round"/>
-                            </svg>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <span class="text-[10px] font-bold text-amber-600">34d</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="deal-back absolute inset-0 bg-gradient-to-br from-amber-50 to-white rounded-2xl p-5 md:p-6 border border-amber-200 transform rotateY-180deg opacity-0 backface-hidden">
-                    <div class="text-center h-full flex flex-col justify-center">
-                        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="iconify w-6 h-6 text-amber-600" data-icon="lucide:trending-down"></span></div>
-                        <h5 class="font-semibold text-neutral-900 mb-2">Massive Savings!</h5>
-                        <p class="text-xs text-neutral-600 leading-relaxed">Our negotiation expertise saved client ₹12 lakhs off the original asking price.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="deal-card cc icard bg-white/80 backdrop-blur-sm rounded-2xl p-5 md:p-6 border border-neutral-200/60 hscroll-item w-[280px] md:w-auto flex-shrink-0 shadow-lg hover:shadow-xl transition-all duration-500 group cursor-pointer" data-reveal="up" data-deal-flip>
-                <div class="deal-front">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="ibadge bg-gradient-to-r from-emerald-50 to-emerald-100 text-emerald-700 text-[10px] font-bold px-3 py-1.5 rounded-full tracking-wide cursor-default border border-emerald-200 shadow-sm">✓ CLOSED</span>
-                        <span class="text-xs text-neutral-400 font-medium">6w ago</span>
-                    </div>
-                    <div class="relative mb-4">
-                        <h4 class="text-sm md:text-[15px] font-semibold text-neutral-900 mb-1 group-hover:text-emerald-700 transition-colors">Plot (1200 sqft)</h4>
-                        <p class="text-xs text-neutral-500 flex items-center gap-1.5"><span class="iconify w-3.5 h-3.5 text-emerald-500" data-icon="lucide:map-pin"></span>NBR Meadows, Harlur Road</p>
-                    </div>
-                    <div class="flex items-center justify-between pt-4 border-t border-neutral-100">
-                        <div class="flex-1">
-                            <div class="text-[10px] text-neutral-400 mb-1 uppercase tracking-wider">Final Price</div>
-                            <div class="text-base font-bold text-neutral-900">₹78 Lakhs</div>
-                        </div>
-                        <div class="relative w-14 h-14">
-                            <svg class="w-14 h-14 -rotate-90" viewBox="0 0 36 36">
-                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" stroke-width="2.5"/>
-                                <path class="deal-ring-fill" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#10b981" stroke-width="2.5" stroke-dasharray="0, 100" stroke-linecap="round"/>
-                            </svg>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <span class="text-[10px] font-bold text-emerald-600">18d</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="deal-back absolute inset-0 bg-gradient-to-br from-emerald-50 to-white rounded-2xl p-5 md:p-6 border border-emerald-200 transform rotateY-180deg opacity-0 backface-hidden">
-                    <div class="text-center h-full flex flex-col justify-center">
-                        <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="iconify w-6 h-6 text-emerald-600" data-icon="lucide:zap"></span></div>
-                        <h5 class="font-semibold text-neutral-900 mb-2">Lightning Fast!</h5>
-                        <p class="text-xs text-neutral-600 leading-relaxed">Closed in just 18 days - one of our fastest deals ever. Complete support provided.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="deal-card cc icard bg-white/80 backdrop-blur-sm rounded-2xl p-5 md:p-6 border border-amber-200/60 hscroll-item w-[280px] md:w-auto flex-shrink-0 shadow-lg hover:shadow-xl transition-all duration-500 group cursor-pointer" data-reveal="up" data-deal-flip>
-                <div class="deal-front">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="ibadge bg-gradient-to-r from-amber-50 to-amber-100 text-amber-700 text-[10px] font-bold px-3 py-1.5 rounded-full tracking-wide cursor-default border border-amber-200 shadow-sm animate-pulse">◐ IN PROGRESS</span>
-                        <span class="text-xs text-neutral-400 font-medium">Ongoing</span>
-                    </div>
-                    <div class="relative mb-4">
-                        <h4 class="text-sm md:text-[15px] font-semibold text-neutral-900 mb-1 group-hover:text-amber-700 transition-colors">4 BHK Penthouse</h4>
-                        <p class="text-xs text-neutral-500 flex items-center gap-1.5"><span class="iconify w-3.5 h-3.5 text-amber-500" data-icon="lucide:map-pin"></span>Brigade Orchards, Marathahalli</p>
-                    </div>
-                    <div class="flex items-center justify-between pt-4 border-t border-neutral-100">
-                        <div class="flex-1">
-                            <div class="text-[10px] text-neutral-400 mb-1 uppercase tracking-wider">Expected Price</div>
-                            <div class="text-base font-bold text-neutral-900">₹2.95 Cr</div>
-                        </div>
-                        <div class="relative w-14 h-14">
-                            <svg class="w-14 h-14 -rotate-90" viewBox="0 0 36 36">
-                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" stroke-width="2.5"/>
-                                <path class="deal-ring-fill" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="0, 100" stroke-linecap="round"/>
-                            </svg>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <span class="text-[10px] font-bold text-amber-600">...</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="deal-back absolute inset-0 bg-gradient-to-br from-amber-50 to-white rounded-2xl p-5 md:p-6 border border-amber-200 transform rotateY-180deg opacity-0 backface-hidden">
-                    <div class="text-center h-full flex flex-col justify-center">
-                        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3"><span class="iconify w-6 h-6 text-amber-600" data-icon="lucide:clock"></span></div>
-                        <h5 class="font-semibold text-neutral-900 mb-2">In Negotiation</h5>
-                        <p class="text-xs text-neutral-600 leading-relaxed">Currently negotiating best terms for client. Expected close within 2 weeks.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+  <select id="filterType" class="border p-2 rounded">
+    <option value="">Type</option>
+    <option>Apartment</option>
+    <option>Villa</option>
+  </select>
 
-<!-- ═══ HOW IT WORKS ═══ -->
-<section class="py-16 md:py-24 bg-white section-progress">
-    <div class="max-w-[1440px] mx-auto px-5 md:px-6">
-        <div data-reveal="up" class="text-center mb-14 md:mb-20"><span class="text-[10px] font-semibold uppercase tracking-[.12em] text-emerald-600 mb-3 md:mb-4 block">How It Works</span><h2 class="text-xl md:text-2xl font-medium tracking-[-0.015em] text-neutral-900 mb-3 md:mb-4">From Confusion to Key Handover</h2><p class="text-sm text-neutral-500 max-w-md mx-auto leading-[1.7]">We don't just show you properties. We guide you through every step.</p></div>
-        <div class="how-grid grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-            <div data-reveal="up" class="text-center md:text-left group">
-                <div class="w-11 h-11 md:w-12 md:h-12 bg-neutral-900 rounded-xl flex items-center justify-center mb-4 md:mb-6 mx-auto md:mx-0 group-hover:scale-110 group-hover:rounded-2xl transition-all duration-500 shimmer-bg"><span class="text-white text-xs md:text-sm font-medium">01</span></div>
-                <h4 class="text-xs md:text-sm font-medium text-neutral-900 mb-2">Understand Your Need</h4>
-                <p class="text-xs md:text-sm text-neutral-500 leading-[1.7]">A 15-minute call to understand your budget, areas, commute, and family requirements.</p>
-            </div>
-            <div data-reveal="up" class="text-center md:text-left group">
-                <div class="w-11 h-11 md:w-12 md:h-12 bg-neutral-900 rounded-xl flex items-center justify-center mb-4 md:mb-6 mx-auto md:mx-0 group-hover:scale-110 group-hover:rounded-2xl transition-all duration-500 shimmer-bg"><span class="text-white text-xs md:text-sm font-medium">02</span></div>
-                <h4 class="text-xs md:text-sm font-medium text-neutral-900 mb-2">Curated Shortlist</h4>
-                <p class="text-xs md:text-sm text-neutral-500 leading-[1.7]">We send you 3–5 verified options that actually match — no spam.</p>
-            </div>
-            <div data-reveal="up" class="text-center md:text-left group">
-                <div class="w-11 h-11 md:w-12 md:h-12 bg-neutral-900 rounded-xl flex items-center justify-center mb-4 md:mb-6 mx-auto md:mx-0 group-hover:scale-110 group-hover:rounded-2xl transition-all duration-500 shimmer-bg"><span class="text-white text-xs md:text-sm font-medium">03</span></div>
-                <h4 class="text-xs md:text-sm font-medium text-neutral-900 mb-2">Accompanied Site Visits</h4>
-                <p class="text-xs md:text-sm text-neutral-500 leading-[1.7]">We go with you. We point out things most buyers miss — water pressure, sunlight, quality.</p>
-            </div>
-            <div data-reveal="up" class="text-center md:text-left group">
-                <div class="w-11 h-11 md:w-12 md:h-12 bg-neutral-900 rounded-xl flex items-center justify-center mb-4 md:mb-6 mx-auto md:mx-0 group-hover:scale-110 group-hover:rounded-2xl transition-all duration-500 shimmer-bg"><span class="text-white text-xs md:text-sm font-medium">04</span></div>
-                <h4 class="text-xs md:text-sm font-medium text-neutral-900 mb-2">Close with Confidence</h4>
-                <p class="text-xs md:text-sm text-neutral-500 leading-[1.7]">Negotiation, legal checks, paperwork, registration — we handle it all.</p>
-            </div>
-        </div>
-    </div>
-</section>
+  <select id="filterBhk" class="border p-2 rounded">
+    <option value="">BHK</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
 
-<!-- ═══ ABOUT / FOUNDER ═══ -->
-<section id="about" class="py-16 md:py-24 bg-neutral-50 section-progress">
-    <div class="max-w-[1440px] mx-auto px-5 md:px-6">
-        <div class="founder-grid grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 lg:gap-24 items-center">
-            <div data-reveal="right" class="relative">
-                <div class="founder-img aspect-[4/5] rounded-2xl overflow-hidden"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=1000&fit=crop&q=80" alt="" class="w-full h-full object-cover parallax-layer" loading="lazy"/></div>
-                <div data-reveal="scale" class="absolute -bottom-3 -right-3 md:-bottom-6 md:-right-6 bg-white rounded-xl shadow-lg shadow-neutral-200/30 p-3.5 md:p-5 border border-neutral-100 float-slow">
-                    <div class="flex items-center gap-2.5"><div class="w-9 h-9 bg-emerald-50 rounded-lg flex items-center justify-center"><span class="iconify w-5 h-5 text-emerald-600" data-icon="lucide:award"></span></div><div><div class="text-[10px] text-neutral-400">Recognized By</div><div class="text-sm font-medium text-neutral-900">CREDAI Bangalore</div></div></div>
-                </div>
-            </div>
-            <div>
-                <span data-reveal="up" class="text-[10px] font-semibold uppercase tracking-[.12em] text-emerald-600 mb-4 md:mb-5 block">The Person Behind the Platform</span>
-                <h2 data-reveal="up" class="text-xl md:text-2xl font-medium tracking-[-0.015em] text-neutral-900 mb-5 md:mb-7">Meet [Founder Name]</h2>
-                <p data-reveal="up" class="text-sm md:text-[15px] text-neutral-600 leading-[1.75] mb-5 md:mb-7">After spending 5 years in corporate real estate consulting, [Founder Name] saw a clear problem: honest homebuyers in Bangalore were being misled by fake listings, opaque pricing, and pushy brokers.</p>
-                <p data-reveal="up" class="text-sm md:text-[15px] text-neutral-600 leading-[1.75] mb-8 md:mb-10">In 2012, [Client Name] Properties was started with one belief — <span class="font-medium text-neutral-900">buying a home should feel safe, not stressful.</span> Today, we've helped 500+ families find their homes with zero complaints.</p>
-                <div data-reveal="up" class="grid grid-cols-3 gap-3 md:gap-4 mb-8 md:mb-10">
-                    <div class="icard bg-white rounded-xl p-4 md:p-5 border border-neutral-100 text-center"><div class="text-xl md:text-2xl font-medium text-neutral-900 mb-1" data-counter="12" data-suffix="+">0</div><div class="text-[10px] text-neutral-400 tracking-wide">Years</div></div>
-                    <div class="icard bg-white rounded-xl p-4 md:p-5 border border-neutral-100 text-center"><div class="text-xl md:text-2xl font-medium text-neutral-900 mb-1" data-counter="500" data-suffix="+">0</div><div class="text-[10px] text-neutral-400 tracking-wide">Homes</div></div>
-                    <div class="icard bg-white rounded-xl p-4 md:p-5 border border-neutral-100 text-center"><div class="text-xl md:text-2xl font-medium text-neutral-900 mb-1">₹8Cr+</div><div class="text-[10px] text-neutral-400 tracking-wide">Saved</div></div>
-                </div>
-                <div data-reveal="up" class="flex flex-col sm:flex-row gap-2.5 md:gap-3">
-                    <a href="#contact" class="mb ripple-btn shim inline-flex items-center justify-center gap-2 bg-neutral-900 text-white text-sm font-medium px-5 md:px-6 py-3 md:py-3.5 rounded-xl hover:bg-neutral-800 transition-colors duration-300 magnetic" data-h data-m><span class="iconify w-4 h-4" data-icon="lucide:message-circle"></span>Talk to [Founder Name]</a>
-                    <a href="https://linkedin.com" target="_blank" class="ripple-btn inline-flex items-center justify-center gap-2 bg-white text-neutral-700 text-sm font-medium px-5 md:px-6 py-3 md:py-3.5 rounded-xl border border-neutral-200 hover:border-neutral-300 transition-colors duration-300 magnetic" data-h><span class="iconify w-4 h-4" data-icon="lucide:linkedin"></span>LinkedIn</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══ TESTIMONIALS — ALL 5 STARS ═══ -->
-<section id="testimonials" class="py-16 md:py-24 bg-white section-progress overflow-hidden">
-    <div class="max-w-[1440px] mx-auto px-5 md:px-6">
-        <div data-reveal="up" class="text-center mb-10 md:mb-16">
-            <span class="text-[10px] font-semibold uppercase tracking-[.12em] text-emerald-600 mb-3 md:mb-4 block">What Buyers Say</span>
-            <h2 class="text-xl md:text-2xl font-medium tracking-[-0.015em] text-neutral-900 mb-3 md:mb-4">Families Who Found Home With Us</h2>
-            <div data-reveal="scale" class="inline-flex items-center gap-3 bg-neutral-50 border border-neutral-100 rounded-2xl px-6 py-3 mt-4">
-                <div class="text-3xl font-medium text-neutral-900 text-glow">4.9</div>
-                <div>
-                    <div class="flex items-center gap-0.5 stars-container" data-stars-animated>
-                        <span class="iconify w-5 h-5 text-amber-400 star-pop" style="animation-delay:.1s" data-icon="lucide:star"></span>
-                        <span class="iconify w-5 h-5 text-amber-400 star-pop" style="animation-delay:.2s" data-icon="lucide:star"></span>
-                        <span class="iconify w-5 h-5 text-amber-400 star-pop" style="animation-delay:.3s" data-icon="lucide:star"></span>
-                        <span class="iconify w-5 h-5 text-amber-400 star-pop" style="animation-delay:.4s" data-icon="lucide:star"></span>
-                        <span class="iconify w-5 h-5 text-amber-400 star-pop" style="animation-delay:.5s" data-icon="lucide:star"></span>
-                    </div>
-                    <div class="text-[10px] text-neutral-400 mt-0.5">Based on 500+ reviews</div>
-                </div>
-            </div>
-        </div>
-
-        <div id="testiScroll" class="hscroll overflow-x-auto flex gap-4 md:gap-6 pb-4" style="scroll-snap-type:x mandatory">
-            <div data-reveal="up" class="testi-card icard bg-neutral-50 rounded-2xl p-5 md:p-7 border border-neutral-100 hscroll-item w-[320px] md:w-[380px] flex-shrink-0 relative">
-                <div class="absolute top-4 right-4"><span class="iconify w-8 h-8 text-neutral-100" data-icon="lucide:quote"></span></div>
-                <div class="flex items-center gap-0.5 mb-5 stars-inline">
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                </div>
-                <p class="text-sm text-neutral-600 leading-[1.75] mb-6 relative z-10">"They shared the builder's original price sheet on day one. No games. We closed in 3 weeks. Absolutely transparent process from start to finish."</p>
-                <div class="flex items-center gap-3 pt-5 border-t border-neutral-200"><div class="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center"><span class="text-sm font-semibold text-emerald-700">RK</span></div><div><div class="text-sm font-medium text-neutral-900">Rajesh Kumar</div><div class="text-[11px] text-neutral-400 mt-0.5">Whitefield · 3 BHK · ₹1.08 Cr</div></div></div>
-            </div>
-            <div data-reveal="up" class="testi-card icard bg-neutral-50 rounded-2xl p-5 md:p-7 border border-neutral-100 hscroll-item w-[320px] md:w-[380px] flex-shrink-0 relative">
-                <div class="absolute top-4 right-4"><span class="iconify w-8 h-8 text-neutral-100" data-icon="lucide:quote"></span></div>
-                <div class="flex items-center gap-0.5 mb-5 stars-inline">
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                </div>
-                <p class="text-sm text-neutral-600 leading-[1.75] mb-6 relative z-10">"As an NRI, I couldn't be present. They handled everything — site visits on video, legal verification, registration. I got my keys without flying down even once. Incredible service."</p>
-                <div class="flex items-center gap-3 pt-5 border-t border-neutral-200"><div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center"><span class="text-sm font-semibold text-blue-700">SP</span></div><div><div class="text-sm font-medium text-neutral-900">Suresh Patil</div><div class="text-[11px] text-neutral-400 mt-0.5">Sarjapur Road · Villa · ₹2.1 Cr</div></div></div>
-            </div>
-            <div data-reveal="up" class="testi-card icard bg-neutral-50 rounded-2xl p-5 md:p-7 border border-neutral-100 hscroll-item w-[320px] md:w-[380px] flex-shrink-0 relative">
-                <div class="absolute top-4 right-4"><span class="iconify w-8 h-8 text-neutral-100" data-icon="lucide:quote"></span></div>
-                <div class="flex items-center gap-0.5 mb-5 stars-inline">
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                </div>
-                <p class="text-sm text-neutral-600 leading-[1.75] mb-6 relative z-10">"They told me NOT to buy a property I was excited about. They pointed out waterlogging issues during monsoon. That's when I knew I could trust them completely."</p>
-                <div class="flex items-center gap-3 pt-5 border-t border-neutral-200"><div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center"><span class="text-sm font-semibold text-purple-700">AM</span></div><div><div class="text-sm font-medium text-neutral-900">Ananya Menon</div><div class="text-[11px] text-neutral-400 mt-0.5">HSR Layout · 2 BHK · ₹68 Lakhs</div></div></div>
-            </div>
-            <div data-reveal="up" class="testi-card icard bg-neutral-50 rounded-2xl p-5 md:p-7 border border-neutral-100 hscroll-item w-[320px] md:w-[380px] flex-shrink-0 relative">
-                <div class="absolute top-4 right-4"><span class="iconify w-8 h-8 text-neutral-100" data-icon="lucide:quote"></span></div>
-                <div class="flex items-center gap-0.5 mb-5 stars-inline">
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                </div>
-                <p class="text-sm text-neutral-600 leading-[1.75] mb-6 relative z-10">"Saved ₹18 lakhs through their negotiation. They knew exactly what to ask for — parking slot upgrade, modular kitchen, club membership. Things I wouldn't have even thought of."</p>
-                <div class="flex items-center gap-3 pt-5 border-t border-neutral-200"><div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center"><span class="text-sm font-semibold text-amber-700">VR</span></div><div><div class="text-sm font-medium text-neutral-900">Vikram Reddy</div><div class="text-[11px] text-neutral-400 mt-0.5">Electronic City · 3 BHK · ₹88 Lakhs</div></div></div>
-            </div>
-            <div data-reveal="up" class="testi-card icard bg-neutral-50 rounded-2xl p-5 md:p-7 border border-neutral-100 hscroll-item w-[320px] md:w-[380px] flex-shrink-0 relative">
-                <div class="absolute top-4 right-4"><span class="iconify w-8 h-8 text-neutral-100" data-icon="lucide:quote"></span></div>
-                <div class="flex items-center gap-0.5 mb-5 stars-inline">
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                </div>
-                <p class="text-sm text-neutral-600 leading-[1.75] mb-6 relative z-10">"My parents were skeptical about buying through an advisor. After meeting [Founder Name], they were convinced. He spent 2 hours explaining every document. True professional."</p>
-                <div class="flex items-center gap-3 pt-5 border-t border-neutral-200"><div class="w-10 h-10 bg-rose-100 rounded-full flex items-center justify-center"><span class="text-sm font-semibold text-rose-700">DG</span></div><div><div class="text-sm font-medium text-neutral-900">Deepa Gupta</div><div class="text-[11px] text-neutral-400 mt-0.5">Marathahalli · 4 BHK · ₹3.2 Cr</div></div></div>
-            </div>
-            <div data-reveal="up" class="testi-card icard bg-neutral-50 rounded-2xl p-5 md:p-7 border border-neutral-100 hscroll-item w-[320px] md:w-[380px] flex-shrink-0 relative">
-                <div class="absolute top-4 right-4"><span class="iconify w-8 h-8 text-neutral-100" data-icon="lucide:quote"></span></div>
-                <div class="flex items-center gap-0.5 mb-5 stars-inline">
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                    <span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span>
-                </div>
-                <p class="text-sm text-neutral-600 leading-[1.75] mb-6 relative z-10">"We were first-time buyers and completely lost. They held our hand through everything — from shortlisting to registration. It felt like having a trusted family member guide us."</p>
-                <div class="flex items-center gap-3 pt-5 border-t border-neutral-200"><div class="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center"><span class="text-sm font-semibold text-teal-700">NK</span></div><div><div class="text-sm font-medium text-neutral-900">Nikhil Kulkarni</div><div class="text-[11px] text-neutral-400 mt-0.5">Harlur Road · 3 BHK · ₹95 Lakhs</div></div></div>
-            </div>
-        </div>
-        <div class="flex items-center justify-center gap-3 mt-6">
-            <button onclick="document.getElementById('testiScroll').scrollBy({left:-400,behavior:'smooth'})" class="w-10 h-10 border border-neutral-200 rounded-full flex items-center justify-center hover:bg-neutral-50 hover:border-neutral-300 transition-all duration-300 magnetic wiggle" data-h><span class="iconify w-4 h-4 text-neutral-500" data-icon="lucide:chevron-left"></span></button>
-            <div class="flex items-center gap-1.5" id="testiDots"></div>
-            <button onclick="document.getElementById('testiScroll').scrollBy({left:400,behavior:'smooth'})" class="w-10 h-10 border border-neutral-200 rounded-full flex items-center justify-center hover:bg-neutral-50 hover:border-neutral-300 transition-all duration-300 magnetic wiggle" data-h><span class="iconify w-4 h-4 text-neutral-500" data-icon="lucide:chevron-right"></span></button>
-        </div>
-    </div>
-</section>
-
-<!-- ═══ CONTACT ═══ -->
-<section id="contact" class="py-16 md:py-24 bg-neutral-900 section-progress">
-    <div class="max-w-[1440px] mx-auto px-5 md:px-6">
-        <div class="contact-grid grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 lg:gap-24">
-            <div>
-                <span data-reveal="up" class="text-[10px] font-semibold uppercase tracking-[.12em] text-emerald-400 mb-4 md:mb-5 block">Start Here</span>
-                <h2 data-reveal="up" class="text-2xl md:text-4xl font-medium text-white tracking-[-0.02em] leading-[1.15] mb-6 md:mb-8">Tell Us What You're Looking For.<br/><span class="text-neutral-500">We'll Do the Rest.</span></h2>
-                <p data-reveal="up" class="text-sm md:text-[15px] text-neutral-400 leading-[1.7] mb-8 md:mb-12 max-w-md">Fill this form and our advisor will call you within 2 hours with a curated shortlist.</p>
-                <div data-reveal="up" class="space-y-5">
-                    <div class="flex items-start gap-3.5 icard bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50"><div class="w-9 h-9 bg-emerald-500/10 rounded-lg flex items-center justify-center flex-shrink-0"><span class="iconify w-4 h-4 text-emerald-400" data-icon="lucide:phone"></span></div><div><div class="text-sm font-medium text-white mb-0.5">Call Us Directly</div><a href="tel:+919876543210" class="text-sm text-neutral-400 hover:text-emerald-400 transition-colors duration-300" data-h>+91 98765 43210</a></div></div>
-                    <div class="flex items-start gap-3.5 icard bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50"><div class="w-9 h-9 bg-emerald-500/10 rounded-lg flex items-center justify-center flex-shrink-0"><span class="iconify w-4 h-4 text-emerald-400" data-icon="lucide:message-circle"></span></div><div><div class="text-sm font-medium text-white mb-0.5">WhatsApp</div><a href="https://wa.me/919876543210" target="_blank" class="text-sm text-neutral-400 hover:text-emerald-400 transition-colors duration-300" data-h>+91 98765 43210</a></div></div>
-                    <div class="flex items-start gap-3.5 icard bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50"><div class="w-9 h-9 bg-emerald-500/10 rounded-lg flex items-center justify-center flex-shrink-0"><span class="iconify w-4 h-4 text-emerald-400" data-icon="lucide:map-pin"></span></div><div><div class="text-sm font-medium text-white mb-0.5">Office</div><p class="text-sm text-neutral-400 leading-relaxed">ITPL Main Road, Whitefield<br/>Bangalore — 560066</p></div></div>
-                </div>
-            </div>
-            <div data-reveal="left">
-                <form id="lf" class="bg-neutral-800 border border-neutral-700 rounded-2xl p-5 md:p-8">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-4"><div class="fg"><input type="text" id="leadName" required placeholder=" " class="w-full h-12 md:h-14 px-4 bg-neutral-800 border border-neutral-700 rounded-lg text-sm text-white focus:outline-none focus:border-emerald-500/50 transition-colors duration-300"/><label class="text-neutral-500">Full Name *</label></div><div class="fg"><input type="tel" id="leadPhone" required placeholder=" " maxlength="10" class="w-full h-12 md:h-14 px-4 bg-neutral-800 border border-neutral-700 rounded-lg text-sm text-white focus:outline-none focus:border-emerald-500/50 transition-colors duration-300"/><label class="text-neutral-500">Phone Number *</label></div></div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-4"><div class="fg"><select id="leadBudget" required class="w-full h-12 md:h-14 px-4 bg-neutral-800 border border-neutral-700 rounded-lg text-sm text-white appearance-none focus:outline-none focus:border-emerald-500/50 transition-colors duration-300"><option value="" disabled selected hidden>Select budget</option><option>₹40L — ₹60L</option><option>₹60L — ₹85L</option><option>₹85L — ₹1.2Cr</option><option>₹1.2Cr — ₹2Cr</option><option>₹2Cr+</option></select><label class="text-neutral-500">Budget Range *</label></div><div class="fg"><select id="leadArea" class="w-full h-12 md:h-14 px-4 bg-neutral-800 border border-neutral-700 rounded-lg text-sm text-white appearance-none focus:outline-none focus:border-emerald-500/50 transition-colors duration-300"><option value="" disabled selected hidden>Select area</option><option>Whitefield</option><option>Sarjapur Road</option><option>HSR Layout</option><option>Electronic City</option><option>Marathahalli</option><option>Harlur Road</option><option>Not sure yet</option></select><label class="text-neutral-500">Preferred Area</label></div></div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-4"><div class="fg"><select id="leadTimeline" required class="w-full h-12 md:h-14 px-4 bg-neutral-800 border border-neutral-700 rounded-lg text-sm text-white appearance-none focus:outline-none focus:border-emerald-500/50 transition-colors duration-300"><option value="" disabled selected hidden>Timeline</option><option>Immediately</option><option>Within 3 months</option><option>Within 6 months</option><option>Just exploring</option></select><label class="text-neutral-500">Timeline *</label></div><div class="fg"><select id="leadPurpose" required class="w-full h-12 md:h-14 px-4 bg-neutral-800 border border-neutral-700 rounded-lg text-sm text-white appearance-none focus:outline-none focus:border-emerald-500/50 transition-colors duration-300"><option value="" disabled selected hidden>Purpose</option><option>Self-use (first home)</option><option>Self-use (upgrade)</option><option>Investment</option><option>Both</option></select><label class="text-neutral-500">Purpose *</label></div></div>
-                    <div class="fg mb-5"><textarea id="leadNotes" rows="3" placeholder=" " class="w-full px-4 pt-6 pb-3 bg-neutral-800 border border-neutral-700 rounded-lg text-sm text-white focus:outline-none focus:border-emerald-500/50 transition-colors duration-300 resize-none"></textarea><label class="text-neutral-500">Anything specific? <span class="text-neutral-600">(optional)</span></label></div>
-                    <button type="submit" id="submitBtn" class="mb ripple-btn shim w-full h-11 md:h-12 bg-white text-neutral-900 text-sm font-semibold rounded-xl hover:bg-neutral-100 transition-colors duration-300 flex items-center justify-center gap-2 magnetic" data-h data-m><span class="iconify w-4 h-4" data-icon="lucide:send"></span>Get My Curated Shortlist</button>
-                    <p class="text-[10px] md:text-[11px] text-neutral-600 text-center mt-4"><span class="iconify inline w-3 h-3 -mt-0.5" data-icon="lucide:lock"></span> Your information is secure.</p>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══ EMI CALCULATOR ═══ -->
-<section class="py-16 md:py-24 bg-white border-t border-neutral-100 section-progress">
-    <div class="max-w-[1440px] mx-auto px-5 md:px-6">
-        <div data-reveal="scale" class="max-w-2xl mx-auto">
-            <div class="text-center mb-8 md:mb-12"><span class="text-[10px] font-semibold uppercase tracking-[.12em] text-emerald-600 mb-3 md:mb-4 block">Plan Your Purchase</span><h2 class="text-xl md:text-2xl font-medium tracking-[-0.015em] text-neutral-900 mb-3 md:mb-4">EMI Calculator</h2></div>
-            <div class="emi-wrap icard bg-neutral-50 rounded-2xl p-5 md:p-8 border border-neutral-100">
-                <div class="space-y-5 md:space-y-7">
-                    <div><div class="flex items-center justify-between mb-2"><label class="text-xs md:text-sm font-medium text-neutral-900">Loan Amount</label><span id="laV" class="text-xs md:text-sm font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">₹80 Lakhs</span></div><input type="range" id="la" min="1000000" max="30000000" step="100000" value="8000000" class="w-full h-1.5 bg-neutral-200 rounded-full appearance-none cursor-pointer accent-neutral-900" data-h/><div class="flex justify-between text-[10px] text-neutral-400 mt-1"><span>₹10L</span><span>₹3Cr</span></div></div>
-                    <div><div class="flex items-center justify-between mb-2"><label class="text-xs md:text-sm font-medium text-neutral-900">Interest Rate</label><span id="irV" class="text-xs md:text-sm font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">8.5%</span></div><input type="range" id="ir" min="6" max="12" step="0.1" value="8.5" class="w-full h-1.5 bg-neutral-200 rounded-full appearance-none cursor-pointer accent-neutral-900" data-h/><div class="flex justify-between text-[10px] text-neutral-400 mt-1"><span>6%</span><span>12%</span></div></div>
-                    <div><div class="flex items-center justify-between mb-2"><label class="text-xs md:text-sm font-medium text-neutral-900">Loan Tenure</label><span id="ltV" class="text-xs md:text-sm font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">20 years</span></div><input type="range" id="lt" min="5" max="30" step="1" value="20" class="w-full h-1.5 bg-neutral-200 rounded-full appearance-none cursor-pointer accent-neutral-900" data-h/><div class="flex justify-between text-[10px] text-neutral-400 mt-1"><span>5 yrs</span><span>30 yrs</span></div></div>
-                </div>
-                <div class="mt-6 md:mt-8 pt-5 md:pt-7 border-t border-neutral-200 grid grid-cols-3 gap-3 md:gap-4 text-center">
-                    <div class="icard bg-white rounded-xl p-3 md:p-4 border border-neutral-100"><div class="text-[10px] text-neutral-400 mb-1">Monthly EMI</div><div id="emR" class="text-lg md:text-xl font-medium text-neutral-900">₹69,514</div></div>
-                    <div class="icard bg-white rounded-xl p-3 md:p-4 border border-neutral-100"><div class="text-[10px] text-neutral-400 mb-1">Total Interest</div><div id="inR" class="text-lg md:text-xl font-medium text-neutral-500">₹86.8L</div></div>
-                    <div class="icard bg-white rounded-xl p-3 md:p-4 border border-neutral-100"><div class="text-[10px] text-neutral-400 mb-1">Total Payment</div><div id="toR" class="text-lg md:text-xl font-medium text-neutral-500">₹1.67Cr</div></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══ FOOTER ═══ -->
-<footer class="bg-neutral-900 pt-16 md:pt-20 pb-8">
-    <div class="max-w-[1440px] mx-auto px-5 md:px-6">
-        <div class="footer-grid grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pb-10 md:pb-12 border-b border-neutral-800">
-            <div><div class="flex items-center gap-2.5 mb-4 md:mb-5"><div class="w-7 h-7 md:w-8 bg-white rounded-lg flex items-center justify-center"><span class="text-neutral-900 text-[10px] md:text-[11px] font-semibold">CP</span></div><div class="flex flex-col"><span class="text-sm font-semibold text-white leading-none">[Client Name] Properties</span><span class="text-[9px] text-neutral-600 tracking-[.1em] mt-0.5">BANGALORE · SINCE 2012</span></div></div></div>
-            <div><h5 class="text-[10px] font-semibold uppercase tracking-[.12em] text-neutral-500 mb-3 md:mb-5">Popular Areas</h5><ul class="space-y-2"><li><a href="#" class="text-xs md:text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Whitefield</a></li><li><a href="#" class="text-xs md:text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Sarjapur Road</a></li><li><a href="#" class="text-xs md:text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>HSR Layout</a></li><li><a href="#" class="text-xs md:text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Electronic City</a></li><li><a href="#" class="text-xs md:text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Marathahalli</a></li></ul></div>
-            <div><h5 class="text-[10px] font-semibold uppercase tracking-[.12em] text-neutral-500 mb-3 md:mb-5">Property Types</h5><ul class="space-y-2"><li><a href="#" class="text-xs md:text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Apartments</a></li><li><a href="#" class="text-xs md:text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Villas</a></li><li><a href="#" class="text-xs md:text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Penthouses</a></li><li><a href="#" class="text-xs md:text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Plots</a></li></ul></div>
-            <div><h5 class="text-[10px] font-semibold uppercase tracking-[.12em] text-neutral-500 mb-3 md:mb-5">Contact</h5><ul class="space-y-2"><li class="flex items-center gap-2 text-xs md:text-sm text-neutral-500"><span class="iconify w-3.5 h-3.5" data-icon="lucide:phone"></span>+91 98765 43210</li><li class="flex items-center gap-2 text-xs md:text-sm text-neutral-500"><span class="iconify w-3.5 h-3.5" data-icon="lucide:mail"></span>hello@[client].com</li><li class="flex items-start gap-2 text-xs md:text-sm text-neutral-500"><span class="iconify w-3.5 h-3.5 mt-0.5 flex-shrink-0" data-icon="lucide:map-pin"></span>ITPL Main Road, Whitefield, Bangalore — 560066</li></ul><div class="mt-4 pt-4 border-t border-neutral-800"><div class="flex items-center gap-2 text-[10px] text-neutral-600"><span class="iconify w-3.5 h-3.5" data-icon="lucide:clock"></span>Mon–Sat: 10 AM — 7 PM</div></div></div>
-        </div>
-        <div class="pt-6 md:pt-8 flex flex-col md:flex-row items-center justify-between gap-3"><p class="text-[10px] md:text-xs text-neutral-600">© 2024 [Client Name] Properties. RERA No: PRM/KA/RERA/1234/2024</p><div class="flex items-center gap-4 md:gap-6"><a href="#" class="text-[10px] md:text-xs text-neutral-600 hover:text-neutral-400 transition-colors" data-h>Privacy</a><a href="#" class="text-[10px] md:text-xs text-neutral-600 hover:text-neutral-400 transition-colors" data-h>Terms</a><a href="#" class="text-[10px] md:text-xs text-neutral-600 hover:text-neutral-400 transition-colors" data-h>RERA Disclaimer</a></div></div>
-    </div>
-</footer>
-
-<!-- ═══ WHATSAPP FLOAT ═══ -->
-<a href="https://wa.me/919876543210" target="_blank" class="wa-float bottom-20 md:bottom-6 left-4 md:left-6" data-h>
-    <div class="wa-ring"></div>
-    <div class="wa-btn w-14 h-14 md:w-[60px] md:h-[60px] bg-[#25D366] rounded-full flex items-center justify-center shadow-lg shadow-green-500/30 hover:shadow-xl hover:shadow-green-500/40 transition-shadow duration-300 relative z-10">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    </div>
-</a>
-
-<!-- ═══ MOBILE STICKY BAR ═══ -->
-<div id="stickyBar" class="sticky-bar bg-white border-t border-neutral-200 px-4 py-3 flex gap-2.5">
-    <a href="tel:+919876543210" class="ripple-btn flex-1 flex items-center justify-center gap-1.5 h-11 bg-neutral-900 text-white text-sm font-medium rounded-xl" data-h><span class="iconify w-4 h-4" data-icon="lucide:phone"></span>Call Now</a>
-    <a href="https://wa.me/919876543210" target="_blank" class="ripple-btn flex-1 flex items-center justify-center gap-1.5 h-11 bg-[#25D366] text-white text-sm font-medium rounded-xl" data-h><span class="iconify w-4 h-4" data-icon="lucide:message-circle"></span>WhatsApp</a>
+  <button id="clearFilters" class="border p-2 rounded">Clear</button>
 </div>
 
-<!-- ═══ BACK TO TOP ═══ -->
-<button id="btt" class="fixed bottom-20 md:bottom-6 right-4 md:right-6 z-50 w-9 h-9 md:w-10 md:h-10 bg-white border border-neutral-200 rounded-full flex items-center justify-center shadow-sm hover:shadow-md hover:border-neutral-300 transition-all duration-300 magnetic" onclick="window.scrollTo({top:0,behavior:'smooth'})" data-h>
-    <svg width="16" height="16" viewBox="0 0 20 20" class="-rotate-90"><circle cx="10" cy="10" r="8" stroke="#e5e5e5" stroke-width="1" fill="none"/><circle class="prg" cx="10" cy="10" r="8" stroke="#1d1d1f" stroke-width="1" fill="none" stroke-dasharray="50.27" stroke-dashoffset="50.27" stroke-linecap="round"/></svg>
-    <span class="iconify w-3.5 h-3.5 text-neutral-500 absolute" data-icon="lucide:arrow-up"></span>
-</button>
+<!-- PROPERTIES -->
+<div class="p-6 grid md:grid-cols-3 gap-6" id="propertyGrid"></div>
 
-<!-- ═══ TOAST ═══ -->
-<div id="toast" class="fixed bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-[100] bg-neutral-900 text-white text-sm font-medium rounded-xl shadow-xl overflow-hidden">
-    <div class="tbar absolute top-0 left-0 right-0"></div>
-    <div class="flex items-center gap-2 px-6 py-3.5"><span id="toastIcon" class="iconify w-4 h-4 text-emerald-400" data-icon="lucide:check-circle"></span><span id="tmsg"></span></div>
+<div id="noResults" class="hidden text-center p-10">
+  No properties found
 </div>
 
-<!-- ═══ PROPERTY MODAL ═══ -->
-<div id="pmod" class="fixed inset-0 z-[95] pointer-events-none">
-    <div id="pmodOv" class="mo absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-    <div class="absolute inset-4 md:inset-8 lg:inset-16 flex items-center justify-center pointer-events-none">
-        <div id="pmodPn" class="mp bg-white rounded-2xl shadow-xl w-full max-w-2xl max-h-[85vh] overflow-y-auto pointer-events-auto">
-            <div class="sticky top-0 bg-white/90 backdrop-blur-sm border-b border-neutral-100 px-5 md:px-7 py-4 flex items-center justify-between z-10">
-                <h3 id="pmodTit" class="text-sm md:text-base font-medium text-neutral-900 pr-4"></h3>
-                <button id="pmodClose" class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-neutral-100 transition-colors flex-shrink-0" data-h><span class="iconify w-5 h-5 text-neutral-400" data-icon="lucide:x"></span></button>
-            </div>
-            <div id="pmodBody" class="p-5 md:p-7"></div>
-        </div>
-    </div>
-</div>
-
-<!-- ═══ FIREBASE SDK ═══ -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
-<!-- ═══ MAIN SCRIPT ═══ -->
-<!-- ===== SAFE END PATCH (PRODUCTION READY — NO UI CHANGE) ===== -->
-
+<!-- SCRIPT -->
 <script>
-(function () {
-  "use strict";
+const PROPS = [
+  { title: "3BHK Apartment", price: "₹1.15 Cr", location: "Whitefield", type: "Apartment", bhk: 3, image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6" },
+  { title: "Luxury Villa", price: "₹2.1 Cr", location: "Whitefield", type: "Villa", bhk: 4, image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9" },
+  { title: "2BHK Flat", price: "₹72L", location: "HSR Layout", type: "Apartment", bhk: 2, image: "https://images.unsplash.com/photo-1574362848149-11496d93a7c7" }
+];
 
-  document.addEventListener("DOMContentLoaded", function () {
+const grid = document.getElementById("propertyGrid");
+const noResults = document.getElementById("noResults");
 
-    const grid = document.getElementById("propertyGrid");
-    const noResults = document.getElementById("noResults");
+function render(list) {
+  if (!list.length) {
+    noResults.classList.remove("hidden");
+    grid.innerHTML = "";
+    return;
+  }
+  noResults.classList.add("hidden");
 
-    if (!grid) return;
-
-    /* =========================
-       SAFE FALLBACK DATA (ONLY IF YOUR ORIGINAL FAILS)
-    ========================= */
-    const fallbackProps = [
-      { title: "3BHK Apartment", price: "₹1.15 Cr", location: "Whitefield", type: "Apartment", bhk: 3, image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6" },
-      { title: "Villa", price: "₹2.1 Cr", location: "Sarjapur Road", type: "Villa", bhk: 4, image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9" },
-      { title: "2BHK", price: "₹72 Lakhs", location: "HSR Layout", type: "Apartment", bhk: 2, image: "https://images.unsplash.com/photo-1574362848149-11496d93a7c7" }
-    ];
-
-    /* =========================
-       SAFE RENDER WRAPPER
-    ========================= */
-    function safeRender(list) {
-      try {
-        if (typeof render === "function" && typeof PROPS !== "undefined") {
-          render(PROPS);
-          return;
-        }
-      } catch (e) {
-        console.warn("Original render failed, using fallback", e);
-      }
-
-      // Fallback render (ONLY if original fails)
-      if (!list.length) {
-        if (noResults) noResults.classList.remove("hidden");
-        return;
-      }
-
-      if (noResults) noResults.classList.add("hidden");
-
-      grid.innerHTML = list.map((p, i) => `
-        <div class="icard bg-white border rounded-xl overflow-hidden card-enter"
-             style="animation-delay:${i * 80}ms">
-          <img src="${p.image}" class="w-full h-48 object-cover">
-          <div class="p-4">
-            <div class="flex justify-between">
-              <h3 class="font-medium">${p.title}</h3>
-              <span>${p.price}</span>
-            </div>
-            <p class="text-sm text-neutral-500 mt-1">${p.location}</p>
-          </div>
+  grid.innerHTML = list.map((p,i)=>`
+    <div class="icard border rounded-xl overflow-hidden card-enter" style="animation-delay:${i*100}ms">
+      <img src="${p.image}" class="h-48 w-full object-cover"/>
+      <div class="p-4">
+        <div class="flex justify-between">
+          <h3>${p.title}</h3>
+          <span>${p.price}</span>
         </div>
-      `).join("");
-    }
+        <p class="text-sm text-gray-500">${p.location}</p>
+      </div>
+    </div>
+  `).join("");
+}
 
-    /* =========================
-       SAFE FILTERS (NON-BREAKING)
-    ========================= */
-    document.getElementById("filterBtn")?.addEventListener("click", function () {
-      const loc = document.getElementById("filterLocation")?.value;
-      const type = document.getElementById("filterType")?.value;
-      const bhk = parseInt(document.getElementById("filterBhk")?.value) || 0;
+render(PROPS);
 
-      const filtered = fallbackProps.filter(p => {
-        if (loc && !p.location.includes(loc)) return false;
-        if (type && p.type !== type) return false;
-        if (bhk && p.bhk !== bhk) return false;
-        return true;
-      });
+document.getElementById("filterBtn").onclick = () => {
+  const loc = document.getElementById("filterLocation").value;
+  const type = document.getElementById("filterType").value;
+  const bhk = parseInt(document.getElementById("filterBhk").value) || 0;
 
-      safeRender(filtered);
-    });
+  const filtered = PROPS.filter(p =>
+    (!loc || p.location.includes(loc)) &&
+    (!type || p.type === type) &&
+    (!bhk || p.bhk === bhk)
+  );
 
-    document.getElementById("clearFilters")?.addEventListener("click", function () {
-      ["filterLocation","filterType","filterBhk"].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.value = "";
-      });
+  render(filtered);
+};
 
-      safeRender(fallbackProps);
-    });
+document.getElementById("clearFilters").onclick = () => {
+  document.querySelectorAll("select").forEach(s => s.value = "");
+  render(PROPS);
+};
 
-    /* =========================
-       INITIAL LOAD
-    ========================= */
-    safeRender(fallbackProps);
-
-    /* =========================
-       HARD FAILSAFE (NO UI BREAK)
-    ========================= */
-    window.onerror = function () {
-      console.warn("Recovered from JS error");
-      return true;
-    };
-
-  });
-})();
-</script>
-
-<script>
-/* ===== GLOBAL ERROR MONITOR ===== */
-window.addEventListener('error', function(e) {
-  console.error('[GLOBAL ERROR]', e.message);
-});
-
-window.addEventListener('unhandledrejection', function(e) {
-  console.error('[PROMISE ERROR]', e.reason);
-});
-
-/* ===== LOADER FAILSAFE (CRITICAL) ===== */
-window.addEventListener('load', () => {
-  const loader = document.getElementById('appLoader');
-  if (loader) loader.style.display = 'none';
-});
-
-setTimeout(() => {
-  const loader = document.getElementById('appLoader');
-  if (loader) loader.style.display = 'none';
-}, 3000);
+/* LOADER FIX */
+window.onload = () => {
+  const loader = document.getElementById("loadingSkeleton");
+  loader.style.opacity = "0";
+  setTimeout(()=> loader.remove(), 500);
+};
 </script>
 
 </body>
