@@ -1,149 +1,369 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Premium Properties</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Client Name] Properties — Verified Homes in Bangalore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif']}}}}</script>
+    <style>
+        *{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+        ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#d4d4d4;border-radius:2px}::-webkit-scrollbar-thumb:hover{background:#a3a3a3}
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+        @media(pointer:fine){
+            .cd{position:fixed;top:0;left:0;width:5px;height:5px;background:#1d1d1f;border-radius:50%;pointer-events:none;z-index:9999;will-change:transform}
+            .cr{position:fixed;top:0;left:0;width:32px;height:32px;border:1px solid rgba(29,29,31,.12);border-radius:50%;pointer-events:none;z-index:9998;will-change:transform}
+            body{cursor:none}a,button,select,input,textarea{cursor:none}
+        }
 
-<style>
-body { font-family: Inter, sans-serif; }
-.icard { transition: all .4s ease; }
-.icard:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-@keyframes fadeUp {
-  from { opacity:0; transform: translateY(20px);}
-  to { opacity:1; transform: translateY(0);}
-}
-.card-enter { animation: fadeUp .6s ease both; }
-.mqt { animation: marquee 25s linear infinite; }
-@keyframes marquee {
-  from { transform: translateX(0);}
-  to { transform: translateX(-50%);}
-}
-</style>
+        [data-reveal]{opacity:0;will-change:transform,opacity}
+        #sp{position:fixed;top:0;left:0;height:1px;background:#1d1d1f;z-index:101;width:0}
+
+        .noise::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.01;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:200px}
+
+        .ld{position:relative}.ld::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;background:#1d1d1f;transition:width .6s cubic-bezier(.25,.1,.25,1)}.ld:hover::after{width:100%}
+
+        .fg{position:relative}.fg input,.fg select,.fg textarea{padding-top:1.4rem}.fg label{position:absolute;top:50%;left:1rem;transform:translateY(-50%);font-size:.875rem;color:#a1a1a6;pointer-events:none;transition:all .3s cubic-bezier(.25,.1,.25,1);transform-origin:left center}.fg textarea~label{top:1.4rem;transform:translateY(0)}.fg input:focus~label,.fg input:not(:placeholder-shown)~label,.fg select:focus~label,.fg select:valid~label,.fg textarea:focus~label,.fg textarea:not(:placeholder-shown)~label{top:.45rem;transform:translateY(0) scale(.72);color:#6e6e73}.fg select~label{top:.45rem;transform:translateY(0) scale(.72);color:#6e6e73}.fg select option{color:#1d1d1f}
+
+        #btt{opacity:0;pointer-events:none;will-change:opacity}#btt.vis{opacity:1;pointer-events:auto}
+        .tbar{height:2px;background:#1d1d1f;border-radius:1px;transform-origin:left;animation:tbs 3s linear forwards}@keyframes tbs{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+        #toast{transform:translateY(100px);opacity:0;transition:all .6s cubic-bezier(.25,.1,.25,1)}#toast.show{transform:translateY(0);opacity:1}
+
+        @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}.mqt{animation:mq 45s linear infinite}.mqt:hover{animation-play-state:paused}
+
+        #nav{will-change:transform;transition:box-shadow .4s ease}#nav.hid{transform:translateY(-100%)}#nav.vis{transform:translateY(0)}
+        .mm{transform:translateX(100%);transition:transform .5s cubic-bezier(.25,.1,.25,1)}.mm.open{transform:translateX(0)}
+        .cc{position:relative;overflow:hidden}.cc::before{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:#1d1d1f;border-radius:0 2px 2px 0;transform:scaleY(0);transform-origin:top;transition:transform .8s cubic-bezier(.25,.1,.25,1)}.cc.rv::before{transform:scaleY(1)}
+        .shim{position:relative;overflow:hidden}.shim::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.04),transparent);transition:left .8s ease}.shim:hover::after{left:100%}
+        .mo{opacity:0;transition:opacity .5s ease}.mo.act{opacity:1}.mp{transform:translateY(20px) scale(.985);opacity:0;transition:all .6s cubic-bezier(.25,.1,.25,1)}.mp.act{transform:translateY(0) scale(1);opacity:1}
+        .cg{text-shadow:0 0 25px rgba(16,185,129,.06)}
+        #pmod{z-index:95}#toast{z-index:100}
+        .tc{will-change:transform}.tc .ti{will-change:transform}.tc .timg{will-change:transform}.mb{will-change:transform}#himg{will-change:transform}
+
+        /* Scroll-drawn decorative dividers */
+        [data-draw]{height:1px;background:#e5e5e5;transform-origin:left;will-change:transform;width:0}
+        [data-draw-right]{transform-origin:right}
+        @media(pointer:fine){[data-parallax]{will-change:transform}}
+
+        /* Scroll-based card image zoom */
+        .timg{transition:none}
+    </style>
 </head>
+<body class="font-sans text-neutral-800 bg-white noise">
 
-<body class="bg-white text-neutral-800">
+<div class="cd hidden md:block" id="cdot"></div>
+<div class="cr hidden md:block" id="cring"></div>
+<div id="sp"></div>
 
-<!-- LOADER -->
-<div id="loadingSkeleton" class="fixed inset-0 bg-white flex items-center justify-center z-50">
-  <div class="animate-spin w-10 h-10 border-4 border-black border-t-transparent rounded-full"></div>
-</div>
-
-<!-- NAV -->
-<nav class="p-4 border-b flex justify-between">
-  <h1 class="font-semibold">Elite Properties</h1>
-  <button id="filterBtn" class="text-sm bg-black text-white px-4 py-2 rounded">Search</button>
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 bg-white/90 border-b border-neutral-100">
+    <div class="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-2.5" data-h><div class="w-8 h-8 bg-neutral-900 rounded-lg flex items-center justify-center"><span class="text-white text-[11px] font-semibold tracking-tight">CP</span></div><div class="flex flex-col"><span class="text-[13px] font-semibold tracking-[-0.01em] leading-none text-neutral-900">[Client Name] Properties</span><span class="text-[9px] text-neutral-400 tracking-[.1em] mt-0.5">BANGALORE · SINCE 2012</span></div></a>
+        <div class="hidden md:flex items-center gap-8">
+            <a href="#properties" class="text-[13px] text-neutral-500 hover:text-neutral-900 transition-colors duration-300 ld" data-h>Properties</a>
+            <a href="#closed-deals" class="text-[13px] text-neutral-500 hover:text-neutral-900 transition-colors duration-300 ld" data-h>Closed Deals</a>
+            <a href="#about" class="text-[13px] text-neutral-500 hover:text-neutral-900 transition-colors duration-300 ld" data-h>About</a>
+            <a href="#testimonials" class="text-[13px] text-neutral-500 hover:text-neutral-900 transition-colors duration-300 ld" data-h>Reviews</a>
+            <a href="#contact" class="text-[13px] text-neutral-500 hover:text-neutral-900 transition-colors duration-300 ld" data-h>Contact</a>
+        </div>
+        <div class="hidden md:flex items-center gap-3">
+            <a href="tel:+919876543210" class="flex items-center gap-1.5 text-[13px] text-neutral-500 hover:text-neutral-900 transition-colors duration-300" data-h><span class="iconify w-3.5 h-3.5" data-icon="lucide:phone"></span>+91 98765 43210</a>
+            <a href="#contact" class="mb ml-2 shim bg-neutral-900 text-white text-[11px] font-medium px-5 py-2.5 rounded-lg hover:bg-neutral-800 transition-colors duration-300" data-h data-m>Schedule Visit</a>
+        </div>
+        <button id="menubtn" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-neutral-50 transition-colors duration-300" data-h><span class="iconify w-5 h-5" data-icon="lucide:menu"></span></button>
+    </div>
 </nav>
 
-<!-- MARQUEE -->
-<section class="border-b py-3 overflow-hidden">
-  <div class="mqt flex gap-10 whitespace-nowrap">
-    <span>✔ Verified Properties</span>
-    <span>✔ No Hidden Charges</span>
-    <span>✔ Legal Support</span>
-    <span>✔ 500+ Families</span>
+<div id="mmenu" class="mm fixed inset-0 z-[60] bg-white">
+    <div class="flex items-center justify-between px-6 h-16 border-b border-neutral-100"><span class="text-sm font-medium text-neutral-900">Menu</span><button id="cmenubtn" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-neutral-50 transition-colors"><span class="iconify w-5 h-5" data-icon="lucide:x"></span></button></div>
+    <div class="flex flex-col p-6 gap-1">
+        <a href="#properties" class="ml py-3.5 text-lg font-medium text-neutral-700 border-b border-neutral-100">Properties</a>
+        <a href="#closed-deals" class="ml py-3.5 text-lg font-medium text-neutral-700 border-b border-neutral-100">Closed Deals</a>
+        <a href="#about" class="ml py-3.5 text-lg font-medium text-neutral-700 border-b border-neutral-100">About</a>
+        <a href="#testimonials" class="ml py-3.5 text-lg font-medium text-neutral-700 border-b border-neutral-100">Reviews</a>
+        <a href="#contact" class="ml py-3.5 text-lg font-medium text-neutral-700 border-b border-neutral-100">Contact</a>
+        <a href="tel:+919876543210" class="flex items-center gap-2 py-3.5 text-lg font-medium text-emerald-600 border-b border-neutral-100"><span class="iconify w-4 h-4" data-icon="lucide:phone"></span>+91 98765 43210</a>
+        <a href="#contact" class="ml mt-6 bg-neutral-900 text-white text-center text-sm font-medium px-5 py-3.5 rounded-lg">Schedule Visit</a>
+    </div>
+</div>
 
-    <span>✔ Verified Properties</span>
-    <span>✔ No Hidden Charges</span>
-    <span>✔ Legal Support</span>
-    <span>✔ 500+ Families</span>
-  </div>
+<!-- ═══ HERO ═══ -->
+<section class="relative min-h-[100dvh] flex items-center overflow-hidden" id="hero">
+    <div class="absolute inset-0">
+        <img src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=1920&h=1080&fit=crop&q=80" alt="" class="w-full h-full object-cover" id="himg" loading="eager"/>
+        <div class="absolute inset-0 bg-gradient-to-br from-neutral-900/90 via-neutral-900/60 to-neutral-900/20" id="hovr"></div>
+    </div>
+    <div class="relative z-10 max-w-[1440px] mx-auto px-6 pt-32 pb-24 w-full">
+        <div class="max-w-2xl">
+            <div data-reveal="up" data-depth="0.02" data-float="1" class="inline-flex items-center gap-2 bg-white/[.07] border border-white/10 rounded-full px-4 py-2 mb-10" data-parallax="0.01"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span><span class="text-xs text-white/80 font-medium tracking-wide">12 VERIFIED HOMES AVAILABLE NOW</span></div>
+            <h1 data-reveal="up" data-depth="0.025" class="text-[2.75rem] md:text-[3.5rem] lg:text-[4.25rem] font-medium text-white leading-[1.08] tracking-[-0.02em] mb-8">Find Verified Homes in Bangalore <span class="text-emerald-400">Without Broker Chaos</span></h1>
+            <p data-reveal="up" data-depth="0.035" class="text-lg md:text-xl text-white/50 leading-[1.7] mb-12 max-w-[520px]">No fake listings. No hidden charges. No endless follow-ups. Just genuine properties, verified in person, with complete paperwork support.</p>
+            <div data-reveal="up" data-depth="0.045" class="flex flex-col sm:flex-row gap-3 mb-16">
+                <a href="#contact" class="mb shim inline-flex items-center justify-center gap-2 bg-white text-neutral-900 text-sm font-semibold px-8 py-4 rounded-xl hover:bg-neutral-100 transition-colors duration-300 shadow-lg shadow-black/5" data-h data-m><span class="iconify w-4 h-4" data-icon="lucide:calendar-check"></span>Schedule a Free Visit</a>
+                <a href="#properties" class="mb inline-flex items-center justify-center gap-2 bg-white/[.07] text-white border border-white/10 text-sm font-medium px-8 py-4 rounded-xl hover:bg-white/[.12] transition-colors duration-300" data-h data-m>Browse Properties<span class="iconify w-4 h-4" data-icon="lucide:arrow-right"></span></a>
+            </div>
+            <div data-reveal="fade" data-depth="0.055" class="flex items-center gap-10 pt-10 border-t border-white/10">
+                <div><div class="text-3xl font-medium text-white cg" data-counter="500" data-suffix="+">0</div><div class="text-[11px] text-white/30 mt-1.5 tracking-[.08em] uppercase">Homes Closed</div></div>
+                <div class="w-px h-12 bg-white/8"></div>
+                <div><div class="text-3xl font-medium text-white cg" data-counter="12" data-suffix="+">0</div><div class="text-[11px] text-white/30 mt-1.5 tracking-[.08em] uppercase">Years in Bangalore</div></div>
+                <div class="w-px h-12 bg-white/8"></div>
+                <div><div class="text-3xl font-medium text-white cg" data-counter="0">0</div><div class="text-[11px] text-white/30 mt-1.5 tracking-[.08em] uppercase">Fake Listings</div></div>
+            </div>
+        </div>
+    </div>
+    <div id="hshint" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-25"><span class="text-[10px] text-white/40 tracking-[.2em] uppercase">Scroll</span><div class="w-px h-8 bg-gradient-to-b from-white/20 to-transparent animate-pulse"></div></div>
 </section>
 
-<!-- FILTERS -->
-<div class="p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-  <select id="filterLocation" class="border p-2 rounded">
-    <option value="">Location</option>
-    <option>Whitefield</option>
-    <option>HSR Layout</option>
-  </select>
+<!-- ═══ MARQUEE ═══ -->
+<section class="border-b border-neutral-100 bg-neutral-50/50 py-4 overflow-hidden">
+    <div class="mqt flex items-center gap-12 whitespace-nowrap" style="width:max-content">
+        <span class="flex items-center gap-2 text-[11px] text-neutral-400 font-medium tracking-wide"><span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:shield-check"></span>Every Property Verified In Person</span><span class="text-neutral-200">·</span>
+        <span class="flex items-center gap-2 text-[11px] text-neutral-400 font-medium tracking-wide"><span class="iconify w-3 h-3 text-emerald-500" data-icon="mdi:currency-inr"></span>No Hidden Charges — Ever</span><span class="text-neutral-200">·</span>
+        <span class="flex items-center gap-2 text-[11px] text-neutral-400 font-medium tracking-wide"><span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:file-check"></span>Complete Legal & Registration Support</span><span class="text-neutral-200">·</span>
+        <span class="flex items-center gap-2 text-[11px] text-neutral-400 font-medium tracking-wide"><span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:handshake"></span>We Advise, Not Push</span><span class="text-neutral-200">·</span>
+        <span class="flex items-center gap-2 text-[11px] text-neutral-400 font-medium tracking-wide"><span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:users"></span>500+ Families Served</span><span class="text-neutral-200">·</span>
+        <span class="flex items-center gap-2 text-[11px] text-neutral-400 font-medium tracking-wide"><span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:clock"></span>Avg. Closing Time: 21 Days</span><span class="text-neutral-200">·</span>
+        <span class="flex items-center gap-2 text-[11px] text-neutral-400 font-medium tracking-wide"><span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:shield-check"></span>Every Property Verified In Person</span><span class="text-neutral-200">·</span>
+        <span class="flex items-center gap-2 text-[11px] text-neutral-400 font-medium tracking-wide"><span class="iconify w-3 h-3 text-emerald-500" data-icon="mdi:currency-inr"></span>No Hidden Charges — Ever</span><span class="text-neutral-200">·</span>
+        <span class="flex items-center gap-2 text-[11px] text-neutral-400 font-medium tracking-wide"><span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:file-check"></span>Complete Legal & Registration Support</span><span class="text-neutral-200">·</span>
+        <span class="flex items-center gap-2 text-[11px] text-neutral-400 font-medium tracking-wide"><span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:handshake"></span>We Advise, Not Push</span><span class="text-neutral-200">·</span>
+        <span class="flex items-center gap-2 text-[11px] text-neutral-400 font-medium tracking-wide"><span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:users"></span>500+ Families Served</span><span class="text-neutral-200">·</span>
+        <span class="flex items-center gap-2 text-[11px] text-neutral-400 font-medium tracking-wide"><span class="iconify w-3 h-3 text-emerald-500" data-icon="lucide:clock"></span>Avg. Closing Time: 21 Days</span><span class="text-neutral-200">·</span>
+    </div>
+</section>
 
-  <select id="filterType" class="border p-2 rounded">
-    <option value="">Type</option>
-    <option>Apartment</option>
-    <option>Villa</option>
-  </select>
+<!-- ═══ FILTERS ═══ -->
+<section class="py-16 md:py-20 bg-white border-b border-neutral-100">
+    <div class="max-w-[1440px] mx-auto px-6">
+        <div data-reveal="up" class="mb-10"><h2 class="text-2xl md:text-[1.75rem] font-medium tracking-[-0.015em] text-neutral-900">Explore Properties</h2><p class="text-sm text-neutral-500 mt-2 max-w-md leading-[1.7]">Every listing is verified in person. No surprises on site visit.</p></div>
+        <div data-reveal="up" class="grid grid-cols-2 md:grid-cols-5 gap-3">
+            <div><label class="block text-[10px] font-semibold uppercase tracking-[.12em] text-neutral-400 mb-2">Location</label><select class="w-full h-11 px-3 text-sm bg-white border border-neutral-200 rounded-lg appearance-none focus:outline-none focus:border-neutral-900 transition-colors duration-300" data-h><option>All Areas</option><option>Whitefield</option><option>Sarjapur Road</option><option>HSR Layout</option><option>Electronic City</option><option>Marathahalli</option><option>Harlur Road</option></select></div>
+            <div><label class="block text-[10px] font-semibold uppercase tracking-[.12em] text-neutral-400 mb-2">Type</label><select class="w-full h-11 px-3 text-sm bg-white border border-neutral-200 rounded-lg appearance-none focus:outline-none focus:border-neutral-900 transition-colors duration-300" data-h><option>All Types</option><option>Apartment</option><option>Villa</option><option>Penthouse</option><option>Plot</option></select></div>
+            <div><label class="block text-[10px] font-semibold uppercase tracking-[.12em] text-neutral-400 mb-2">Budget</label><select class="w-full h-11 px-3 text-sm bg-white border border-neutral-200 rounded-lg appearance-none focus:outline-none focus:border-neutral-900 transition-colors duration-300" data-h><option>Any Budget</option><option>₹40L — ₹60L</option><option>₹60L — ₹85L</option><option>₹85L — ₹1.2Cr</option><option>₹1.2Cr — ₹2Cr</option><option>₹2Cr+</option></select></div>
+            <div><label class="block text-[10px] font-semibold uppercase tracking-[.12em] text-neutral-400 mb-2">BHK</label><select class="w-full h-11 px-3 text-sm bg-white border border-neutral-200 rounded-lg appearance-none focus:outline-none focus:border-neutral-900 transition-colors duration-300" data-h><option>Any BHK</option><option>1 BHK</option><option>2 BHK</option><option>3 BHK</option><option>4 BHK</option></select></div>
+            <div class="flex items-end"><button class="mb w-full h-11 bg-neutral-900 text-white text-sm font-medium rounded-lg hover:bg-neutral-800 transition-colors duration-300 flex items-center justify-center gap-2 shim" data-h data-m><span class="iconify w-4 h-4" data-icon="lucide:search"></span>Search</button></div>
+        </div>
+    </div>
+</section>
 
-  <select id="filterBhk" class="border p-2 rounded">
-    <option value="">BHK</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-  </select>
+<!-- ═══ PROPERTIES ═══ -->
+<section id="properties" class="py-24 md:py-36 bg-white">
+    <div class="max-w-[1440px] mx-auto px-6">
+        <div data-reveal="up" class="flex items-end justify-between mb-14">
+            <div><span class="text-[10px] font-semibold uppercase tracking-[.12em] text-emerald-600 mb-4 block">Handpicked for You</span><h2 class="text-2xl md:text-[1.75rem] font-medium tracking-[-0.015em] text-neutral-900">Verified Properties in Bangalore</h2><p class="text-sm text-neutral-500 mt-2.5 max-w-md leading-[1.7]">Each property is personally inspected, legally verified, and priced fairly.</p></div>
+            <a href="#" class="hidden md:inline-flex items-center gap-1.5 text-sm font-medium text-neutral-400 hover:text-neutral-900 transition-colors duration-300 group ld" data-h>View all <span class="iconify w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-500" data-icon="lucide:arrow-right"></span></a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sg">
+            <div class="tc bg-white border border-neutral-100 rounded-2xl overflow-hidden cursor-pointer" data-reveal="up" data-tilt onclick="openPM(0)" data-h>
+                <div class="relative h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&q=80" alt="" class="timg w-full h-full object-cover" loading="lazy"/><div class="absolute top-3 left-3"><span class="bg-white border border-neutral-200 text-[10px] font-semibold px-3 py-1 rounded-full tracking-wide">VERIFIED</span></div><div class="absolute top-3 right-3"><button onclick="event.stopPropagation();togFav(this)" class="w-8 h-8 bg-white border border-neutral-200 rounded-full flex items-center justify-center hover:bg-neutral-50 transition-colors duration-300" data-h><span class="iconify w-4 h-4 text-neutral-400" data-icon="lucide:heart"></span></button></div><div class="absolute bottom-3 left-3"><span class="bg-neutral-900/90 text-white text-[11px] font-medium px-3 py-1.5 rounded-lg">3 BHK Apartment</span></div></div>
+                <div class="p-6 ti"><div class="flex items-start justify-between mb-3"><h3 class="text-[15px] font-medium tracking-[-0.01em] text-neutral-900">Prestige Shantiniketan</h3><span class="text-[15px] font-medium whitespace-nowrap ml-3 text-neutral-900">₹1.15 Cr</span></div><div class="flex items-center gap-1.5 text-sm text-neutral-500 mb-5"><span class="iconify w-3.5 h-3.5" data-icon="lucide:map-pin"></span>Whitefield, East Bangalore</div><div class="flex items-center gap-5 pt-5 border-t border-neutral-100"><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:bed-double"></span>3 Beds</div><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:bath"></span>2 Baths</div><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:maximize"></span>1,750 sqft</div><div class="ml-auto flex items-center gap-1 text-xs text-emerald-600 font-medium"><span class="iconify w-3.5 h-3.5" data-icon="mdi:currency-inr"></span>~₹66K/mo</div></div></div></div></div>
+            <div class="tc bg-white border border-neutral-100 rounded-2xl overflow-hidden cursor-pointer" data-reveal="up" data-tilt onclick="openPM(1)" data-h>
+                <div class="relative h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop&q=80" alt="" class="timg w-full h-full object-cover" loading="lazy"/><div class="absolute top-3 left-3 flex gap-2"><span class="bg-white border border-neutral-200 text-[10px] font-semibold px-3 py-1 rounded-full tracking-wide">VERIFIED</span><span class="bg-emerald-500 text-white text-[10px] font-semibold px-3 py-1 rounded-full tracking-wide">NEW</span></div><div class="absolute top-3 right-3"><button onclick="event.stopPropagation();togFav(this)" class="w-8 h-8 bg-white border border-neutral-200 rounded-full flex items-center justify-center hover:bg-neutral-50 transition-colors duration-300" data-h><span class="iconify w-4 h-4 text-neutral-400" data-icon="lucide:heart"></span></button></div><div class="absolute bottom-3 left-3"><span class="bg-neutral-900/90 text-white text-[11px] font-medium px-3 py-1.5 rounded-lg">4 BHK Villa</span></div></div>
+                <div class="p-6 ti"><div class="flex items-start justify-between mb-3"><h3 class="text-[15px] font-medium tracking-[-0.01em] text-neutral-900">Sobha Royal Pavilion</h3><span class="text-[15px] font-medium whitespace-nowrap ml-3 text-neutral-900">₹2.1 Cr</span></div><div class="flex items-center gap-1.5 text-sm text-neutral-500 mb-5"><span class="iconify w-3.5 h-3.5" data-icon="lucide:map-pin"></span>Sarjapur Road, South Bangalore</div><div class="flex items-center gap-5 pt-5 border-t border-neutral-100"><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:bed-double"></span>4 Beds</div><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:bath"></span>4 Baths</div><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:maximize"></span>3,200 sqft</div><div class="ml-auto flex items-center gap-1 text-xs text-emerald-600 font-medium"><span class="iconify w-3.5 h-3.5" data-icon="mdi:currency-inr"></span>~₹1.1L/mo</div></div></div></div></div>
+            <div class="tc bg-white border border-neutral-100 rounded-2xl overflow-hidden cursor-pointer" data-reveal="up" data-tilt onclick="openPM(2)" data-h>
+                <div class="relative h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop&q=80" alt="" class="timg w-full h-full object-cover" loading="lazy"/><div class="absolute top-3 left-3"><span class="bg-white border border-neutral-200 text-[10px] font-semibold px-3 py-1 rounded-full tracking-wide">VERIFIED</span></div><div class="absolute top-3 right-3"><button onclick="event.stopPropagation();togFav(this)" class="w-8 h-8 bg-white border border-neutral-200 rounded-full flex items-center justify-center hover:bg-neutral-50 transition-colors duration-300" data-h><span class="iconify w-4 h-4 text-neutral-400" data-icon="lucide:heart"></span></button></div><div class="absolute bottom-3 left-3"><span class="bg-neutral-900/90 text-white text-[11px] font-medium px-3 py-1.5 rounded-lg">2 BHK Apartment</span></div></div>
+                <div class="p-6 ti"><div class="flex items-start justify-between mb-3"><h3 class="text-[15px] font-medium tracking-[-0.01em] text-neutral-900">Prestige Lakeside Habitat</h3><span class="text-[15px] font-medium whitespace-nowrap ml-3 text-neutral-900">₹72 Lakhs</span></div><div class="flex items-center gap-1.5 text-sm text-neutral-500 mb-5"><span class="iconify w-3.5 h-3.5" data-icon="lucide:map-pin"></span>HSR Layout, South Bangalore</div><div class="flex items-center gap-5 pt-5 border-t border-neutral-100"><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:bed-double"></span>2 Beds</div><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:bath"></span>2 Baths</div><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:maximize"></span>1,100 sqft</div><div class="ml-auto flex items-center gap-1 text-xs text-emerald-600 font-medium"><span class="iconify w-3.5 h-3.5" data-icon="mdi:currency-inr"></span>~₹41K/mo</div></div></div></div></div>
+            <div class="tc bg-white border border-neutral-100 rounded-2xl overflow-hidden cursor-pointer" data-reveal="up" data-tilt onclick="openPM(3)" data-h>
+                <div class="relative h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?w=800&h=600&fit=crop&q=80" alt="" class="timg w-full h-full object-cover" loading="lazy"/><div class="absolute top-3 left-3"><span class="bg-white border border-neutral-200 text-[10px] font-semibold px-3 py-1 rounded-full tracking-wide">VERIFIED</span></div><div class="absolute top-3 right-3"><button onclick="event.stopPropagation();togFav(this)" class="w-8 h-8 bg-white border border-neutral-200 rounded-full flex items-center justify-center hover:bg-neutral-50 transition-colors duration-300" data-h><span class="iconify w-4 h-4 text-neutral-400" data-icon="lucide:heart"></span></button></div><div class="absolute bottom-3 left-3"><span class="bg-neutral-900/90 text-white text-[11px] font-medium px-3 py-1.5 rounded-lg">3 BHK Apartment</span></div></div>
+                <div class="p-6 ti"><div class="flex items-start justify-between mb-3"><h3 class="text-[15px] font-medium tracking-[-0.01em] text-neutral-900">DLF Woodland Heights</h3><span class="text-[15px] font-medium whitespace-nowrap ml-3 text-neutral-900">₹88 Lakhs</span></div><div class="flex items-center gap-1.5 text-sm text-neutral-500 mb-5"><span class="iconify w-3.5 h-3.5" data-icon="lucide:map-pin"></span>Electronic City, South Bangalore</div><div class="flex items-center gap-5 pt-5 border-t border-neutral-100"><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:bed-double"></span>3 Beds</div><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:bath"></span>2 Baths</div><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:maximize"></span>1,650 sqft</div><div class="ml-auto flex items-center gap-1 text-xs text-emerald-600 font-medium"><span class="iconify w-3.5 h-3.5" data-icon="mdi:currency-inr"></span>~₹50K/mo</div></div></div></div></div>
+            <div class="tc bg-white border border-neutral-100 rounded-2xl overflow-hidden cursor-pointer" data-reveal="up" data-tilt onclick="openPM(4)" data-h>
+                <div class="relative h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop&q=80" alt="" class="timg w-full h-full object-cover" loading="lazy"/><div class="absolute top-3 left-3 flex gap-2"><span class="bg-white border border-neutral-200 text-[10px] font-semibold px-3 py-1 rounded-full tracking-wide">VERIFIED</span><span class="bg-amber-50 border border-amber-200 text-neutral-800 text-[10px] font-semibold px-3 py-1 rounded-full tracking-wide">PREMIUM</span></div><div class="absolute top-3 right-3"><button onclick="event.stopPropagation();togFav(this)" class="w-8 h-8 bg-white border border-neutral-200 rounded-full flex items-center justify-center hover:bg-neutral-50 transition-colors duration-300" data-h><span class="iconify w-4 h-4 text-neutral-400" data-icon="lucide:heart"></span></button></div><div class="absolute bottom-3 left-3"><span class="bg-neutral-900/90 text-white text-[11px] font-medium px-3 py-1.5 rounded-lg">4 BHK Penthouse</span></div></div>
+                <div class="p-6 ti"><div class="flex items-start justify-between mb-3"><h3 class="text-[15px] font-medium tracking-[-0.01em] text-neutral-900">Brigade Orchards</h3><span class="text-[15px] font-medium whitespace-nowrap ml-3 text-neutral-900">₹3.2 Cr</span></div><div class="flex items-center gap-1.5 text-sm text-neutral-500 mb-5"><span class="iconify w-3.5 h-3.5" data-icon="lucide:map-pin"></span>Marathahalli, East Bangalore</div><div class="flex items-center gap-5 pt-5 border-t border-neutral-100"><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:bed-double"></span>4 Beds</div><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:bath"></span>4 Baths</div><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:maximize"></span>4,100 sqft</div><div class="ml-auto flex items-center gap-1 text-xs text-emerald-600 font-medium"><span class="iconify w-3.5 h-3.5" data-icon="mdi:currency-inr"></span>~₹1.7L/mo</div></div></div></div></div>
+            <div class="tc bg-white border border-neutral-100 rounded-2xl overflow-hidden cursor-pointer" data-reveal="up" data-tilt onclick="openPM(5)" data-h>
+                <div class="relative h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop&q=80" alt="" class="timg w-full h-full object-cover" loading="lazy"/><div class="absolute top-3 left-3"><span class="bg-white border border-neutral-200 text-[10px] font-semibold px-3 py-1 rounded-full tracking-wide">VERIFIED</span></div><div class="absolute top-3 right-3"><button onclick="event.stopPropagation();togFav(this)" class="w-8 h-8 bg-white border border-neutral-200 rounded-full flex items-center justify-center hover:bg-neutral-50 transition-colors duration-300" data-h><span class="iconify w-4 h-4 text-neutral-400" data-icon="lucide:heart"></span></button></div><div class="absolute bottom-3 left-3"><span class="bg-neutral-900/90 text-white text-[11px] font-medium px-3 py-1.5 rounded-lg">3 BHK Apartment</span></div></div>
+                <div class="p-6 ti"><div class="flex items-start justify-between mb-3"><h3 class="text-[15px] font-medium tracking-[-0.01em] text-neutral-900">Godrej Reflections</h3><span class="text-[15px] font-medium whitespace-nowrap ml-3 text-neutral-900">₹95 Lakhs</span></div><div class="flex items-center gap-1.5 text-sm text-neutral-500 mb-5"><span class="iconify w-3.5 h-3.5" data-icon="lucide:map-pin"></span>Harlur Road, East Bangalore</div><div class="flex items-center gap-5 pt-5 border-t border-neutral-100"><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:bed-double"></span>3 Beds</div><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:bath"></span>3 Baths</div><div class="flex items-center gap-1.5 text-xs text-neutral-400"><span class="iconify w-3.5 h-3.5" data-icon="lucide:maximize"></span>1,800 sqft</div><div class="ml-auto flex items-center gap-1 text-xs text-emerald-600 font-medium"><span class="iconify w-3.5 h-3.5" data-icon="mdi:currency-inr"></span>~₹54K/mo</div></div></div></div></div>
+        </div>
+    </div>
+</section>
 
-  <button id="clearFilters" class="border p-2 rounded">Clear</button>
+<!-- ═══ CLOSED DEALS ═══ -->
+<section id="closed-deals" class="py-24 md:py-36 bg-neutral-50">
+    <div class="max-w-[1440px] mx-auto px-6">
+        <div data-reveal="up" class="text-center mb-16"><span class="text-[10px] font-semibold uppercase tracking-[.12em] text-emerald-600 mb-4 block">Proof, Not Promises</span><h2 class="text-2xl md:text-[1.75rem] font-medium tracking-[-0.015em] text-neutral-900 mb-4">Recently Closed Deals</h2><p class="text-sm text-neutral-500 max-w-md mx-auto leading-[1.7]">Real transactions. Real savings. What our advisory helped families achieve in the last 90 days.</p></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sg">
+            <div class="cc bg-white rounded-xl p-6 border border-neutral-100 hover:shadow-lg hover:shadow-neutral-200/40 transition-shadow duration-500" data-reveal="up"><div class="flex items-center justify-between mb-5"><span class="bg-emerald-50 text-emerald-700 text-[10px] font-semibold px-3 py-1 rounded-full tracking-wide">CLOSED</span><span class="text-xs text-neutral-400">2 weeks ago</span></div><h4 class="text-[15px] font-medium tracking-[-0.01em] text-neutral-900 mb-1.5">3 BHK Apartment</h4><p class="text-sm text-neutral-500 mb-5 flex items-center gap-1.5"><span class="iconify w-3.5 h-3.5" data-icon="lucide:map-pin"></span>Prestige Shantiniketan, Whitefield</p><div class="flex items-center justify-between pt-5 border-t border-neutral-100"><div><div class="text-[11px] text-neutral-400 mb-0.5">Final Price</div><div class="text-sm font-medium text-neutral-900">₹1.08 Cr</div></div><div class="text-right"><div class="text-[11px] text-neutral-400 mb-0.5">Time to Close</div><div class="text-sm font-medium text-emerald-600">21 days</div></div></div></div></div>
+            <div class="cc bg-white rounded-xl p-6 border border-neutral-100 hover:shadow-lg hover:shadow-neutral-200/40 transition-shadow duration-500" data-reveal="up"><div class="flex items-center justify-between mb-5"><span class="bg-emerald-50 text-emerald-700 text-[10px] font-semibold px-3 py-1 rounded-full tracking-wide">CLOSED</span><span class="text-xs text-neutral-400">1 month ago</span></div><h4 class="text-[15px] font-medium tracking-[-0.01em] text-neutral-900 mb-1.5">4 BHK Villa</h4><p class="text-sm text-neutral-500 mb-5 flex items-center gap-1.5"><span class="iconify w-3.5 h-3.5" data-icon="lucide:map-pin"></span>Sobha Royal Pavilion, Sarjapur</p><div class="flex items-center justify-between pt-5 border-t border-neutral-100"><div><div class="text-[11px] text-neutral-400 mb-0.5">Negotiation Saved</div><div class="text-sm font-medium text-emerald-600">₹12L below asking</div></div><div class="text-right"><div class="text-[11px] text-neutral-400 mb-0.5">Time to Close</div><div class="text-sm font-medium text-neutral-900">34 days</div></div></div></div></div>
+            <div class="cc bg-white rounded-xl p-6 border border-neutral-100 hover:shadow-lg hover:shadow-neutral-200/40 transition-shadow duration-500" data-reveal="up"><div class="flex items-center justify-between mb-5"><span class="bg-emerald-50 text-emerald-700 text-[10px] font-semibold px-3 py-1 rounded-full tracking-wide">CLOSED</span><span class="text-xs text-neutral-400">6 weeks ago</span></div><h4 class="text-[15px] font-medium tracking-[-0.01em] text-neutral-900 mb-1.5">2 BHK Apartment</h4><p class="text-sm text-neutral-500 mb-5 flex items-center gap-1.5"><span class="iconify w-3.5 h-3.5" data-icon="lucide:map-pin"></span>Adarsh Vista, HSR Layout</p><div class="flex items-center justify-between pt-5 border-t border-neutral-100"><div><div class="text-[11px] text-neutral-400 mb-0.5">Final Price</div><div class="text-sm font-medium text-neutral-900">₹68 Lakhs</div></div><div class="text-right"><div class="text-[11px] text-neutral-400 mb-0.5">Time to Close</div><div class="text-sm font-medium text-emerald-600">14 days</div></div></div></div></div>
+            <div class="cc bg-white rounded-xl p-6 border border-neutral-100 hover:shadow-lg hover:shadow-neutral-200/40 transition-shadow duration-500" data-reveal="up"><div class="flex items-center justify-between mb-5"><span class="bg-emerald-50 text-emerald-700 text-[10px] font-semibold px-3 py-1 rounded-full tracking-wide">CLOSED</span><span class="text-xs text-neutral-400">2 months ago</span></div><h4 class="text-[15px] font-medium tracking-[-0.01em] text-neutral-900 mb-1.5">3 BHK Apartment</h4><p class="text-sm text-neutral-500 mb-5 flex items-center gap-1.5"><span class="iconify w-3.5 h-3.5" data-icon="lucide:map-pin"></span>DLF Woodland Heights, Electronic City</p><div class="flex items-center justify-between pt-5 border-t border-neutral-100"><div><div class="text-[11px] text-neutral-400 mb-0.5">Negotiation Saved</div><div class="text-sm font-medium text-emerald-600">₹5L below asking</div></div><div class="text-right"><div class="text-[11px] text-neutral-400 mb-0.5">Time to Close</div><div class="text-sm font-medium text-neutral-900">28 days</div></div></div></div></div>
+            <div class="cc bg-white rounded-xl p-6 border border-neutral-100 hover:shadow-lg hover:shadow-neutral-200/40 transition-shadow duration-500" data-reveal="up"><div class="flex items-center justify-between mb-5"><span class="bg-amber-50 text-amber-700 text-[10px] font-semibold px-3 py-1 rounded-full tracking-wide">IN PROGRESS</span><span class="text-xs text-neutral-400">Ongoing</span></div><h4 class="text-[15px] font-medium tracking-[-0.01em] text-neutral-900 mb-1.5">4 BHK Penthouse</h4><p class="text-sm text-neutral-500 mb-5 flex items-center gap-1.5"><span class="iconify w-3.5 h-3.5" data-icon="lucide:map-pin"></span>Brigade Orchards, Marathahalli</p><div class="flex items-center justify-between pt-5 border-t border-neutral-100"><div><div class="text-[11px] text-neutral-400 mb-0.5">Expected Price</div><div class="text-sm font-medium text-neutral-900">₹2.95 Cr</div></div><div class="text-right"><div class="text-[11px] text-neutral-400 mb-0.5">Status</div><div class="text-sm font-medium text-amber-600">Negotiating</div></div></div></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="py-24 md:py-36 bg-white">
+    <div class="max-w-[1440px] mx-auto px-6">
+        <div data-reveal="up" class="text-center mb-20"><span class="text-[10px] font-semibold uppercase tracking-[.12em] text-emerald-600 mb-4 block">How It Works</span><h2 class="text-2xl md:text-[1.75rem] font-medium tracking-[-0.015em] text-neutral-900 mb-4">From Confusion to Key Handover</h2><p class="text-sm text-neutral-500 max-w-md mx-auto leading-[1.7]">We don't just show you properties. We guide you through every step.</p></div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 sg">
+            <div data-reveal="up" class="text-center md:text-left group"><div class="w-12 h-12 bg-neutral-900 rounded-xl flex items-center justify-center mb-6 mx-auto md:mx-0 group-hover:scale-110 transition-transform duration-500"><span class="text-white text-sm font-medium">01</span></div><h4 class="text-sm font-medium text-neutral-900 mb-2.5">Understand Your Need</h4><p class="text-sm text-neutral-500 leading-[1.7]">A 15-minute call to understand your budget, areas, commute, and family requirements.</p></div>
+            <div data-reveal="up" class="text-center md:text-left group"><div class="w-12 h-12 bg-neutral-900 rounded-xl flex items-center justify-center mb-6 mx-auto md:mx-0 group-hover:scale-110 transition-transform duration-500"><span class="text-white text-sm font-medium">02</span></div><h4 class="text-sm font-medium text-neutral-900 mb-2.5">Curated Shortlist</h4><p class="text-sm text-neutral-500 leading-[1.7]">We send you 3–5 verified options that actually match — no spam.</p></div>
+            <div data-reveal="up" class="text-center md:text-left group"><div class="w-12 h-12 bg-neutral-900 rounded-xl flex items-center justify-center mb-6 mx-auto md:mx-0 group-hover:scale-110 transition-transform duration-500"><span class="text-white text-sm font-medium">03</span></div><h4 class="text-sm font-medium text-neutral-900 mb-2.5">Accompanied Site Visits</h4><p class="text-sm text-neutral-500 leading-[1.7]">We go with you. We point out things most buyers miss — water pressure, sunlight, quality.</p></div>
+            <div data-reveal="up" class="text-center md:text-left group"><div class="w-12 h-12 bg-neutral-900 rounded-xl flex items-center justify-center mb-6 mx-auto md:mx-0 group-hover:scale-110 transition-transform duration-500"><span class="text-white text-sm font-medium">04</span></div><h4 class="text-sm font-medium text-neutral-900 mb-2.5">Close with Confidence</h4><p class="text-sm text-neutral-500 leading-[1.7]">Negotiation, legal checks, paperwork, registration — we handle it all.</p></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FOUNDER ═══ -->
+<section id="about" class="py-24 md:py-36 bg-neutral-50">
+    <div class="max-w-[1440px] mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            <div data-reveal="right" class="relative" data-parallax="0.02">
+                <div class="aspect-[4/5] rounded-2xl overflow-hidden"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=1000&fit=crop&q=80" alt="" class="w-full h-full object-cover" loading="lazy"/><div data-reveal="scale" class="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-white rounded-xl shadow-lg shadow-lg shadow-neutral-200/20 p-4 md:p-5 border border-neutral-100"><div class="flex items-center gap-3"><div class="w-10 h-10 bg-emerald-50 rounded-lg flex items-center justify-center"><span class="iconify w-5 h-5 text-emerald-600" data-icon="lucide:award"></span></div><div><div class="text-[11px] text-neutral-400">Recognized By</div><div class="text-sm font-medium text-neutral-900">CREDAI Bangalore</div></div></div></div></div>
+            <div>
+                <span data-reveal="up" class="text-[10px] font-semibold uppercase tracking-[.12em] text-emerald-600 mb-5 block">The Person Behind the Platform</span>
+                <h2 data-reveal="up" class="text-2xl md:text-[1.75rem] font-medium tracking-[-0.02em] text-neutral-900 mb-7">Meet [Founder Name]</h2>
+                <p data-reveal="up" class="text-[15px] text-neutral-600 leading-[1.75] mb-10">After spending 5 years in corporate real estate consulting, [Founder Name] saw a clear problem: honest homebuyers in Bangalore were being misled by fake listings, opaque pricing, and pushy brokers.</p>
+                <p data-reveal="up" class="text-[15px] text-neutral-600 leading-[1.75] mb-10">In 2012, [Client Name] Properties was started with one belief — <span class="font-medium text-neutral-900">buying a home should feel safe, not stressful.</span> Today, we've helped 500+ families find their homes with zero complaints.</p>
+                <div data-reveal="up" class="grid grid-cols-3 gap-4 mb-10"><div class="bg-white rounded-xl p-5 border border-neutral-100 text-center"><div class="text-2xl font-medium text-neutral-900 mb-1" data-counter="12" data-suffix="+">0</div><div class="text-[11px] text-neutral-400 tracking-wide">Years</div></div><div class="bg-white rounded-xl p-5 border border-neutral-100 text-center"><div class="text-2xl font-medium text-neutral-900 mb-1" data-counter="500" data-suffix="+">0</div><div class="text-[11px] text-neutral-400 tracking-wide">Homes</div></div><div class="bg-white rounded-xl p-5 border border-neutral-100 text-center"><div class="text-2xl font-medium text-neutral-900 mb-1">₹8Cr+</div><div class="text-[11px] text-neutral-400 tracking-wide">Saved</div></div></div></div>
+                <div data-reveal="up" class="flex flex-col sm:flex-row gap-3"><a href="#contact" class="mb shim inline-flex items-center justify-center gap-2 bg-neutral-900 text-white text-sm font-medium px-6 py-3.5 rounded-xl hover:bg-neutral-800 transition-colors duration-300" data-h data-m><span class="iconify w-4 h-4" data-icon="lucide:message-circle"></span>Talk to [Founder Name]</a><a href="https://linkedin.com" target="_blank" class="inline-flex items-center justify-center gap-2 bg-white text-neutral-700 text-sm font-medium px-6 py-3.5 rounded-xl border border-neutral-200 hover:border-neutral-300 transition-colors duration-300" data-h><span class="iconify w-4 h-4" data-icon="lucide:linkedin"></span>LinkedIn</a></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="testimonials" class="py-24 md:py-36 bg-white">
+    <div class="max-w-[1440px] mx-auto px-6">
+        <div data-reveal="up" class="text-center mb-16"><span class="text-[10px] font-semibold uppercase tracking-[.12em] text-emerald-600 mb-4 block">What Buyers Say</span><h2 class="text-2xl md:text-[1.75rem] font-medium tracking-[-0.015em] text-neutral-900 mb-4">Families Who Found Home With Us</h2></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sg">
+            <div data-reveal="up" class="bg-neutral-50 rounded-2xl p-7 md:p-8 border border-neutral-100 hover:border-neutral-200 transition-colors duration-500"><div class="flex items-center gap-1 mb-6"><span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span><span class="iconify w-4 h-4 h-amber-400" data-icon="lucide:star"></span><span class="iconify w-4 h-4 h-amber-400" data-icon="lucide:star"></span><span class="iconify w-4 h-4 h-amber-400" data-icon="lucide:star"></span><span class="iconify w-4 h-4 text-amber-400" data-icon="lucide:star"></span></div><p class="text-sm text-neutral-600 leading-[1.75] mb-7">"They shared the builder's original price sheet on day one. No games. We closed in 3 weeks."</p><div class="flex items-center gap-3 pt-6 border-t border-neutral-200"><div class="w-10 h-10 bg-neutral-200 rounded-full flex items-center justify-center"><span class="iconify w-4 h-4 text-neutral-400" data-icon="lucide:user"></span></div><div><div><div class="text-sm font-medium text-neutral-900">Homebuyer</div><div class="text-xs text-neutral-400 mt-0.5">Whitefield · 3 BHK · ₹1.08 Cr</div></div></div></div></div></div>
+            <div data-reveal="up" class="bg-neutral-50 rounded-2xl p-7 md:p-8 border border-neutral-100 hover:border-neutral-200 transition-colors duration-500"><div class="flex items-center gap-1 mb-6"><span class="iconify w-4 h-4 h-amber-400" data-icon="lucide:star"></span><span class="iconify w-4 h-4 h-amber-400" data-icon="lucide:star"></span><span class="iconify w-4 h-4 h-amber-400" data-icon="lucide:star"></span><span class="iconify w-4 h-4 h-amber-400" data-icon="lucide:star"></span></div><p class="text-sm text-neutral-600 leading-[1.75] mb-7">"As an NRI, I couldn't be present. They handled everything — site visits on video, legal verification, registration. I got my keys without flying down even once."</p><div class="flex items-center gap-3 pt-6 border-t border-neutral-200"><div class="w-10 h-10 bg-neutral-200 rounded-full flex items-center justify-center"><span class="iconify w-4 h-4 text-neutral-400" data-icon="lucide:user"></span></div><div><div class="text-sm font-medium text-neutral-900">NRI Investor</div><div class="text-xs text-neutral-400 mt-0.5">Sarjapur Road · Villa · ₹2.1 Cr</div></div></div></div></div></div>
+            <div data-reveal="up" class="bg-neutral-50 rounded-2xl p-7 md:p-8 border border-neutral-100 hover:border-neutral-200 transition-colors duration-500"><div class="flex items-center gap-1 mb-6"><span class="iconify w-4 h-4 h-amber-400" data-icon="lucide:star"></span><span class="iconify w-4 h-4 h-amber-400" data-icon="lucide:star"></span><span class="iconify w-4 h-4 h-neutral-300" data-icon="lucide:star"></span></div><p class="text-sm text-neutral-600 leading-[1.75] mb-7">"They told me NOT to buy a property I was excited about. They pointed out waterlogging issues during monsoon. That's when I knew I could trust them."</p><div class="flex items-center gap-3 pt-6 border-t border-neutral-200"><div class="w-10 h-10 bg-neutral-200 rounded-full flex items-center justify-center"><span class="iconify w-4 h-4 text-neutral-400" data-icon="lucide:user"></span></div><div><div class="text-sm font-medium text-neutral-900">First-time Buyer</div><div class="text-xs text-neutral-400 mt-0.5">HSR Layout · 2 BHK · ₹68 Lakhs</div></div></div></div></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="py-24 md:py-36 bg-neutral-900">
+    <div class="max-w-[1440px] mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+            <div>
+                <span data-reveal="up" class="text-[10px] font-semibold uppercase tracking-[.12em] text-emerald-400 mb-5 block">Start Here</span>
+                <h2 data-reveal="up" class="text-3xl md:text-4xl font-medium text-white tracking-[-0.02em] leading-[1.15] mb-8">Tell Us What You're Looking For.<br/><span class="text-neutral-500">We'll Do the Rest.</span></h2>
+                <p data-reveal="up" class="text-[15px] text-neutral-400 leading-[1.75] mb-12 max-w-md">Fill this form and our advisor will call you within 2 hours with a curated shortlist.</p>
+                <div data-reveal="up" class="space-y-6">
+                    <div class="flex items-start gap-4"><div class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"><span class="iconify w-5 h-5 text-emerald-400" data-icon="lucide:phone"></span></div><div><div><div class="text-sm font-medium text-white mb-0.5">Call Us Directly</div><a href="tel:+919876543210" class="text-sm text-neutral-400 hover:text-white transition-colors duration-300" data-h>+91 98765 43210</a></div></div>
+                    <div class="flex items-start gap-4"><div class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"><span class="iconify w-5 h-5 text-emerald-400" data-icon="lucide:message-circle"></span></div><div><div><div class="text-sm font-medium text-white mb-0.5">WhatsApp</div><a href="https://wa.me/919876543210" target="_blank" class="text-sm text-neutral-400 hover:text-white transition-colors duration-300" data-h>+91 98765 43210</a></div></div>
+                    <div class="flex items-start gap-4"><div class="w-10 h-10 bg-neutral-800 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"><span class="iconify w-5 h-5 text-emerald-400" data-icon="lucide:map-pin"></span></div><div><div class="text-sm font-medium text-white mb-0.5">Office</div><p class="text-sm text-neutral-400 leading-relaxed">ITPL Main Road, Whitefield<br/>Bangalore — 560066</p></div></div></div>
+                </div>
+            </div>
+            <div data-reveal="left">
+                <form id="lf" class="bg-neutral-800 border border border-neutral-700 rounded-2xl p-6 md:p-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5"><div class="fg"><input type="text" required placeholder=" " class="w-full h-14 px-4 bg-neutral-800 border border-neutral-700 rounded-lg text-sm text-white focus:outline-none focus:border-emerald-500/50 transition-colors duration-300"/><label class="text-neutral-500">Full Name *</label></div><div class="fg"><input type="tel" required placeholder=" " class="w-full h-14 px-4 bg-neutral-800 border border-neutral-700 rounded-lg text-sm text-white focus:outline-none focus:border-emerald-500/50 transition-colors duration-300"/><label class="text-neutral-500">Phone Number *</label></div></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5"><div class="fg"><select required class="w-full h-14 px-4 bg-neutral-800 border border-neutral-700 rounded-lg text-sm text-white appearance-none focus:outline-none focus:border-emerald-500/50 transition-colors duration-300"><option value="" disabled selected hidden hidden>Select budget</option>₹40L — ₹60L</option><option>₹60L — ₹85L</option><option>₹85L — ₹1.2Cr</option>₹1.2Cr — ₹2Cr</option>₹2Cr+</option></select><label class="text-neutral-500">Budget Range *</label></div><div class="fg"><select class="w-full h-14 px-4 bg-neutral-800 border border-neutral-700 rounded-lg text-sm text-white appearance-none focus:outline-none focus:border-emerald-500/50 transition-colors duration-300"><option value="" disabled selected hidden hidden>Select area</option><option>Whitefield</option>Sarjapur Road</option>HSR Layout</option>Electronic City</option>Marathahalli</option>Harlur Road</option>Not sure yet</option></select><label class="text-neutral-500">Preferred Area</label></div></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5"><div class="fg"><select required class="w-full h-14 px-4 bg-neutral-800 border border-neutral-700 rounded-lg text-sm text-white appearance-none focus:outline-none focus:border-emerald-500/50 transition-colors duration-300"><option value="" disabled selected hidden>Timeline</option>Immediately</option>Within 3 months</option>Within 6 months</option>Just exploring</option></select><label class="text-neutral-500">Timeline *</label></div><div class="fg"><select required class="w-full h-14 px-4 bg-neutral-800 border border-neutral-700 rounded-lg text-sm text-white appearance-none focus:outline-none focus:border-emerald-500/50 transition-colors duration-300"><option value="" disabled selected hidden>Purpose</option>Self-use (first home)</option>Self-use (upgrade)</option>Investment</option>Both</select><label class="text-neutral-500">Purpose *</label></div></div>
+                    <div class="fg mb-6"><textarea rows="3" placeholder=" " class="w-full px-4 pt-6 pb-3 bg-neutral-800 border border-neutral-700 rounded-lg text-sm text-white focus:outline-none focus:border-emerald-500/50 transition-colors duration-300 resize-none"></textarea><label class="text-neutral-500">Anything specific? <span class="text-neutral-600">(optional)</span></label></div>
+                    <button type="submit" class="mb shim w-full h-12 bg-white text-neutral-900 text-sm font-semibold rounded-xl hover:bg-neutral-100 transition-colors duration-300 flex items-center justify-center gap-2" data-h data-m><span class="iconify w-4 h-4" data-icon="lucide:send"></span>Get My Curated Shortlist</button>
+                    <p class="text-[11px] text-neutral-600 text-center mt-5"><span class="iconify inline w-3 h-3 -mt-0.5" data-icon="lucide:lock"></span> Your information is secure.</p></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ EMI CALCULATOR ═══ -->
+<section class="py-24 md:py-36 bg-white border-t border-neutral-100">
+    <div class="max-w-2xl mx-auto px-6">
+        <div data-reveal="scale" class="max-w-2xl mx-auto">
+            <div class="text-center mb-12"><span class="text-[10px] font-semibold uppercase tracking-[.12em] text-emerald-600 mb-4 block">Plan Your Purchase</span><h2 class="text-2xl md:text-[1.75rem] font-medium tracking-[-0.015em] text-neutral-900 mb-4">EMI Calculator</h2></div>
+            <div class="bg-neutral-50 rounded-2xl p-7 md:p-8 border border-neutral-100">
+                <div class="space-y-7">
+                    <div><div class="flex items-center justify-between mb-2"><label class="text-sm font-medium text-neutral-900">Loan Amount</label><span id="laV" class="text-sm font-medium text-neutral-900">₹80 Lakhs</span></div><input type="range" id="la" min="1000000" max="30000000" step="100000" value="8000000" class="w-full h-1 bg-neutral-200 rounded-full appearance-none cursor-pointer accent-neutral-900" data-h/><div class="flex justify-between text-[11px] text-neutral-400 mt-1"><span>₹10L</span><span>₹3Cr</span></div></div></div>
+                    <div><div class="flex items-center justify-between mb-2"><label class="text-sm font-medium text-neutral-900">Interest Rate</label><span id="irV" class="text-sm font-medium text-neutral-900">8.5%</span></div><input type="range" id="ir" min="6" max="12" step="0.1" value="8.5" class="w-full h-1 bg-neutral-200 rounded-full appearance-none cursor-pointer accent-neutral-900" data-h/><div class="flex justify-between text-[11px] text-neutral-400 mt-1"><span>6%</span><span>12%</span></div></div></div>
+                    <div><div class="flex items-center justify-between mb-2"><label class="text-sm font-medium text-neutral-900">Loan Tenure</label><span id="ltV" class="text-sm font-medium text-neutral-900">20 years</span></div><input type="range" id="lt" min="5" max="30" step="1" value="20" class="w-full h-1 bg-neutral-200 rounded-full appearance-none cursor-pointer accent-neutral-900" data-h/><div class="flex justify-between text-[11px] text-neutral-400 mt-1"><span>5 yrs</span><span>30 yrs</span></div></div></div>
+                </div>
+                <div class="mt-8 pt-7 border-t border-neutral-200 grid grid-cols-3 gap-4 text-center"><div><div><div class="text-[11px] text-neutral-400 mb-1">Monthly EMI</div><div id="emR" class="text-xl font-medium text-neutral-900">₹69,514</div></div><div><div><div class="text-[11px] text-neutral-400 mb-1">Total Interest</div><div id="inR" class="text-xl font-medium text-neutral-500">₹86.8L</div></div><div><div><div class="text-[11px] text-neutral-400 mb-1">Total Payment</div><div id="toR" class="text-xl font-medium text-neutral-500">₹1.67Cr</div></div></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="bg-neutral-900 pt-20 pb-8">
+    <div class="max-w-[1440px] mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 pb-12 border-b border-neutral-800">
+            <div><div class="flex items-center gap-2.5 mb-5"><div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center"><span class="text-neutral-900 text-[11px] font-semibold">CP</span></div><div class="flex flex-col"><span class="text-sm font-semibold text-white tracking-[-0.01em] leading-none">[Client Name] Properties</span><span class="text-[9px] text-neutral-600 tracking-[.1em] mt-0.5">BANGALORE · SINCE 2012</span></div></div><p class="text-sm text-neutral-500 leading-[1.7] mb-5">Helping Bangalore families find verified homes with complete transparency.</p><div class="flex items-center gap-3"><a href="#" class="w-8 h-8 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-neutral-700 transition-colors duration-300" data-h><span class="iconify w-3.5 h-3.5 text-neutral-400" data-icon="lucide:instagram"></span></a><a href="#" class="w-8 h-8 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-neutral-700 transition-colors duration-300" data-h><span class="iconify w-3.5 h-3.5 text-neutral-400" data-icon="lucide:youtube"></span></a><a href="#" class="w-8 h-8 bg-neutral-800 rounded-lg flex items-center justify-center hover:bg-neutral-700 transition-colors duration-300" data-h><span class="iconify w-3.5 h-3.5 text-neutral-400" data-icon="lucide:linkedin"></span></a></div></div></div>
+            <div><h5 class="text-[10px] font-semibold uppercase tracking-[.12em] text-neutral-500 mb-5">Popular Areas</h5><ul class="space-y-3"><li><a href="#" class="text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Whitefield</a></li><a href="#" class="text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Sarjapur Road</a></li><a href="#" class="text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>HSR Layout</a></li><a href="#" class="text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Electronic City</a></li><li><a href="#" class="text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Marathahalli</a></li><li><a href="#" class="text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Harlur Road</a></li></ul></div>
+            <div><h5 class="text-[10px] font-semibold uppercase tracking-[.12em] text-neutral-500 mb-5">Property Types</h5><ul class="space-y-3"><li><a href="#" class="text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Apartments</a></li><a href="#" class="text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Villas</a></li><li><a href="#" class="text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Penthouses</a></li><li><a href="#" class="text-sm text-neutral-500 hover:text-white transition-colors duration-300 ld" data-h>Plots</a></li></ul></div>
+            <div><h5 class="text-[10px] font-semibold uppercase tracking-[12em] text-neutral-500 mb-5">Contact</h5><ul class="space-y-3"><li class="flex items-center gap-2 text-sm text-neutral-500"><span class="iconify w-3.5 h-3.5" data-icon="lucide:phone"></span>+91 98765 43210</li><li class="flex items-center gap-2 text-sm text-neutral-500"><span class="iconify w-3.5 h-3.5" data-icon="lucide:mail"></span>hello@[client].com</li><li class="flex items-start gap-2 text-sm text-neutral-500"><span class="iconify w-3.5 h-3.5 mt-0.5 flex-shrink-0" data-icon="lucide:map-pin"></span>ITPL Main Road, Whitefield, Bangalore — 560066</li></ul><div class="mt-6 pt-6 border-t border-t border-neutral-800"><div class="flex items-center gap-2 text-xs text-neutral-600"><span class="iconify w-3.5 h-3.5" data-icon="lucide:clock"></span>Mon–Sat: 10 AM — 7 PM</div></div></div></div></div>
+        </div>
+        <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4"><p class="text-xs text-neutral-600">© 2024 [Client Name] Properties. RERA No: PRM/KA/RERA/1234/2024</p><div class="flex items-center gap-6"><a href="#" class="text-xs text-neutral-600 hover:text-neutral-400 transition-colors duration-300" data-h>Privacy</a><a href="#" class="text-xs text-neutral-600 hover:text-neutral-400 transition-colors duration-300" data-h>Terms</a><a href="#" class="text-xs text-neutral-600 hover:text-neutral-400 transition-colors duration-300" data-h>RERA Disclaimer</a></div></div>
+    </div>
+</footer>
+
+<!-- Back to Top -->
+<button id="btt" class="fixed bottom-6 right-6 z-50 w-10 h-10 bg-white border border border-neutral-200 rounded-full flex items-center justify-center shadow-sm hover:shadow-md hover:shadow-lg hover:border-neutral-300 transition-all duration-300" onclick="window.scrollTo({top:0,behavior:'smooth'})" data-h>
+    <svg width="18" height="18" viewBox="0 0 20 20" class="-rotate-90"><circle cx="10" cy="10" r="8" stroke="#e5e5e5" stroke-width="1" fill="none"/><circle class="prg" cx="10" cy="10" r="8" stroke="#1d1d1f" stroke-width="1" fill="none" stroke-dasharray="50.27" stroke-dashoffset="50.27" stroke-linecap="round"/></svg></svg>
+    <span class="iconify w-3.5 h-3.5 text-neutral-500 absolute" data-icon="lucide:arrow-up"></span></button>
+</button>
+
+<!-- Property Modal -->
+<div id="pmod" class="fixed inset-0 z-[95] pointer-events-none">
+    <div class="mo absolute inset-0 bg-black/25 border-b border-b border-white border-draw" id="movr"></div class="mp absolute inset-4 md:inset-8 lg:inset-y-8 lg:left-[12%] lg:right-[12%] bg-white rounded-2xl overflow-hidden flex flex-col" id="mpan">
+        <div class="flex items-center justify-between px-6 py-4 border-b border-neutral-100 flex-shrink-0"><h3 id="mtit" class="text-[15px] font-medium tracking-[-0.01em] text-neutral-900"></h3><button onclick="clPM()" class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-neutral-100 transition-colors duration-300" data-h><span class="iconify w-5 h-5 text-neutral-400" data-icon="lucide:x"></span></button></div></div>
+        <div class="flex-1 overflow-y-auto p-6 md:p-8"><div id="mbod"></div></div>
+    </div>
+</div>
 </div>
 
-<!-- PROPERTIES -->
-<div class="p-6 grid md:grid-cols-3 gap-6" id="propertyGrid"></div>
-
-<div id="noResults" class="hidden text-center p-10">
-  No properties found
+<!-- Toast -->
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[80] bg-neutral-900 text-white text-sm font-medium rounded-xl shadow-xl overflow-hidden">
+    <div class="tbar absolute top-0 left-0 right-0 right-0"></div>
+    <div class="flex items-center gap-2 px-6 py-3.5"><span class="iconify w-4 h-4 text-emerald-400" data-icon="lucide:check-circle"></span><span id="tmsg"></span></div></div>
+</div>
 </div>
 
-<!-- SCRIPT -->
 <script>
-const PROPS = [
-  { title: "3BHK Apartment", price: "₹1.15 Cr", location: "Whitefield", type: "Apartment", bhk: 3, image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6" },
-  { title: "Luxury Villa", price: "₹2.1 Cr", location: "Whitefield", type: "Villa", bhk: 4, image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9" },
-  { title: "2BHK Flat", price: "₹72L", location: "HSR Layout", type: "Apartment", bhk: 2, image: "https://images.unsplash.com/photo-1574362848149-11496d93a7c7" }
+(function(){
+'use strict';
+
+/* ═══ MOTION ENGINE ═══ */
+const lerp=(a,b,t)=>a+(b-a)*t;
+const cl=(v,lo,hi)=>v<lo?lo?lo:lo:lo:0;
+document.addEventListener('mousemove',e=>{rmx=e.clientX;rmy=e.clientY});
+addEventListener('scroll',()=>{sS=scrollY},{passive:true});
+var sS=0,sT=scrollY,tS=scrollY,t=0;
+function iC(e){if(!e.isIntersecting)return;const el=e.target,tg=parseInt(el.dataset.counter),sx=el.dataset.suffix||'';isNaN(tg)||el._d)return;el._d=1;const t0=performance.now();(function s(n){const p=Math.min((n-t0)/1800,1);el.textContent=Math.round(tg*(1-Math.pow(1-p,4))+sx;if(p<1)requestAnimationFrame(s)})(t0);cO.unobserve(el)}},{threshold:.5});
+document.querySelectorAll('[data-counter]').forEach(c=>cO.observe(c));
+
+/* ═══ MODAL SYSTEM ═══ */
+const props=[
+    {t:'Prestige Shantiniketan — 3 BHK',l:'Whitefield, East Bangalore',p:'₹1.15 Cr',tp:'3 BHK Apartment',b:3,a:2,s:'1,750 sqft',e:'~₹66K/mo',i:'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&h=700&fit=crop&q=80',d:'Spacious 3 BHK in Whitefield\'s most sought-after gated community.',h:['East-facing with morning sunlight','Gated community with 50+ amenities','Walking distance to ITPL metro','RERA registered']},
+    {t:'Sobha Royal Pavilion — 4 BHK Villa',l:'Sarjapur Road',p:'₹2.1 Cr',tp:'4 BHK Villa',b:4,a:4,s:'3,200 sqft',e:'~₹1.1L/mo',i:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=700&fit=crop&q=80',d:'Premium villa in Sobha\'s flagship project.',h:['Private garden & rooftop terrace','Home automation ready','Near upcoming metro','Sobha construction quality']},
+    {t:'Prestige Lakeside Habitat — 2 BHK',l:'HSR Layout',p:'₹72 Lakhs',tp:'2 BHK Apartment',b:2,a:2,s:'1,100 sqft',e:'~₹41K/mo',i:'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&h=700&fit=crop&q=80',d:'Well-maintained 2 BHK in HSR Layout.',h:['Prime HSR Layout — Sector 2','Walking distance to HSR BDA Complex','Excellent rental yield','Proximity to Koramangala & ORR']},
+    {t:'DLF Woodland Heights — 3 BHK',l:'Electronic City',p:'₹88 Lakhs',tp:'3 BHK Apartment',b:3,a:2,s:'1,650 sqft',e:'~₹50K/mo',i:'https://images.unsplash.com/photo-1574362848149-11496d93a7c7?w=1200&h=700&fit=crop&q=80',d:'Affordable 3 BHK near IT parks. Well-connected to NICE Road.',h:['Near Infosys & Wipro — 5 min','Most affordable 3 BHK in this area','Strong rental demand','NICE Road access']},i:'https://images.unsplash.com/photo-1574362848149-11496d93a7c7?w=1200&h=700&fit=crop&q=80',d:'Brand new 3 BHK. All bedrooms east-facing. Green-certified.',h:['All 3 bedrooms east-facing','IGBC Green certified','Near ORR & Sarjapur junction','Brand new — never occupied']},
+    {t:'Brigade Orchards — 4 BHK Penthouse',l:'Marathahalli',p:'₹3.2 Cr',tp:'4 BHK Penthouse',b:4,a:4,s:'4,100 sqft',e:'~₹1.7L/mo',i:'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&h=700&fit=crop&q=80',d:'Ultra-premium penthouse with panoramic views.',h:['Panoramic skyline — 28th floor','Private 600 sqft terrace garden','Rooftop infinity pool','School, hospital, mall within campus']},i:'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&h=700&fit=crop&q=80',d:'Brand new 3 BHK. All bedrooms east-facing. Green-certified.',h:['All 3 bedrooms east-facing','IGBC Green certified','Near ORR & Sarjapur junction','Brand new — never occupied']},
 ];
 
-const grid = document.getElementById("propertyGrid");
-const noResults = document.getElementById("noResults");
+const $mo=document.getElementById('pmod'),$ov=document.getElementById('movr'),$mp=document.getElementById('mpan'),$mt=document.getElementById('mtit'),$mb=document.getElementById('mbod');
+function openPM(i){const p=props[i];$mt.textContent=p.t;$mb.innerHTML=`<div class="aspect-video rounded-xl overflow-hidden mb-6"><img src="${p.i}" alt="" class="w-full h-full object-cover"/><div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6"><div><div><span class="text-[10px] font-semibold uppercase tracking-[.12em] text-emerald-600 mb-3 block">${p.tp}</span><p class="text-sm text-neutral-500 flex items-center gap-1.5 mt-1"><span class="iconify w-3.5 h-3.5" data-icon="lucide:map-pin"></span>${p.l}</p></div></div><div class="text-right"><div class="text-[10px] text-neutral-400 mb-0.5">Expected Price</div><div class="text-[10px] text-neutral-400 mb-0.5">Timeline</div><div class="text-sm font-medium text-emerald-600">Negotiating</div></div></div></div></div><div class="flex flex-col sm:flex-row gap-3"><a href="#contact" onclick="clPM()" class="shim flex-1 inline-flex items-center justify-center gap-2 bg-neutral-900 text-white text-sm font-medium px-6 py-3.5 rounded-xl hover:bg-neutral-800 transition-colors duration-300" data-h data-m><span class="iconify w-4 h-4" data-icon="lucide:calendar-check"></span>Schedule Visit</a><a href="tel:+919876543210" class="flex-1 inline-flex items-center justify-center gap-2 bg-white text-neutral-700 text-sm font-medium px-6 py-3.5 rounded-xl border border border-neutral-200 hover:border-neutral-300 transition-colors duration-300" data-h><span class="iconify w-4 h-4" data-icon="lucide:phone"></span>Call Now</a></div></div></div><div id="mbod"></div>
+    $ov.classList.add('act');$mp.classList.add('act');document.body.style.overflow='hidden';setTimeout(()=>{$mo.style.pointerEvents='none'},500)}
+function clPM(){$ov.classList.remove('act');$mp.classList.remove('act');document.body.style.overflow='';setTimeout(()=>{$mo.style.pointerEvents='none'},500)}
+window.openPropertyModal=openPM;window.closePropertyModal=clPM;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')clPM()});
+ $ov.addEventListener('click',clPM);
+document.querySelectorAll('.ml').forEach(l=>l.addEventListener('click',()=>$mm.classList.remove('open')));
 
-function render(list) {
-  if (!list.length) {
-    noResults.classList.remove("hidden");
-    grid.innerHTML = "";
-    return;
-  }
-  noResults.classList.add("hidden");
+const $ts=document.getElementById('toast');
+function toast(msg){document.getElementById('tmsg').textContent=msg;const b=$ts.querySelector('.tbar');b.style.animation='none';b.offsetHeight;b.style.animation='tbs 3s linear forwards';b.style.animation='tbs 3s linear forwards';$ts.classList.add('show');setTimeout(()=>$ts.classList.remove('show'),3100)}
+window.togFav=function(btn){const i=btn.querySelector('.iconify');if(i.getAttribute('data-icon')==='lucide:heart'){i.setAttribute('data-icon','mdi:heart');i.classList.replace('text-neutral-400','text-red-500');btn.style.transform='scale(1.1)';setTimeout(()=>btn.style.transform='',200);toast('Added to shortlist')}else{i.setAttribute('data-icon','lucide:heart');i.classList.replace('text-red-500','text-neutral-400');toast('Removed from shortlist')}}
 
-  grid.innerHTML = list.map((p,i)=>`
-    <div class="icard border rounded-xl overflow-hidden card-enter" style="animation-delay:${i*100}ms">
-      <img src="${p.image}" class="h-48 w-full object-cover"/>
-      <div class="p-4">
-        <div class="flex justify-between">
-          <h3>${p.title}</h3>
-          <span>${p.price}</span>
-        </div>
-        <p class="text-sm text-gray-500">${p.location}</p>
-      </div>
-    </div>
-  `).join("");
-}
+const $mm=document.getElementById('mmenu');
+document.getElementById('menubtn').addEventListener('click',()=>$mm.classList.add('open'));
+document.getElementById('cmenubtn').addEventListener('click',()=>$mm.classList.remove('open'));
+document.querySelectorAll('.ml').forEach(l=>l.addEventListener('click',()=>$mm.classList.remove('open')));
 
-render(PROPS);
+document.getElementById('lf').addEventListener('submit',function(e){e.preventDefault();toast('Thank you. Our advisor will call you within 2 hours.');this.reset()});
+const $la=document.getElementById('la'),$ir=document.getElementById('ir'),$lt=document.getElementById('lt');
+function fmt(n){return n>=1e7?'₹'+(n/1e7).toFixed(2)+'Cr':n>=1e5?'₹'+(n/1e5).toFixed(1)+'L':'₹'+n.toLocaleString('en-IN')}
+function calc(){const P=+$la.value,r=+$ir.value/12/100,n=+$lt.value*12,emi=r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);const t=emi*n=>Math.round(emi).toLocaleString('en-IN');document.getElementById('emR').textContent='₹'+Math.round(emi).toLocaleString('en-IN');document.getElementById('inR').textContent=fmt(Math.round(tot-P));document.getElementById('toR').textContent=fmt(Math.round(tot));document.getElementById('laV').textContent=fmt(+$la.value);document.getElementById('irV').textContent=(+$ir.value).toFixed(1)+'%';document.getElementById('ltV').textContent=+$lt.value+' years'}
+ $la.addEventListener('input',calc);$ir.addEventListener('input',calc);$lt.addEventListener('input',calc);calc()}
 
-document.getElementById("filterBtn").onclick = () => {
-  const loc = document.getElementById("filterLocation").value;
-  const type = document.getElementById("filterType").value;
-  const bhk = parseInt(document.getElementById("filterBhk").value) || 0;
-
-  const filtered = PROPS.filter(p =>
-    (!loc || p.location.includes(loc)) &&
-    (!type || p.type === type) &&
-    (!bhk || p.bhk === bhk)
-  );
-
-  render(filtered);
-};
-
-document.getElementById("clearFilters").onclick = () => {
-  document.querySelectorAll("select").forEach(s => s.value = "");
-  render(PROPS);
-};
-
-/* LOADER FIX */
-window.onload = () => {
-  const loader = document.getElementById("loadingSkeleton");
-  loader.style.opacity = "0";
-  setTimeout(()=> loader.remove(), 500);
-};
+})();
 </script>
-
+</script>
 </body>
 </html>
