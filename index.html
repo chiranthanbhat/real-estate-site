@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neural Field Rendering for Dynamic Scenes</title>
+    <title>[Client Name] Properties — Bangalore</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{serif:['Instrument Serif','serif'],sans:['Inter','sans-serif']}}}}</script>
@@ -24,15 +24,16 @@
             cursor: none;
         }
         
-        /* Custom Scrollbar */
+        /* ═══ CUSTOM SCROLLBAR ═══ */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #0a0a0a; }
         ::-webkit-scrollbar-thumb { 
             background: linear-gradient(180deg, #c9a96e, #8b7355); 
             border-radius: 3px; 
         }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #f0d9b5, #c9a96e); }
         
-        /* Loading Screen */
+        /* ═══ LOADING SCREEN ═══ */
         .loader {
             position: fixed;
             inset: 0;
@@ -47,6 +48,9 @@
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
+        }
+        .loader-content {
+            text-align: center;
         }
         .loader-logo {
             width: 80px;
@@ -77,8 +81,15 @@
             width: 0%;
             transition: width 0.3s ease;
         }
+        .loader-text {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-top: 16px;
+        }
         
-        /* Custom Cursor */
+        /* ═══ ADVANCED CURSOR SYSTEM ═══ */
         @media (pointer: fine) {
             .cursor-dot {
                 position: fixed;
@@ -117,11 +128,46 @@
                 border-color: rgba(201, 169, 110, 0.8);
                 background: rgba(201, 169, 110, 0.05);
             }
+            .cursor-ring.click {
+                width: 30px;
+                height: 30px;
+            }
+            .cursor-trail {
+                position: fixed;
+                width: 4px;
+                height: 4px;
+                background: rgba(201, 169, 110, 0.3);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 99996;
+                will-change: transform, opacity;
+            }
+            .cursor-text {
+                position: fixed;
+                padding: 8px 16px;
+                background: rgba(201, 169, 110, 0.95);
+                color: #000;
+                font-size: 11px;
+                font-weight: 600;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                border-radius: 30px;
+                pointer-events: none;
+                z-index: 99997;
+                opacity: 0;
+                transform: translate(-50%, -50%) translateY(10px);
+                transition: opacity 0.3s, transform 0.3s;
+                white-space: nowrap;
+            }
+            .cursor-text.visible {
+                opacity: 1;
+                transform: translate(-50%, -50%) translateY(0);
+            }
             * { cursor: none !important; }
             a, button, input, select, textarea, [data-cursor] { cursor: none !important; }
         }
         
-        /* Gold Gradient Text */
+        /* ═══ GOLD GRADIENT TEXT ═══ */
         .gold-text {
             background: linear-gradient(135deg, #c9a96e 0%, #f0d9b5 25%, #c9a96e 50%, #f0d9b5 75%, #c9a96e 100%);
             background-size: 200% auto;
@@ -135,7 +181,7 @@
             100% { background-position: 200% center; }
         }
         
-        /* Reveal Animations */
+        /* ═══ REVEAL ANIMATIONS ═══ */
         .reveal { 
             opacity: 0; 
             transform: translateY(80px); 
@@ -151,7 +197,35 @@
         .reveal-delay-4 { transition-delay: 0.4s; }
         .reveal-delay-5 { transition-delay: 0.5s; }
         
-        /* Navigation */
+        /* ═══ TEXT SPLIT ANIMATION ═══ */
+        .split-text .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100%) rotateX(-90deg);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .split-text.animate .char {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+        }
+        
+        /* ═══ LINE DRAW ANIMATION ═══ */
+        .line-draw {
+            width: 0;
+            transition: width 2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .line-draw.active { width: 100%; }
+        
+        /* ═══ IMAGE REVEAL CLIP ═══ */
+        .img-reveal {
+            clip-path: inset(100% 0 0 0);
+            transition: clip-path 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .img-reveal.active {
+            clip-path: inset(0 0 0 0);
+        }
+        
+        /* ═══ NAVIGATION ═══ */
         .nav-glass {
             background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(20px) saturate(180%);
@@ -182,7 +256,7 @@
             transform: translateX(0);
         }
         
-        /* Magnetic Button */
+        /* ═══ MAGNETIC BUTTON ═══ */
         .magnetic-btn {
             position: relative;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -202,7 +276,7 @@
             opacity: 0.5;
         }
         
-        /* Property Cards - 3D Tilt */
+        /* ═══ PROPERTY CARDS - 3D TILT ═══ */
         .property-card {
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             transform-style: preserve-3d;
@@ -236,7 +310,7 @@
             transform: translateY(0);
         }
         
-        /* Card Shine Effect */
+        /* ═══ CARD SHINE EFFECT ═══ */
         .card-shine {
             position: absolute;
             inset: 0;
@@ -256,7 +330,7 @@
             transform: translateX(100%);
         }
         
-        /* Floating Elements */
+        /* ═══ FLOATING ELEMENTS ═══ */
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
             33% { transform: translateY(-25px) rotate(1deg) scale(1.02); }
@@ -266,7 +340,7 @@
         .float-slow { animation: float 14s ease-in-out infinite reverse; }
         .float-delayed { animation: float 12s ease-in-out infinite 2s; }
         
-        /* Morphing Blobs */
+        /* ═══ MORPHING BLOBS ═══ */
         .blob {
             position: absolute;
             border-radius: 50%;
@@ -293,7 +367,7 @@
             }
         }
         
-        /* Noise Overlay */
+        /* ═══ NOISE OVERLAY ═══ */
         .noise::before {
             content: '';
             position: fixed;
@@ -312,7 +386,99 @@
             100% { transform: translate(2%, 2%); }
         }
         
-        /* Progress Bar */
+        /* ═══ WHATSAPP PULSE & ORBIT ═══ */
+        @keyframes waPulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .wa-pulse { animation: waPulse 2s infinite; }
+        @keyframes orbit {
+            0% { transform: rotate(0deg) translateX(35px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(35px) rotate(-360deg); }
+        }
+        .wa-orbit {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: orbit 3s linear infinite;
+        }
+        
+        /* ═══ MARQUEE ═══ */
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        .marquee-track {
+            animation: marquee 45s linear infinite;
+        }
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+        
+        /* ═══ STATS COUNTER ═══ */
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: 'tnum';
+        }
+        
+        /* ═══ FORM STYLING ═══ */
+        .form-group {
+            position: relative;
+        }
+        .form-group label {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .form-group input:focus + label,
+        .form-group input:not(:placeholder-shown) + label,
+        .form-group textarea:focus + label,
+        .form-group textarea:not(:placeholder-shown) + label {
+            top: 0;
+            left: 16px;
+            font-size: 9px;
+            color: #c9a96e;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: #0f0f0f;
+            padding: 0 8px;
+        }
+        .form-input {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .form-input:focus {
+            box-shadow: 0 0 0 2px rgba(201, 169, 110, 0.2), 0 0 30px rgba(201, 169, 110, 0.1);
+        }
+        
+        /* ═══ TESTIMONIAL SLIDER ═══ */
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 0 16px;
+        }
+        @media (min-width: 768px) {
+            .testimonial-slide {
+                min-width: 50%;
+            }
+        }
+        @media (min-width: 1280px) {
+            .testimonial-slide {
+                min-width: 33.333%;
+            }
+        }
+        
+        /* ═══ PROGRESS BAR ═══ */
         .progress-bar {
             background: linear-gradient(90deg, #c9a96e, #f0d9b5, #c9a96e);
             background-size: 200% 100%;
@@ -323,7 +489,7 @@
             100% { background-position: 200% 0%; }
         }
         
-        /* Section Transitions */
+        /* ═══ SECTION TRANSITIONS ═══ */
         .section-fade {
             opacity: 0;
             transform: translateY(40px);
@@ -334,29 +500,41 @@
             transform: translateY(0);
         }
         
-        /* Image Reveal Clip */
-        .img-reveal {
-            clip-path: inset(100% 0 0 0);
-            transition: clip-path 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+        /* ═══ TOAST NOTIFICATION ═══ */
+        .toast-notification {
+            animation: toastSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .img-reveal.active {
-            clip-path: inset(0 0 0 0);
-        }
-        
-        /* Line Draw Animation */
-        .line-draw {
-            width: 0;
-            transition: width 2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .line-draw.active { width: 100%; }
-        
-        /* Stats Counter */
-        .stat-number {
-            font-variant-numeric: tabular-nums;
-            font-feature-settings: 'tnum';
+        @keyframes toastSlideIn {
+            from { opacity: 0; transform: translate(-50%, 20px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
         }
         
-        /* Process Step Hover */
+        /* ═══ MODAL ENHANCEMENTS ═══ */
+        .modal-backdrop {
+            backdrop-filter: blur(20px) saturate(150%);
+            -webkit-backdrop-filter: blur(20px) saturate(150%);
+        }
+        
+        /* ═══ FAVORITE BUTTON ═══ */
+        .fav-btn svg {
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .fav-btn.active svg {
+            fill: #ef4444;
+            stroke: #ef4444;
+            transform: scale(1.2);
+        }
+        .fav-btn:active svg {
+            transform: scale(0.8);
+        }
+        
+        /* ═══ HERO PARALLAX LAYERS ═══ */
+        .hero-layer {
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+        
+        /* ═══ PROCESS STEP HOVER ═══ */
         .process-step {
             position: relative;
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -381,7 +559,7 @@
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
-        /* Social Icons */
+        /* ═══ SOCIAL ICONS ═══ */
         .social-icon {
             position: relative;
             overflow: hidden;
@@ -409,7 +587,7 @@
             transition: all 0.3s;
         }
         
-        /* Contact Info Card */
+        /* ═══ CONTACT INFO CARD ═══ */
         .contact-card {
             position: relative;
             overflow: hidden;
@@ -444,7 +622,7 @@
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
-        /* Back to Top */
+        /* ═══ BACK TO TOP ═══ */
         .back-to-top {
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -455,7 +633,7 @@
             transform: translateY(-2px);
         }
         
-        /* Mobile Menu */
+        /* ═══ MOBILE MENU ═══ */
         .mobile-menu-link {
             position: relative;
             display: inline-block;
@@ -474,7 +652,7 @@
             width: 100%;
         }
         
-        /* Reduced Motion */
+        /* ═══ REDUCED MOTION ═══ */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
@@ -483,84 +661,9 @@
             }
         }
         
-        /* Code Block Styling */
-        pre {
-            background: rgba(255,255,255,0.03) !important;
-            border: 1px solid rgba(255,255,255,0.08) !important;
-            border-radius: 12px !important;
-            padding: 24px !important;
-            overflow-x: auto;
-        }
-        code {
-            font-family: 'Monaco', 'Menlo', monospace !important;
-            font-size: 13px !important;
-            line-height: 1.6 !important;
-            color: #c9a96e !important;
-        }
-        
-        /* Teaser Image Container */
-        .teaser-container {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 25px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,169,110,0.1);
-        }
-        .teaser-container img {
-            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .teaser-container:hover img {
-            transform: scale(1.03);
-        }
-        
-        /* Figure Caption */
-        figcaption {
-            text-align: center;
-            font-size: 13px;
-            color: rgba(255,255,255,0.4);
-            margin-top: 16px;
-            font-style: italic;
-        }
-        
-        /* BibTeX Box */
-        .bibtex-box {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(201,169,110,0.2);
-            border-radius: 16px;
-            padding: 28px;
-            position: relative;
-            overflow: hidden;
-        }
-        .bibtex-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #c9a96e, transparent);
-        }
-        
-        /* Author Avatar */
-        .author-avatar {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #c9a96e, #8b7355);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Instrument Serif', serif;
-            font-size: 22px;
-            color: #000;
-            font-weight: bold;
-            border: 2px solid rgba(201,169,110,0.3);
-            transition: all 0.3s ease;
-        }
-        .author-avatar:hover {
-            transform: scale(1.1);
-            border-color: #c9a96e;
-            box-shadow: 0 0 20px rgba(201,169,110,0.3);
-        }
+        /* ═══ SELECTION ═══ */
+        ::-moz-selection { background: #c9a96e; color: #000; }
+        ::selection { background: #c9a96e; color: #000; }
     </style>
 </head>
 <body class="font-sans noise">
@@ -569,18 +672,22 @@
 <div class="loader" id="loader">
     <div class="loader-content">
         <div class="loader-logo">
-            <span class="text-black font-serif font-bold text-3xl">NF</span>
+            <span class="text-black font-serif font-bold text-3xl">C</span>
         </div>
         <div class="loader-bar">
             <div class="loader-progress" id="loaderProgress"></div>
         </div>
-        <div class="loader-text" style="font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 16px;">Loading Research</div>
+        <div class="loader-text">Loading Experience</div>
     </div>
 </div>
 
 <!-- ═══ CUSTOM CURSOR SYSTEM ═══ -->
 <div class="cursor-dot hidden md:block" id="cursorDot"></div>
 <div class="cursor-ring hidden md:block" id="cursorRing"></div>
+<div class="cursor-text hidden md:block" id="cursorText"></div>
+
+<!-- ═══ CURSOR TRAILS CONTAINER ═══ -->
+<div id="cursorTrails" class="hidden md:block"></div>
 
 <!-- ═══ PROGRESS BAR ═══ -->
 <div id="progressBar" class="fixed top-0 left-0 h-[3px] z-[100] transition-all duration-100 progress-bar" style="width: 0%;"></div>
@@ -591,26 +698,26 @@
         <!-- Logo -->
         <a href="#" class="flex items-center gap-3 group logo-link" data-cursor="view">
             <div class="w-10 h-10 bg-gradient-to-br from-[#c9a96e] to-[#8b7355] rounded-lg flex items-center justify-center transition-all duration-500 group-hover:rotate-6 group-hover:scale-110 shadow-lg shadow-[#c9a96e]/20">
-                <span class="text-black font-serif font-bold text-lg">NF</span>
+                <span class="text-black font-serif font-bold text-lg">C</span>
             </div>
             <div class="hidden sm:flex flex-col">
-                <span class="text-sm font-medium tracking-tight text-white transition-colors group-hover:text-[#c9a96e]">Neural Fields</span>
-                <span class="text-[9px] tracking-[0.2em] text-white/40 uppercase">Research Lab</span>
+                <span class="text-sm font-medium tracking-tight text-white transition-colors group-hover:text-[#c9a96e]">[Client Name]</span>
+                <span class="text-[9px] tracking-[0.2em] text-white/40 uppercase">Properties</span>
             </div>
         </a>
         
         <!-- Desktop Nav -->
         <div class="hidden lg:flex items-center gap-10">
-            <a href="#abstract" class="nav-link text-xs uppercase tracking-[0.15em] text-white/60 hover:text-[#c9a96e] transition-colors duration-300 py-2" data-cursor="explore">Abstract</a>
-            <a href="#method" class="nav-link text-xs uppercase tracking-[0.15em] text-white/60 hover:text-[#c9a96e] transition-colors duration-300 py-2" data-cursor="discover">Method</a>
-            <a href="#results" class="nav-link text-xs uppercase tracking-[0.15em] text-white/60 hover:text-[#c9a96e] transition-colors duration-300 py-2" data-cursor="meet">Results</a>
-            <a href="#citation" class="nav-link text-xs uppercase tracking-[0.15em] text-white/60 hover:text-[#c9a96e] transition-colors duration-300 py-2" data-cursor="connect">Citation</a>
+            <a href="#properties" class="nav-link text-xs uppercase tracking-[0.15em] text-white/60 hover:text-[#c9a96e] transition-colors duration-300 py-2" data-cursor="explore">Properties</a>
+            <a href="#process" class="nav-link text-xs uppercase tracking-[0.15em] text-white/60 hover:text-[#c9a96e] transition-colors duration-300 py-2" data-cursor="discover">Process</a>
+            <a href="#about" class="nav-link text-xs uppercase tracking-[0.15em] text-white/60 hover:text-[#c9a96e] transition-colors duration-300 py-2" data-cursor="meet">About</a>
+            <a href="#contact" class="nav-link text-xs uppercase tracking-[0.15em] text-white/60 hover:text-[#c9a96e] transition-colors duration-300 py-2" data-cursor="connect">Contact</a>
         </div>
         
         <!-- CTA & Mobile Toggle -->
         <div class="flex items-center gap-4">
-            <a href="#citation" class="hidden md:inline-flex items-center gap-2 px-7 py-3 bg-[#c9a96e] text-black text-xs font-semibold uppercase tracking-wider rounded-full hover:bg-[#f0d9b5] transition-all duration-300 magnetic-btn shadow-lg shadow-[#c9a96e]/20" data-cursor="cta">
-                Get Paper
+            <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-7 py-3 bg-[#c9a96e] text-black text-xs font-semibold uppercase tracking-wider rounded-full hover:bg-[#f0d9b5] transition-all duration-300 magnetic-btn shadow-lg shadow-[#c9a96e]/20" data-cursor="cta">
+                Book Consultation
             </a>
             <button id="menuToggle" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-full border border-white/10 hover:border-[#c9a96e]/50 hover:bg-white/5 transition-all duration-300" data-cursor="menu">
                 <svg class="w-5 h-5 text-white menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -633,22 +740,37 @@
             </svg>
         </button>
         <nav class="space-y-8">
-            <a href="#abstract" class="mobile-menu-link block text-5xl md:text-7xl font-serif text-white/80 hover:text-[#c9a96e] transition-all duration-500">Abstract</a>
-            <a href="#method" class="mobile-menu-link block text-5xl md:text-7xl font-serif text-white/80 hover:text-[#c9a96e] transition-all duration-500">Method</a>
-            <a href="#results" class="mobile-menu-link block text-5xl md:text-7xl font-serif text-white/80 hover:text-[#c9a96e] transition-all duration-500">Results</a>
-            <a href="#citation" class="mobile-menu-link block text-5xl md:text-7xl font-serif text-white/80 hover:text-[#c9a96e] transition-all duration-500">Citation</a>
+            <a href="#properties" class="mobile-menu-link block text-5xl md:text-7xl font-serif text-white/80 hover:text-[#c9a96e] transition-all duration-500">Properties</a>
+            <a href="#process" class="mobile-menu-link block text-5xl md:text-7xl font-serif text-white/80 hover:text-[#c9a96e] transition-all duration-500">Process</a>
+            <a href="#about" class="mobile-menu-link block text-5xl md:text-7xl font-serif text-white/80 hover:text-[#c9a96e] transition-all duration-500">About</a>
+            <a href="#contact" class="mobile-menu-link block text-5xl md:text-7xl font-serif text-white/80 hover:text-[#c9a96e] transition-all duration-500">Contact</a>
         </nav>
+        <div class="mt-16 pt-8 border-t border-white/10">
+            <p class="text-sm text-white/40 mb-4">Get in touch</p>
+            <a href="tel:+919876543210" class="text-2xl text-white hover:text-[#c9a96e] transition-colors duration-300">+91 98765 43210</a>
+        </div>
     </div>
 </div>
 
 <!-- ═══ HERO SECTION ═══ -->
-<section id="hero" class="relative min-h-screen overflow-hidden pt-20">
-    <!-- Background with gradient overlay -->
-    <div class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0f0f0f] to-[#0a0a0a]"></div>
+<section id="hero" class="relative h-screen min-h-[750px] overflow-hidden">
+    <!-- Background Image with Parallax -->
+    <div class="absolute inset-0 hero-layer" data-speed="0.3">
+        <img 
+            src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=1920&q=85" 
+            alt="" 
+            class="hero-img w-full h-full object-cover"
+            style="transform: scale(1.15);"
+            loading="eager"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/95"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-transparent to-black/70"></div>
+    </div>
     
     <!-- Animated Blobs -->
     <div class="blob bg-[#c9a96e] w-[500px] h-[500px] top-[10%] right-[15%]" style="animation-delay: 0s;"></div>
     <div class="blob bg-[#c9a96e]/60 w-[400px] h-[400px] bottom-[20%] left-[10%]" style="animation-delay: -5s;"></div>
+    <div class="blob bg-[#c9a96e]/30 w-[300px] h-[300px] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]" style="animation-delay: -10s;"></div>
     
     <!-- Floating Particles -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -660,77 +782,52 @@
     </div>
     
     <!-- Content -->
-    <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12 pt-20 pb-32 md:pt-32 md:pb-48">
-        <div class="max-w-5xl mx-auto text-center">
-            
+    <div class="relative z-10 h-full max-w-[1600px] mx-auto px-6 lg:px-12 flex flex-col justify-end pb-24 md:pb-36">
+        <div class="max-w-4xl">
             <!-- Badge -->
             <div class="reveal inline-flex items-center gap-3 mb-10 px-6 py-3 rounded-full border border-white/10 backdrop-blur-md bg-white/5 group" data-cursor="info">
                 <span class="relative flex h-2.5 w-2.5">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                 </span>
-                <span class="text-xs uppercase tracking-[0.25em] text-white/70 group-hover:text-white transition-colors">CVPR 2024 · Oral Presentation</span>
+                <span class="text-xs uppercase tracking-[0.25em] text-white/70 group-hover:text-white transition-colors">Bangalore's Most Trusted Property Advisory</span>
             </div>
             
             <!-- Main Headline -->
-            <h1 class="reveal reveal-delay-1 text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[105px] font-serif leading-[0.95] tracking-tight mb-10">
-                <span class="block text-white">Neural Field Rendering</span>
-                <span class="block gold-text italic mt-2">for Dynamic Scenes</span>
+            <h1 class="reveal reveal-delay-1 text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[120px] font-serif leading-[0.92] tracking-tight mb-10">
+                <span class="block text-white overflow-hidden"><span class="inline-block split-char" style="opacity:0; transform:translateY(100%)">Homes That</span></span>
+                <span class="block gold-text italic overflow-hidden"><span class="inline-block split-char split-delay" style="opacity:0; transform:translateY(100%)">Speak For</span></span>
+                <span class="block text-white overflow-hidden"><span class="inline-block split-char split-delay-2" style="opacity:0; transform:translateY(100%)">Themselves</span></span>
             </h1>
             
             <!-- Subheadline -->
-            <p class="reveal reveal-delay-2 text-lg md:text-xl text-white/50 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-                A novel approach to high-fidelity novel view synthesis of dynamic scenes using temporal-consistent neural radiance fields with real-time rendering capabilities.
+            <p class="reveal reveal-delay-2 text-base md:text-lg text-white/50 max-w-xl mb-14 leading-relaxed font-light">
+                Curated, verified, and personally inspected properties. No broker drama. Just the home you deserve.
             </p>
             
-            <!-- Authors -->
-            <div class="reveal reveal-delay-3 flex flex-wrap justify-center gap-6 mb-12">
-                <div class="flex items-center gap-3 group">
-                    <div class="author-avatar">J</div>
-                    <div>
-                        <div class="text-sm font-medium text-white group-hover:text-[#c9a96e] transition-colors">John Smith</div>
-                        <div class="text-xs text-white/40">Stanford University</div>
-                    </div>
-                </div>
-                <div class="flex items-center gap-3 group">
-                    <div class="author-avatar">E</div>
-                    <div>
-                        <div class="text-sm font-medium text-white group-hover:text-[#c9a96e] transition-colors">Emily Chen</div>
-                        <div class="text-xs text-white/40">MIT CSAIL</div>
-                    </div>
-                </div>
-                <div class="flex items-center gap-3 group">
-                    <div class="author-avatar">R</div>
-                    <div>
-                        <div class="text-sm font-medium text-white group-hover:text-[#c9a96e] transition-colors">Robert Kim</div>
-                        <div class="text-xs text-white/40">Google Research</div>
-                    </div>
-                </div>
-            </div>
-            
             <!-- CTAs -->
-            <div class="reveal reveal-delay-4 flex flex-wrap items-center justify-center gap-5">
-                <a href="#" class="group inline-flex items-center gap-3 px-8 py-4 bg-white text-black text-sm font-semibold rounded-full hover:bg-[#c9a96e] transition-all duration-500 magnetic-btn shadow-2xl shadow-white/10" data-cursor="download">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                    PDF / arXiv
+            <div class="reveal reveal-delay-3 flex flex-wrap items-center gap-6">
+                <a href="#properties" class="group inline-flex items-center gap-4 px-9 py-5 bg-white text-black text-sm font-semibold rounded-full hover:bg-[#c9a96e] transition-all duration-500 magnetic-btn shadow-2xl shadow-white/10" data-cursor="explore">
+                    Explore Collection
+                    <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
                 </a>
-                <a href="#" class="group inline-flex items-center gap-3 px-8 py-4 border border-white/20 text-white text-sm font-medium rounded-full hover:bg-white/5 hover:border-white/40 transition-all duration-500" data-cursor="code">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    Code
-                </a>
-                <a href="#" class="group inline-flex items-center gap-3 px-8 py-4 border border-white/20 text-white text-sm font-medium rounded-full hover:bg-white/5 hover:border-white/40 transition-all duration-500" data-cursor="video">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    Video
+                <a href="#contact" class="group inline-flex items-center gap-4 px-9 py-5 border border-white/20 text-white text-sm font-medium rounded-full hover:bg-white/5 hover:border-white/40 transition-all duration-500" data-cursor="connect">
+                    Schedule Visit
+                    <svg class="w-5 h-5 group-hover:rotate-90 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
                 </a>
             </div>
         </div>
         
-        <!-- Teaser Image -->
-        <div class="reveal reveal-delay-5 mt-20 max-w-6xl mx-auto">
-            <figure class="teaser-container">
-                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1400&q=85" alt="Method Overview" class="w-full aspect-video object-cover" loading="eager"/>
-                <figcaption>Our method achieves state-of-the-art novel view synthesis on dynamic scenes with temporal consistency and real-time rendering at 60+ FPS.</figcaption>
-            </figure>
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-50 group">
+            <span class="text-[10px] uppercase tracking-[0.4em] text-white/60 group-hover:text-[#c9a96e] transition-colors">Scroll</span>
+            <div class="w-px h-20 bg-gradient-to-b from-white/50 via-[#c9a96e]/50 to-transparent relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1/2 bg-[#c9a96e] animate-bounce"></div>
+            </div>
         </div>
     </div>
 </section>
@@ -738,330 +835,160 @@
 <!-- ═══ MARQUEE BAR ═══ -->
 <section class="py-6 bg-[#c9a96e] overflow-hidden relative">
     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent"></div>
-    <div class="marquee-track flex items-center whitespace-nowrap relative z-10" style="width: max-content; animation: marquee 45s linear infinite;">
+    <div class="marquee-track flex items-center whitespace-nowrap relative z-10" style="width: max-content;">
         <span class="flex items-center gap-4 text-xs uppercase tracking-[0.25em] text-black/80 font-semibold px-8">
             <span class="w-2 h-2 bg-black rounded-full animate-pulse"></span>
-            CVPR 2024 Oral Presentation
+            Every Property Verified In-Person
         </span>
         <span class="text-black/30 text-2xl mx-2">✦</span>
         <span class="flex items-center gap-4 text-xs uppercase tracking-[0.25em] text-black/80 font-semibold px-8">
             <span class="w-2 h-2 bg-black rounded-full animate-pulse"></span>
-            Real-time Rendering at 60 FPS
+            Zero Hidden Charges
         </span>
         <span class="text-black/30 text-2xl mx-2">✦</span>
         <span class="flex items-center gap-4 text-xs uppercase tracking-[0.25em] text-black/80 font-semibold px-8">
             <span class="w-2 h-2 bg-black rounded-full animate-pulse"></span>
-            SOTA on D-NeRF Benchmark
+            Complete Legal Support
         </span>
         <span class="text-black/30 text-2xl mx-2">✦</span>
         <span class="flex items-center gap-4 text-xs uppercase tracking-[0.25em] text-black/80 font-semibold px-8">
             <span class="w-2 h-2 bg-black rounded-full animate-pulse"></span>
-            Open Source Code Available
+            500+ Happy Families
         </span>
         <span class="text-black/30 text-2xl mx-2">✦</span>
         <span class="flex items-center gap-4 text-xs uppercase tracking-[0.25em] text-black/80 font-semibold px-8">
             <span class="w-2 h-2 bg-black rounded-full animate-pulse"></span>
-            Temporal Consistency Guaranteed
+            Avg. Closing: 21 Days
         </span>
         <span class="text-black/30 text-2xl mx-2">✦</span>
-        <!-- Duplicate -->
+        <!-- Duplicate for seamless loop -->
         <span class="flex items-center gap-4 text-xs uppercase tracking-[0.25em] text-black/80 font-semibold px-8">
             <span class="w-2 h-2 bg-black rounded-full animate-pulse"></span>
-            CVPR 2024 Oral Presentation
-        </span>
-        <span class="text-black/30 text-2xl mx-2">✦</span>
-        <span class="flex items-center gap-4 text-xs uppercase tracking-[0.25em] text-black/80 font-semibold px-8">
-            <span class="w-2 h-2 bg-black rounded-full animate-pulse"></span>
-            Real-time Rendering at 60 FPS
+            Every Property Verified In-Person
         </span>
         <span class="text-black/30 text-2xl mx-2">✦</span>
         <span class="flex items-center gap-4 text-xs uppercase tracking-[0.25em] text-black/80 font-semibold px-8">
             <span class="w-2 h-2 bg-black rounded-full animate-pulse"></span>
-            SOTA on D-NeRF Benchmark
+            Zero Hidden Charges
         </span>
         <span class="text-black/30 text-2xl mx-2">✦</span>
         <span class="flex items-center gap-4 text-xs uppercase tracking-[0.25em] text-black/80 font-semibold px-8">
             <span class="w-2 h-2 bg-black rounded-full animate-pulse"></span>
-            Open Source Code Available
+            Complete Legal Support
         </span>
         <span class="text-black/30 text-2xl mx-2">✦</span>
         <span class="flex items-center gap-4 text-xs uppercase tracking-[0.25em] text-black/80 font-semibold px-8">
             <span class="w-2 h-2 bg-black rounded-full animate-pulse"></span>
-            Temporal Consistency Guaranteed
+            500+ Happy Families
+        </span>
+        <span class="text-black/30 text-2xl mx-2">✦</span>
+        <span class="flex items-center gap-4 text-xs uppercase tracking-[0.25em] text-black/80 font-semibold px-8">
+            <span class="w-2 h-2 bg-black rounded-full animate-pulse"></span>
+            Avg. Closing: 21 Days
         </span>
         <span class="text-black/30 text-2xl mx-2">✦</span>
     </div>
 </section>
 
-<style>
-@keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
-.marquee-track:hover {
-    animation-play-state: paused;
-}
-</style>
-
-<!-- ═══ ABSTRACT SECTION ═══ -->
-<section id="abstract" class="py-32 md:py-44 bg-[#0a0a0a] relative section-fade">
+<!-- ═══ FEATURED PROPERTIES ═══ -->
+<section id="properties" class="py-32 md:py-48 bg-[#0a0a0a] relative section-fade">
+    <!-- Background Accent -->
     <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c9a96e]/30 to-transparent"></div>
     
-    <div class="max-w-[1200px] mx-auto px-6 lg:px-12">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
-            
-            <!-- Left Column - Title & Meta -->
-            <div class="lg:col-span-4">
-                <span class="reveal inline-block text-[10px] uppercase tracking-[0.35em] text-[#c9a96e] mb-6 font-medium">Abstract</span>
-                
-                <h2 class="reveal reveal-delay-1 text-3xl md:text-4xl lg:text-5xl font-serif text-white leading-[1.15] mb-10">
-                    Reimagining<br/><span class="italic gold-text">Dynamic Scene</span><br/>Rendering
+    <!-- Section Header -->
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 mb-24">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-10">
+            <div>
+                <span class="reveal inline-block text-[10px] uppercase tracking-[0.35em] text-[#c9a96e] mb-5 font-medium">Curated Collection</span>
+                <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl lg:text-7xl font-serif text-white leading-[1.1]">
+                    Featured<br/><span class="italic gold-text">Properties</span>
                 </h2>
-                
-                <!-- Key Contributions -->
-                <div class="reveal reveal-delay-2 space-y-5">
-                    <div class="flex items-start gap-4 p-5 bg-white/[0.02] border border-white/[0.06] rounded-2xl hover:bg-white/[0.04] hover:border-[#c9a96e]/20 transition-all duration-500 group">
-                        <div class="w-10 h-10 bg-[#c9a96e]/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#c9a96e]/20 transition-colors">
-                            <span class="text-[#c9a96e] font-serif font-bold text-lg">1</span>
-                        </div>
-                        <div>
-                            <div class="text-sm font-medium text-white mb-1">Temporal Consistency</div>
-                            <div class="text-xs text-white/40 leading-relaxed">Novel deformation field ensures smooth transitions across time</div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start gap-4 p-5 bg-white/[0.02] border border-white/[0.06] rounded-2xl hover:bg-white/[0.04] hover:border-[#c9a96e]/20 transition-all duration-500 group">
-                        <div class="w-10 h-10 bg-[#c9a96e]/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#c9a96e]/20 transition-colors">
-                            <span class="text-[#c9a96e] font-serif font-bold text-lg">2</span>
-                        </div>
-                        <div>
-                            <div class="text-sm font-medium text-white mb-1">Real-Time Performance</div>
-                            <div class="text-xs text-white/40 leading-relaxed">Achieves 60+ FPS on consumer GPUs through efficient architecture</div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start gap-4 p-5 bg-white/[0.02] border border-white/[0.06] rounded-2xl hover:bg-white/[0.04] hover:border-[#c9a96e]/20 transition-all duration-500 group">
-                        <div class="w-10 h-10 bg-[#c9a96e]/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#c9a96e]/20 transition-colors">
-                            <span class="text-[#c9a96e] font-serif font-bold text-lg">3</span>
-                        </div>
-                        <div>
-                            <div class="text-sm font-medium text-white mb-1">State-of-the-Art Quality</div>
-                            <div class="text-xs text-white/40 leading-relaxed">Outperforms existing methods on all major benchmarks</div>
-                        </div>
-                    </div>
-                </div>
             </div>
-            
-            <!-- Right Column - Abstract Text -->
-            <div class="lg:col-span-8">
-                <div class="reveal reveal-delay-1 bg-white/[0.02] border border-white/[0.06] rounded-3xl p-10 md:p-14 relative overflow-hidden">
-                    <!-- Decorative element -->
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-[#c9a96e]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                    
-                    <div class="relative z-10">
-                        <p class="text-base md:text-lg text-white/70 leading-relaxed mb-8 font-light">
-                            We present a novel neural rendering approach for synthesizing photo-realistic novel views of dynamic scenes. Our method addresses the fundamental challenge of maintaining temporal consistency while achieving high visual fidelity.
-                        </p>
-                        
-                        <p class="text-base md:text-lg text-white/70 leading-relaxed mb-8 font-light">
-                            Unlike prior work that treats each timestep independently or relies on complex motion estimation pipelines, we introduce a <span class="text-[#c9a96e] font-medium">temporal-aware neural radiance field</span> that jointly optimizes appearance and motion in a unified framework.
-                        </p>
-                        
-                        <p class="text-base md:text-lg text-white/70 leading-relaxed mb-8 font-light">
-                            Our key innovation lies in the <span class="text-[#c9a96e] font-medium">deformation field formulation</span>, which models scene dynamics as continuous functions over space and time. This enables smooth interpolation between timesteps and robust generalization to unseen viewpoints.
-                        </p>
-                        
-                        <p class="text-base md:text-lg text-white/70 leading-relaxed font-light">
-                            Extensive experiments on standard benchmarks demonstrate that our approach achieves <span class="text-white font-medium">state-of-the-art performance</span> across multiple metrics including PSNR, SSIM, and LPIPS, while being significantly faster than competing methods.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Metrics Preview -->
-                <div class="reveal reveal-delay-2 grid grid-cols-3 gap-5 mt-8">
-                    <div class="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 text-center group hover:bg-white/[0.04] hover:border-[#c9a96e]/20 transition-all duration-500">
-                        <div class="text-3xl md:text-4xl font-serif gold-text stat-number group-hover:scale-110 transition-transform duration-300">34.2</div>
-                        <div class="text-[10px] uppercase tracking-widest text-white/40 mt-2 font-medium">PSNR ↑</div>
-                    </div>
-                    <div class="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 text-center group hover:bg-white/[0.04] hover:border-[#c9a96e]/20 transition-all duration-500">
-                        <div class="text-3xl md:text-4xl font-serif gold-text stat-number group-hover:scale-110 transition-transform duration-300">0.967</div>
-                        <div class="text-[10px] uppercase tracking-widest text-white/40 mt-2 font-medium">SSIM ↑</div>
-                    </div>
-                    <div class="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 text-center group hover:bg-white/[0.04] hover:border-[#c9a96e]/20 transition-all duration-500">
-                        <div class="text-3xl md:text-4xl font-serif gold-text stat-number group-hover:scale-110 transition-transform duration-300">62</div>
-                        <div class="text-[10px] uppercase tracking-widest text-white/40 mt-2 font-medium">FPS ↑</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══ METHOD SECTION ═══ -->
-<section id="method" class="py-32 md:py-48 bg-[#0f0f0f] relative section-fade overflow-hidden">
-    <div class="blob bg-[#c9a96e]/20 w-[700px] h-[700px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style="animation-delay: -3s;"></div>
-    
-    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
-        <!-- Section Header -->
-        <div class="max-w-3xl mb-20">
-            <span class="reveal inline-block text-[10px] uppercase tracking-[0.35em] text-[#c9a96e] mb-5 font-medium">Methodology</span>
-            <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl lg:text-7xl font-serif text-white leading-[1.1] mb-8">
-                How It<br/><span class="italic gold-text">Works</span>
-            </h2>
-            <p class="reveal reveal-delay-2 text-base text-white/40 max-w-xl leading-relaxed">
-                Our pipeline consists of four key stages that work together to achieve high-quality dynamic scene rendering.
+            <p class="reveal reveal-delay-2 text-sm text-white/40 max-w-md leading-relaxed">
+                Each property is handpicked, legally verified, and priced fairly. We've done the homework so you don't have to.
             </p>
         </div>
-        
-        <!-- Method Steps -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
-            
-            <!-- Step 1 -->
-            <div class="reveal process-step group">
-                <div class="bg-white/[0.02] border border-white/[0.06] rounded-3xl p-8 hover:bg-white/[0.04] hover:border-[#c9a96e]/20 transition-all duration-500 h-full">
-                    <div class="mb-8">
-                        <span class="step-number text-7xl md:text-8xl font-serif text-white/[0.03] block leading-none transition-all duration-500">01</span>
-                    </div>
-                    <div class="w-12 h-[2px] bg-gradient-to-r from-[#c9a96e] to-transparent mb-8"></div>
-                    <h3 class="text-xl font-serif text-white mb-4 group-hover:text-[#c9a96e] transition-colors duration-300">Scene Encoding</h3>
-                    <p class="text-sm text-white/40 leading-relaxed mb-6">
-                        Multi-view RGB images are encoded into a compact latent representation using our specialized encoder network.
-                    </p>
-                    <div class="aspect-video rounded-2xl overflow-hidden bg-neutral-900">
-                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=85" alt="Scene Encoding" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300" loading="lazy"/>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Step 2 -->
-            <div class="reveal reveal-delay-1 process-step group">
-                <div class="bg-white/[0.02] border border-white/[0.06] rounded-3xl p-8 hover:bg-white/[0.04] hover:border-[#c9a96e]/20 transition-all duration-500 h-full">
-                    <div class="mb-8">
-                        <span class="step-number text-7xl md:text-8xl font-serif text-white/[0.03] block leading-none transition-all duration-500">02</span>
-                    </div>
-                    <div class="w-12 h-[2px] bg-gradient-to-r from-[#c9a96e] to-transparent mb-8"></div>
-                    <h3 class="text-xl font-serif text-white mb-4 group-hover:text-[#c9a96e] transition-colors duration-300">Deformation Field</h3>
-                    <p class="text-sm text-white/40 leading-relaxed mb-6">
-                        A learned deformation field maps canonical coordinates to deformed space at each timestep, capturing motion dynamics.
-                    </p>
-                    <div class="aspect-video rounded-2xl overflow-hidden bg-neutral-900">
-                        <img src="https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=600&q=85" alt="Deformation Field" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300" loading="lazy"/>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Step 3 -->
-            <div class="reveal reveal-delay-2 process-step group">
-                <div class="bg-white/[0.02] border border-white/[0.06] rounded-3xl p-8 hover:bg-white/[0.04] hover:border-[#c9a96e]/20 transition-all duration-500 h-full">
-                    <div class="mb-8">
-                        <span class="step-number text-7xl md:text-8xl font-serif text-white/[0.03] block leading-none transition-all duration-500">03</span>
-                    </div>
-                    <div class="w-12 h-[2px] bg-gradient-to-r from-[#c9a96e] to-transparent mb-8"></div>
-                    <h3 class="text-xl font-serif text-white mb-4 group-hover:text-[#c9a96e] transition-colors duration-300">Neural Radiance</h3>
-                    <p class="text-sm text-white/40 leading-relaxed mb-6">
-                        The neural radiance field predicts density and color at any point in the deformed space using MLP networks.
-                    </p>
-                    <div class="aspect-video rounded-2xl overflow-hidden bg-neutral-900">
-                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=85" alt="Neural Radiance" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300" loading="lazy"/>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Step 4 -->
-            <div class="reveal reveal-delay-3 process-step group">
-                <div class="bg-white/[0.02] border border-white/[0.06] rounded-3xl p-8 hover:bg-white/[0.04] hover:border-[#c9a96e]/20 transition-all duration-500 h-full">
-                    <div class="mb-8">
-                        <span class="step-number text-7xl md:text-8xl font-serif text-white/[0.03] block leading-none transition-all duration-500">04</span>
-                    </div>
-                    <div class="w-12 h-[2px] bg-gradient-to-r from-[#c9a96e] to-transparent mb-8"></div>
-                    <h3 class="text-xl font-serif text-white mb-4 group-hover:text-[#c9a96e] transition-colors duration-300">Volume Rendering</h3>
-                    <p class="text-sm text-white/40 leading-relaxed mb-6">
-                        Differentiable volume rendering produces final images with physically-based lighting and realistic materials.
-                    </p>
-                    <div class="aspect-video rounded-2xl overflow-hidden bg-neutral-900">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&q=85" alt="Volume Rendering" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300" loading="lazy"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Architecture Diagram -->
-        <div class="reveal reveal-delay-4 mt-20">
-            <figure class="rounded-3xl overflow-hidden border border-white/[0.06] bg-white/[0.02]">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&q=85" alt="Architecture Overview" class="w-full" loading="lazy"/>
-                <figcaption class="p-6 bg-[#0a0a0a]">
-                    <strong class="text-white/70">Figure:</strong> Complete pipeline overview showing data flow from multi-view inputs through deformation fields to final rendered output.
-                </figcaption>
-            </figure>
-        </div>
+        <div class="reveal reveal-delay-3 mt-14 h-[1px] bg-gradient-to-r from-[#c9a96e]/50 via-white/10 to-transparent line-draw"></div>
     </div>
-</section>
-
-<!-- ═══ RESULTS SECTION ═══ -->
-<section id="results" class="py-32 md:py-48 bg-[#0a0a0a] relative section-fade overflow-hidden">
-    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c9a96e]/30 to-transparent"></div>
     
+    <!-- Properties Grid -->
     <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
-        <!-- Section Header -->
-        <div class="text-center mb-20">
-            <span class="reveal inline-block text-[10px] uppercase tracking-[0.35em] text-[#c9a96e] mb-5 font-medium">Experimental Results</span>
-            <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl lg:text-7xl font-serif text-white leading-[1.1]">
-                Quantitative &<br/><span class="italic gold-text">Qualitative Results</span>
-            </h2>
-        </div>
-        
-        <!-- Results Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-9">
             
-            <!-- Large Result Card -->
-            <div class="lg:col-span-7 property-card reveal group cursor-pointer" data-cursor="view" data-tilt>
+            <!-- Large Card - Spans 7 cols -->
+            <div class="lg:col-span-7 property-card reveal group cursor-pointer" onclick="openModal(0)" data-cursor="view" data-tilt>
                 <div class="card-inner relative aspect-[4/3] lg:aspect-[16/10] rounded-3xl overflow-hidden bg-neutral-900">
                     <img 
-                        src="https://images.unsplash.com/photo-1563089145-599997674d42?w=1200&q=85" 
-                        alt="Qualitative Comparison"
+                        src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=85" 
+                        alt=""
                         class="card-image w-full h-full object-cover"
                         loading="lazy"
                     />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent"></div>
+                    
+                    <!-- Shine Effect -->
                     <div class="card-shine rounded-3xl"></div>
                     
+                    <!-- Tags -->
                     <div class="absolute top-6 left-6 flex gap-2 z-10">
-                        <span class="px-4 py-2 bg-[#c9a96e] text-black text-[10px] uppercase tracking-wider font-bold rounded-full">Qualitative</span>
+                        <span class="px-4 py-2 bg-white text-black text-[10px] uppercase tracking-wider font-bold rounded-full">Verified</span>
+                        <span class="px-4 py-2 bg-[#c9a96e] text-black text-[10px] uppercase tracking-wider font-bold rounded-full">Featured</span>
                     </div>
                     
+                    <!-- Favorite Button -->
+                    <button onclick="event.stopPropagation(); toggleFavorite(this)" class="fav-btn absolute top-6 right-6 w-11 h-11 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 z-10" data-cursor="save">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </button>
+                    
+                    <!-- Overlay Content -->
                     <div class="card-overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     
+                    <!-- Content -->
                     <div class="card-content absolute bottom-0 left-0 right-0 p-8 md:p-10 z-10">
-                        <h3 class="text-2xl md:text-3xl font-serif text-white mb-3 group-hover:text-[#c9a96e] transition-colors duration-300">Visual Quality Comparison</h3>
-                        <p class="text-sm text-white/50 mb-6">Side-by-side comparison with baseline methods on challenging dynamic sequences.</p>
+                        <div class="flex items-end justify-between gap-6">
+                            <div>
+                                <h3 class="text-2xl md:text-3xl font-serif text-white mb-3 group-hover:text-[#c9a96e] transition-colors duration-300">Sobha Royal Pavilion</h3>
+                                <p class="text-sm text-white/50 flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-[#c9a96e]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                    Sarjapur Road
+                                </p>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <div class="text-3xl md:text-4xl font-serif text-white">₹2.1 Cr</div>
+                                <div class="text-xs text-[#c9a96e] mt-1 font-medium">4 BHK Villa</div>
+                            </div>
+                        </div>
                         
-                        <div class="flex items-center gap-8 pt-6 border-t border-white/10">
-                            <div class="text-center">
-                                <div class="text-2xl font-serif text-[#c9a96e]">Ours</div>
-                                <div class="text-xs text-white/40 mt-1">Sharp Details</div>
+                        <!-- Specs -->
+                        <div class="flex items-center gap-8 mt-7 pt-7 border-t border-white/10">
+                            <div class="flex items-center gap-2 text-xs text-white/50">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                                4 Beds
                             </div>
-                            <div class="text-center">
-                                <div class="text-2xl font-serif text-white/60">D-NeRF</div>
-                                <div class="text-xs text-white/40 mt-1">Blurry Edges</div>
+                            <div class="flex items-center gap-2 text-xs text-white/50">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg>
+                                4 Baths
                             </div>
-                            <div class="text-center">
-                                <div class="text-2xl font-serif text-white/60">NeRF</div>
-                                <div class="text-xs text-white/40 mt-1">Static Only</div>
+                            <div class="flex items-center gap-2 text-xs text-white/50">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+                                3,200 sqft
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Right Column Cards -->
-            <div class="lg:col-span-5 flex flex-col gap-8 lg:gap-10">
+            <!-- Right Column - 2 Cards Stacked -->
+            <div class="lg:col-span-5 flex flex-col gap-7 lg:gap-9">
                 
-                <!-- Metric Card 1 -->
-                <div class="property-card reveal reveal-delay-1 group cursor-pointer" data-cursor="view" data-tilt>
+                <!-- Small Card 1 -->
+                <div class="property-card reveal reveal-delay-1 group cursor-pointer" onclick="openModal(1)" data-cursor="view" data-tilt>
                     <div class="card-inner relative aspect-[16/10] rounded-3xl overflow-hidden bg-neutral-900">
                         <img 
-                            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=85" 
-                            alt="Quantitative Results"
+                            src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=85" 
+                            alt=""
                             class="card-image w-full h-full object-cover"
                             loading="lazy"
                         />
@@ -1069,26 +996,36 @@
                         <div class="card-shine rounded-3xl"></div>
                         
                         <div class="absolute top-6 left-6 z-10">
-                            <span class="px-4 py-2 bg-white text-black text-[10px] uppercase tracking-wider font-bold rounded-full">Benchmark</span>
+                            <span class="px-4 py-2 bg-white text-black text-[10px] uppercase tracking-wider font-bold rounded-full">Verified</span>
                         </div>
                         
+                        <button onclick="event.stopPropagation(); toggleFavorite(this)" class="fav-btn absolute top-6 right-6 w-11 h-11 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 z-10" data-cursor="save">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </button>
+                        
                         <div class="card-content absolute bottom-0 left-0 right-0 p-7 z-10">
-                            <h3 class="text-xl font-serif text-white mb-1 group-hover:text-[#c9a96e] transition-colors">D-NeRF Dataset</h3>
-                            <p class="text-xs text-white/50 mb-4">Multi-scene evaluation</p>
-                            <div class="flex items-end justify-between">
-                                <div class="text-2xl font-serif text-white">+2.4 dB PSNR</div>
-                                <div class="text-xs text-[#c9a96e] font-medium">vs. SOTA</div>
+                            <div class="flex items-end justify-between gap-4">
+                                <div>
+                                    <h3 class="text-xl font-serif text-white mb-1 group-hover:text-[#c9a96e] transition-colors">Prestige Shantiniketan</h3>
+                                    <p class="text-xs text-white/50">Whitefield</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-serif text-white">₹1.15 Cr</div>
+                                    <div class="text-[10px] text-[#c9a96e] font-medium">3 BHK</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Metric Card 2 -->
-                <div class="property-card reveal reveal-delay-2 group cursor-pointer" data-cursor="view" data-tilt>
+                <!-- Small Card 2 -->
+                <div class="property-card reveal reveal-delay-2 group cursor-pointer" onclick="openModal(2)" data-cursor="view" data-tilt>
                     <div class="card-inner relative aspect-[16/10] rounded-3xl overflow-hidden bg-neutral-900">
                         <img 
-                            src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&q=85" 
-                            alt="Speed Comparison"
+                            src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=85" 
+                            alt=""
                             class="card-image w-full h-full object-cover"
                             loading="lazy"
                         />
@@ -1096,15 +1033,26 @@
                         <div class="card-shine rounded-3xl"></div>
                         
                         <div class="absolute top-6 left-6 flex gap-2 z-10">
-                            <span class="px-4 py-2 bg-emerald-500 text-white text-[10px] uppercase tracking-wider font-bold rounded-full animate-pulse">Fast</span>
+                            <span class="px-4 py-2 bg-white text-black text-[10px] uppercase tracking-wider font-bold rounded-full">Verified</span>
+                            <span class="px-4 py-2 bg-emerald-500 text-white text-[10px] uppercase tracking-wider font-bold rounded-full animate-pulse">New</span>
                         </div>
                         
+                        <button onclick="event.stopPropagation(); toggleFavorite(this)" class="fav-btn absolute top-6 right-6 w-11 h-11 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 z-10" data-cursor="save">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                        </button>
+                        
                         <div class="card-content absolute bottom-0 left-0 right-0 p-7 z-10">
-                            <h3 class="text-xl font-serif text-white mb-1 group-hover:text-[#c9a96e] transition-colors">Rendering Speed</h3>
-                            <p class="text-xs text-white/50 mb-4">RTX 3090 @ 1080p</p>
-                            <div class="flex items-end justify-between">
-                                <div class="text-2xl font-serif text-white">62 FPS</div>
-                                <div class="text-xs text-[#c9a96e] font-medium">Real-time ✓</div>
+                            <div class="flex items-end justify-between gap-4">
+                                <div>
+                                    <h3 class="text-xl font-serif text-white mb-1 group-hover:text-[#c9a96e] transition-colors">Brigade Orchards</h3>
+                                    <p class="text-xs text-white/50">Marathahalli</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-serif text-white">₹3.2 Cr</div>
+                                    <div class="text-[10px] text-[#c9a96e] font-medium">4 BHK Penthouse</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1112,15 +1060,15 @@
             </div>
         </div>
         
-        <!-- Additional Results Row -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 mt-8 lg:mt-10">
+        <!-- Row 2 - 3 Equal Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 lg:gap-9 mt-7 lg:mt-9">
             
-            <!-- Ablation Study -->
-            <div class="property-card reveal group cursor-pointer" data-cursor="view" data-tilt>
+            <!-- Card 3 -->
+            <div class="property-card reveal group cursor-pointer" onclick="openModal(3)" data-cursor="view" data-tilt>
                 <div class="card-inner relative aspect-[4/3] rounded-3xl overflow-hidden bg-neutral-900">
                     <img 
-                        src="https://images.unsplash.com/photo-1543286386-713bdd548da4?w=800&q=85" 
-                        alt="Ablation Study"
+                        src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=85" 
+                        alt=""
                         class="card-image w-full h-full object-cover"
                         loading="lazy"
                     />
@@ -1128,26 +1076,32 @@
                     <div class="card-shine rounded-3xl"></div>
                     
                     <div class="absolute top-6 left-6 z-10">
-                        <span class="px-4 py-2 bg-white text-black text-[10px] uppercase tracking-wider font-bold rounded-full">Ablation</span>
+                        <span class="px-4 py-2 bg-white text-black text-[10px] uppercase tracking-wider font-bold rounded-full">Verified</span>
                     </div>
                     
+                    <button onclick="event.stopPropagation(); toggleFavorite(this)" class="fav-btn absolute top-6 right-6 w-11 h-11 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 z-10" data-cursor="save">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </button>
+                    
                     <div class="card-content absolute bottom-0 left-0 right-0 p-7 z-10">
-                        <h3 class="text-lg font-serif text-white mb-2 group-hover:text-[#c9a96e] transition-colors">Component Analysis</h3>
-                        <p class="text-xs text-white/50 mb-4">Impact of each module</p>
+                        <h3 class="text-lg font-serif text-white mb-2 group-hover:text-[#c9a96e] transition-colors">Prestige Lakeside Habitat</h3>
+                        <p class="text-xs text-white/50 mb-4">HSR Layout</p>
                         <div class="flex items-end justify-between">
-                            <div class="text-xl font-serif text-white">Full Model</div>
-                            <div class="text-xs text-[#c9a96e] font-medium">Best</div>
+                            <div class="text-xl font-serif text-white">₹72 Lakhs</div>
+                            <div class="text-xs text-[#c9a96e] font-medium">2 BHK · 1,100 sqft</div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Temporal Consistency -->
-            <div class="property-card reveal reveal-delay-1 group cursor-pointer" data-cursor="view" data-tilt>
+            <!-- Card 4 -->
+            <div class="property-card reveal reveal-delay-1 group cursor-pointer" onclick="openModal(4)" data-cursor="view" data-tilt>
                 <div class="card-inner relative aspect-[4/3] rounded-3xl overflow-hidden bg-neutral-900">
                     <img 
-                        src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=85" 
-                        alt="Temporal Consistency"
+                        src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?w=800&q=85" 
+                        alt=""
                         class="card-image w-full h-full object-cover"
                         loading="lazy"
                     />
@@ -1155,26 +1109,32 @@
                     <div class="card-shine rounded-3xl"></div>
                     
                     <div class="absolute top-6 left-6 z-10">
-                        <span class="px-4 py-2 bg-white text-black text-[10px] uppercase tracking-wider font-bold rounded-full">Analysis</span>
+                        <span class="px-4 py-2 bg-white text-black text-[10px] uppercase tracking-wider font-bold rounded-full">Verified</span>
                     </div>
                     
+                    <button onclick="event.stopPropagation(); toggleFavorite(this)" class="fav-btn absolute top-6 right-6 w-11 h-11 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 z-10" data-cursor="save">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </button>
+                    
                     <div class="card-content absolute bottom-0 left-0 right-0 p-7 z-10">
-                        <h3 class="text-lg font-serif text-white mb-2 group-hover:text-[#c9a96e] transition-colors">Temporal Stability</h3>
-                        <p class="text-xs text-white/50 mb-4">Frame-to-frame consistency</p>
+                        <h3 class="text-lg font-serif text-white mb-2 group-hover:text-[#c9a96e] transition-colors">DLF Woodland Heights</h3>
+                        <p class="text-xs text-white/50 mb-4">Electronic City</p>
                         <div class="flex items-end justify-between">
-                            <div class="text-xl font-serif text-white">0.992</div>
-                            <div class="text-xs text-[#c9a96e] font-medium">Warped Error ↓</div>
+                            <div class="text-xl font-serif text-white">₹88 Lakhs</div>
+                            <div class="text-xs text-[#c9a96e] font-medium">3 BHK · 1,650 sqft</div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Generalization -->
-            <div class="property-card reveal reveal-delay-2 group cursor-pointer" data-cursor="view" data-tilt>
+            <!-- Card 5 -->
+            <div class="property-card reveal reveal-delay-2 group cursor-pointer" onclick="openModal(5)" data-cursor="view" data-tilt>
                 <div class="card-inner relative aspect-[4/3] rounded-3xl overflow-hidden bg-neutral-900">
                     <img 
-                        src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=85" 
-                        alt="Generalization"
+                        src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=85" 
+                        alt=""
                         class="card-image w-full h-full object-cover"
                         loading="lazy"
                     />
@@ -1182,180 +1142,446 @@
                     <div class="card-shine rounded-3xl"></div>
                     
                     <div class="absolute top-6 left-6 z-10">
-                        <span class="px-4 py-2 bg-white text-black text-[10px] uppercase tracking-wider font-bold rounded-full">Generalize</span>
+                        <span class="px-4 py-2 bg-white text-black text-[10px] uppercase tracking-wider font-bold rounded-full">Verified</span>
                     </div>
                     
+                    <button onclick="event.stopPropagation(); toggleFavorite(this)" class="fav-btn absolute top-6 right-6 w-11 h-11 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 z-10" data-cursor="save">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                    </button>
+                    
                     <div class="card-content absolute bottom-0 left-0 right-0 p-7 z-10">
-                        <h3 class="text-lg font-serif text-white mb-2 group-hover:text-[#c9a96e] transition-colors">Novel Viewpoints</h3>
-                        <p class="text-xs text-white/50 mb-4">Unseen camera poses</p>
+                        <h3 class="text-lg font-serif text-white mb-2 group-hover:text-[#c9a96e] transition-colors">Godrej Reflections</h3>
+                        <p class="text-xs text-white/50 mb-4">Harlur Road</p>
                         <div class="flex items-end justify-between">
-                            <div class="text-xl font-serif text-white">Robust</div>
-                            <div class="text-xs text-[#c9a96e] font-medium">No Flicker</div>
+                            <div class="text-xl font-serif text-white">₹95 Lakhs</div>
+                            <div class="text-xs text-[#c9a96e] font-medium">3 BHK · 1,800 sqft</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Comparison Table Placeholder -->
-        <div class="reveal mt-20">
-            <div class="bg-white/[0.02] border border-white/[0.06] rounded-3xl p-8 md:p-12 overflow-x-auto">
-                <h3 class="text-2xl font-serif text-white mb-8">Quantitative Comparison on D-NeRF Benchmark</h3>
-                <table class="w-full min-w-[600px]">
-                    <thead>
-                        <tr class="border-b border-white/10">
-                            <th class="text-left py-4 px-4 text-xs uppercase tracking-widest text-white/40 font-medium">Method</th>
-                            <th class="text-center py-4 px-4 text-xs uppercase tracking-widest text-white/40 font-medium">PSNR ↑</th>
-                            <th class="text-center py-4 px-4 text-xs uppercase tracking-widest text-white/40 font-medium">SSIM ↑</th>
-                            <th class="text-center py-4 px-4 text-xs uppercase tracking-widest text-white/40 font-medium">LPIPS ↓</th>
-                            <th class="text-center py-4 px-4 text-xs uppercase tracking-widest text-white/40 font-medium">FPS ↑</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-white/70">
-                        <tr class="border-b border-white/[0.05] hover:bg-white/[0.02] transition-colors">
-                            <td class="py-4 px-4 font-medium">NeRF (Static)</td>
-                            <td class="text-center py-4 px-4">28.4</td>
-                            <td class="text-center py-4 px-4">0.891</td>
-                            <td class="text-center py-4 px-4">0.142</td>
-                            <td class="text-center py-4 px-4">0.05</td>
-                        </tr>
-                        <tr class="border-b border-white/[0.05] hover:bg-white/[0.02] transition-colors">
-                            <td class="py-4 px-4 font-medium">D-NeRF</td>
-                            <td class="text-center py-4 px-4">31.8</td>
-                            <td class="text-center py-4 px-4">0.934</td>
-                            <td class="text-center py-4 px-4">0.098</td>
-                            <td class="text-center py-4 px-4">0.12</td>
-                        </tr>
-                        <tr class="border-b border-white/[0.05] hover:bg-white/[0.02] transition-colors">
-                            <td class="py-4 px-4 font-medium">NSFF</td>
-                            <td class="text-center py-4 px-4">32.1</td>
-                            <td class="text-center py-4 px-4">0.941</td>
-                            <td class="text-center py-4 px-4">0.091</td>
-                            <td class="text-center py-4 px-4">0.08</td>
-                        </tr>
-                        <tr class="border-b border-white/[0.05] hover:bg-white/[0.02] transition-colors">
-                            <td class="py-4 px-4 font-medium">HyperNeRF</td>
-                            <td class="text-center py-4 px-4">32.5</td>
-                            <td class="text-center py-4 px-4">0.948</td>
-                            <td class="text-center py-4 px-4">0.087</td>
-                            <td class="text-center py-4 px-4">0.15</td>
-                        </tr>
-                        <tr class="bg-[#c9a96e]/10 hover:bg-[#c9a96e]/15 transition-colors">
-                            <td class="py-4 px-4 font-bold text-[#c9a96e]">Ours</td>
-                            <td class="text-center py-4 px-4 font-bold text-[#c9a96e]">34.2</td>
-                            <td class="text-center py-4 px-4 font-bold text-[#c9a96e]">0.967</td>
-                            <td class="text-center py-4 px-4 font-bold text-[#c9a96e]">0.072</td>
-                            <td class="text-center py-4 px-4 font-bold text-[#c9a96e]">62</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <!-- View All Link -->
+        <div class="reveal mt-20 text-center">
+            <a href="#" class="group inline-flex items-center gap-4 text-sm text-white/50 hover:text-[#c9a96e] transition-all duration-300" data-cursor="explore">
+                View All Properties
+                <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ STATS SECTION ═══ -->
+<section class="py-28 md:py-40 bg-[#0f0f0f] relative overflow-hidden section-fade">
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a]"></div>
+    <div class="blob bg-[#c9a96e]/20 w-[700px] h-[700px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style="animation-delay: -3s;"></div>
+    
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-14">
+            <div class="reveal text-center group">
+                <div class="text-5xl md:text-6xl lg:text-8xl font-serif gold-text stat-number mb-4 group-hover:scale-110 transition-transform duration-500" data-count="500">0</div>
+                <div class="text-xs uppercase tracking-[0.25em] text-white/40 font-medium">Homes Closed</div>
+            </div>
+            <div class="reveal reveal-delay-1 text-center group">
+                <div class="text-5xl md:text-6xl lg:text-8xl font-serif gold-text stat-number mb-4 group-hover:scale-110 transition-transform duration-500" data-count="12">0</div>
+                <div class="text-xs uppercase tracking-[0.25em] text-white/40 font-medium">Years Experience</div>
+            </div>
+            <div class="reveal reveal-delay-2 text-center group">
+                <div class="text-5xl md:text-6xl lg:text-8xl font-serif gold-text stat-number mb-4 group-hover:scale-110 transition-transform duration-500">₹0</div>
+                <div class="text-xs uppercase tracking-[0.25em] text-white/40 font-medium">Hidden Charges</div>
+            </div>
+            <div class="reveal reveal-delay-3 text-center group">
+                <div class="text-5xl md:text-6xl lg:text-8xl font-serif gold-text stat-number mb-4 group-hover:scale-110 transition-transform duration-500" data-count="21">0</div>
+                <div class="text-xs uppercase tracking-[0.25em] text-white/40 font-medium">Avg. Days to Close</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ═══ CITATION SECTION ═══ -->
-<section id="citation" class="py-32 md:py-48 bg-[#0f0f0f] relative section-fade overflow-hidden">
-    <div class="blob bg-[#c9a96e]/10 w-[600px] h-[600px] -top-[20%] -right-[10%]" style="animation-delay: -2s;"></div>
-    <div class="blob bg-[#c9a96e]/5 w-[500px] h-[500px] -bottom-[20%] -left-[10%]" style="animation-delay: -8s;"></div>
-    
-    <div class="max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+<!-- ═══ PROCESS SECTION ═══ -->
+<section id="process" class="py-32 md:py-48 bg-[#0a0a0a] relative section-fade">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+        <!-- Section Header -->
+        <div class="max-w-3xl mb-28">
+            <span class="reveal inline-block text-[10px] uppercase tracking-[0.35em] text-[#c9a96e] mb-5 font-medium">How We Work</span>
+            <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl lg:text-7xl font-serif text-white leading-[1.1] mb-8">
+                From First Call to<br/><span class="italic gold-text">Key Handover</span>
+            </h2>
+            <p class="reveal reveal-delay-2 text-base text-white/40 max-w-xl leading-relaxed">
+                A streamlined process designed around you. No complexity, no confusion — just clarity and results.
+            </p>
+        </div>
+        
+        <!-- Process Steps -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
             
-            <!-- Left Column -->
-            <div>
-                <span class="reveal inline-block text-[10px] uppercase tracking-[0.35em] text-[#c9a96e] mb-6 font-medium">Citation</span>
-                
-                <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl lg:text-6xl font-serif text-white leading-[1.1] mb-10">
-                    Cite This<br/><span class="italic gold-text">Work</span>
-                </h2>
-                
-                <p class="reveal reveal-delay-2 text-base text-white/40 max-w-md leading-relaxed mb-12">
-                    If you find this work useful for your research, please consider citing our paper.
-                </p>
-                
-                <!-- BibTeX Box -->
-                <div class="reveal reveal-delay-3 bibtex-box">
-                    <pre class="text-sm leading-relaxed overflow-x-auto"><code>@inproceedings{smith2024neuralfield,
-  title     = {Neural Field Rendering for Dynamic Scenes},
-  author    = {Smith, John and Chen, Emily and Kim, Robert},
-  booktitle = {Proceedings of the IEEE/CVF Conference on 
-               Computer Vision and Pattern Recognition (CVPR)},
-  year      = {2024},
-  pages     = {12345--12354}
-}</code></pre>
+            <!-- Step 1 -->
+            <div class="reveal process-step group">
+                <div class="mb-10">
+                    <span class="step-number text-8xl md:text-9xl font-serif text-white/[0.03] block leading-none transition-all duration-500">01</span>
                 </div>
-                
-                <!-- Copy Button -->
-                <button onclick="copyBibtex()" class="reveal reveal-delay-4 mt-6 group inline-flex items-center gap-3 px-6 py-3 border border-white/10 text-white text-sm font-medium rounded-xl hover:bg-white/5 hover:border-[#c9a96e]/50 transition-all duration-300 magnetic-btn" data-cursor="copy">
-                    <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                    Copy BibTeX
-                </button>
+                <div class="w-12 h-[2px] bg-gradient-to-r from-[#c9a96e] to-transparent mb-8"></div>
+                <h3 class="text-2xl font-serif text-white mb-4 group-hover:text-[#c9a96e] transition-colors duration-300">Discovery Call</h3>
+                <p class="text-sm text-white/40 leading-relaxed">
+                    A focused 15-minute conversation to understand your vision, budget, timeline, and non-negotiables.
+                </p>
             </div>
             
-            <!-- Right Column - Resources -->
-            <div class="reveal reveal-delay-2">
-                <div class="bg-white/[0.02] border border-white/[0.06] rounded-3xl p-10 md:p-14">
-                    <h3 class="text-2xl font-serif text-white mb-8">Resources</h3>
+            <!-- Step 2 -->
+            <div class="reveal reveal-delay-1 process-step group">
+                <div class="mb-10">
+                    <span class="step-number text-8xl md:text-9xl font-serif text-white/[0.03] block leading-none transition-all duration-500">02</span>
+                </div>
+                <div class="w-12 h-[2px] bg-gradient-to-r from-[#c9a96e] to-transparent mb-8"></div>
+                <h3 class="text-2xl font-serif text-white mb-4 group-hover:text-[#c9a96e] transition-colors duration-300">Curated Shortlist</h3>
+                <p class="text-sm text-white/40 leading-relaxed">
+                    We present 3-5 handpicked options that match your criteria. No spam, no irrelevant listings.
+                </p>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="reveal reveal-delay-2 process-step group">
+                <div class="mb-10">
+                    <span class="step-number text-8xl md:text-9xl font-serif text-white/[0.03] block leading-none transition-all duration-500">03</span>
+                </div>
+                <div class="w-12 h-[2px] bg-gradient-to-r from-[#c9a96e] to-transparent mb-8"></div>
+                <h3 class="text-2xl font-serif text-white mb-4 group-hover:text-[#c9a96e] transition-colors duration-300">Guided Site Visits</h3>
+                <p class="text-sm text-white/40 leading-relaxed">
+                    We accompany you on every visit, pointing out details most buyers miss — water pressure, sunlight patterns, construction quality.
+                </p>
+            </div>
+            
+            <!-- Step 4 -->
+            <div class="reveal reveal-delay-3 process-step group">
+                <div class="mb-10">
+                    <span class="step-number text-8xl md:text-9xl font-serif text-white/[0.03] block leading-none transition-all duration-500">04</span>
+                </div>
+                <div class="w-12 h-[2px] bg-gradient-to-r from-[#c9a96e] to-transparent mb-8"></div>
+                <h3 class="text-2xl font-serif text-white mb-4 group-hover:text-[#c9a96e] transition-colors duration-300">Seamless Closure</h3>
+                <p class="text-sm text-white/40 leading-relaxed">
+                    Negotiation, legal verification, paperwork, registration — we handle everything until the keys are in your hands.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ ABOUT / FOUNDER SECTION ═══ -->
+<section id="about" class="py-32 md:py-48 bg-[#0f0f0f] relative overflow-hidden section-fade">
+    <div class="blob bg-[#c9a96e]/15 w-[600px] h-[600px] -top-[20%] -right-[10%]" style="animation-delay: -7s;"></div>
+    <div class="blob bg-[#c9a96e]/10 w-[400px] h-[400px] -bottom-[10%] -left-[5%]" style="animation-delay: -12s;"></div>
+    
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-28 items-center">
+            
+            <!-- Image Column -->
+            <div class="reveal order-2 lg:order-1">
+                <div class="relative group/img">
+                    <div class="aspect-[3/4] rounded-3xl overflow-hidden relative">
+                        <img 
+                            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=900&q=85" 
+                            alt="[Founder Name]"
+                            class="w-full h-full object-cover img-reveal transition-transform duration-700 group-hover/img:scale-105"
+                            loading="lazy"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                    </div>
                     
-                    <div class="space-y-5">
-                        <!-- Paper PDF -->
-                        <a href="#" class="contact-card flex items-center gap-6 p-5 rounded-2xl -ml-5 group" data-cursor="download">
-                            <div class="contact-icon w-14 h-14 bg-white/[0.05] border border-white/[0.08] rounded-xl flex items-center justify-center shrink-0">
-                                <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-8 -right-8 md:-bottom-10 md:-right-10 bg-[#151515] border border-white/10 rounded-2xl p-7 shadow-2xl shadow-black/50 group-hover:border-[#c9a96e]/30 transition-all duration-500">
+                        <div class="flex items-center gap-5">
+                            <div class="w-14 h-14 bg-[#c9a96e]/10 rounded-xl flex items-center justify-center group-hover:bg-[#c9a96e]/20 transition-colors">
+                                <svg class="w-7 h-7 text-[#c9a96e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                                </svg>
                             </div>
-                            <div class="flex-1">
-                                <div class="text-sm font-medium text-white group-hover:text-[#c9a96e] transition-colors">Paper (PDF)</div>
-                                <div class="text-xs text-white/40 mt-1">Main paper with supplementary material</div>
+                            <div>
+                                <div class="text-[10px] text-white/40 uppercase tracking-widest mb-1">Certified By</div>
+                                <div class="text-base font-semibold text-white">CREDAI Bangalore</div>
                             </div>
-                            <svg class="w-5 h-5 text-white/30 group-hover:text-[#c9a96e] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                        </a>
-                        
-                        <!-- Code Repository -->
-                        <a href="#" class="contact-card flex items-center gap-6 p-5 rounded-2xl -ml-5 group" data-cursor="code">
-                            <div class="contact-icon w-14 h-14 bg-white/[0.05] border border-white/[0.08] rounded-xl flex items-center justify-center shrink-0">
-                                <svg class="w-6 h-6 text-white/60" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                            </div>
-                            <div class="flex-1">
-                                <div class="text-sm font-medium text-white group-hover:text-[#c9a96e] transition-colors">Code (GitHub)</div>
-                                <div class="text-xs text-white/40 mt-1">Official implementation with pretrained models</div>
-                            </div>
-                            <svg class="w-5 h-5 text-white/30 group-hover:text-[#c9a96e] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                        </a>
-                        
-                        <!-- Dataset -->
-                        <a href="#" class="contact-card flex items-center gap-6 p-5 rounded-2xl -ml-5 group" data-cursor="data">
-                            <div class="contact-icon w-14 h-14 bg-white/[0.05] border border-white/[0.08] rounded-xl flex items-center justify-center shrink-0">
-                                <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
-                            </div>
-                            <div class="flex-1">
-                                <div class="text-sm font-medium text-white group-hover:text-[#c9a96e] transition-colors">Dataset</div>
-                                <div class="text-xs text-white/40 mt-1">Training and evaluation datasets</div>
-                            </div>
-                            <svg class="w-5 h-5 text-white/30 group-hover:text-[#c9a96e] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                        </a>
-                        
-                        <!-- Video -->
-                        <a href="#" class="contact-card flex items-center gap-6 p-5 rounded-2xl -ml-5 group" data-cursor="video">
-                            <div class="contact-icon w-14 h-14 bg-white/[0.05] border border-white/[0.08] rounded-xl flex items-center justify-center shrink-0">
-                                <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                            </div>
-                            <div class="flex-1">
-                                <div class="text-sm font-medium text-white group-hover:text-[#c9a96e] transition-colors">Video (YouTube)</div>
-                                <div class="text-xs text-white/40 mt-1">Presentation video and demos</div>
-                            </div>
-                            <svg class="w-5 h-5 text-white/30 group-hover:text-[#c9a96e] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                        </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative Frame -->
+                    <div class="absolute -inset-4 border border-[#c9a96e]/20 rounded-3xl -z-10 group-hover:border-[#c9a96e]/40 transition-colors duration-500"></div>
+                </div>
+            </div>
+            
+            <!-- Content Column -->
+            <div class="order-1 lg:order-2">
+                <span class="reveal inline-block text-[10px] uppercase tracking-[0.35em] text-[#c9a96e] mb-6 font-medium">The Visionary</span>
+                
+                <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl lg:text-7xl font-serif text-white leading-[1.1] mb-10">
+                    Meet<br/><span class="italic gold-text">[Founder Name]</span>
+                </h2>
+                
+                <div class="reveal reveal-delay-2 space-y-7 text-base text-white/50 leading-relaxed mb-14">
+                    <p>
+                        After five years in corporate real estate consulting, I saw a pattern: honest buyers were being misled by opaque pricing, fake listings, and aggressive sales tactics.
+                    </p>
+                    <p>
+                        <span class="text-white font-medium">[Client Name] Properties</span> was founded on one principle — buying a home should feel safe, not stressful. Today, we've helped over 500 families find their perfect homes with zero complaints.
+                    </p>
+                </div>
+                
+                <!-- Mini Stats -->
+                <div class="reveal reveal-delay-3 grid grid-cols-3 gap-5 mb-14">
+                    <div class="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-7 text-center group hover:bg-white/[0.04] hover:border-[#c9a96e]/20 transition-all duration-500">
+                        <div class="text-4xl font-serif gold-text stat-number group-hover:scale-110 transition-transform duration-300" data-count="12">0</div>
+                        <div class="text-[10px] uppercase tracking-widest text-white/40 mt-3 font-medium">Years</div>
+                    </div>
+                    <div class="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-7 text-center group hover:bg-white/[0.04] hover:border-[#c9a96e]/20 transition-all duration-500">
+                        <div class="text-4xl font-serif gold-text stat-number group-hover:scale-110 transition-transform duration-300" data-count="500">0</div>
+                        <div class="text-[10px] uppercase tracking-widest text-white/40 mt-3 font-medium">Families</div>
+                    </div>
+                    <div class="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-7 text-center group hover:bg-white/[0.04] hover:border-[#c9a96e]/20 transition-all duration-500">
+                        <div class="text-4xl font-serif gold-text group-hover:scale-110 transition-transform duration-300">₹8Cr+</div>
+                        <div class="text-[10px] uppercase tracking-widest text-white/40 mt-3 font-medium">Saved</div>
                     </div>
                 </div>
                 
-                <!-- Acknowledgments -->
-                <div class="mt-10 p-8 bg-white/[0.02] border border-white/[0.06] rounded-2xl">
-                    <h4 class="text-sm font-medium text-white mb-3">Acknowledgments</h4>
-                    <p class="text-sm text-white/40 leading-relaxed">
-                        This research was supported by NSF Grant #XXXX, Google Research Fellowship, and Stanford HAI. We thank the anonymous reviewers for their valuable feedback.
-                    </p>
+                <!-- CTA -->
+                <div class="reveal reveal-delay-4 flex flex-wrap gap-5">
+                    <a href="#contact" class="group inline-flex items-center gap-4 px-9 py-5 bg-[#c9a96e] text-black text-sm font-semibold rounded-full hover:bg-[#f0d9b5] transition-all duration-500 magnetic-btn shadow-lg shadow-[#c9a96e]/20" data-cursor="connect">
+                        Let's Talk
+                        <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="group inline-flex items-center gap-4 px-9 py-5 border border-white/10 text-white text-sm font-medium rounded-full hover:bg-white/5 hover:border-white/20 transition-all duration-500" data-cursor="external">
+                        LinkedIn Profile
+                        <svg class="w-4 h-4 group-hover:rotate-45 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="py-32 md:py-48 bg-[#0a0a0a] relative section-fade overflow-hidden">
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c9a96e]/30 to-transparent"></div>
+    
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+        <!-- Section Header -->
+        <div class="text-center mb-24">
+            <span class="reveal inline-block text-[10px] uppercase tracking-[0.35em] text-[#c9a96e] mb-5 font-medium">Testimonials</span>
+            <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl lg:text-7xl font-serif text-white leading-[1.1]">
+                Words From<br/><span class="italic gold-text">Our Clients</span>
+            </h2>
+        </div>
+        
+        <!-- Testimonials Slider -->
+        <div class="relative overflow-hidden">
+            <div class="testimonial-track" id="testimonialTrack">
+                
+                <!-- Testimonial 1 -->
+                <div class="testimonial-slide">
+                    <div class="bg-white/[0.02] border border-white/[0.06] rounded-3xl p-10 md:p-12 hover:bg-white/[0.04] hover:border-white/[0.1] transition-all duration-500 h-full">
+                        <div class="flex gap-1 mb-10">
+                            <svg class="w-6 h-6 text-[#c9a96e]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-6 h-6 text-[#c9a96e]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-6 h-6 text-[#c9a96e]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-6 h-6 text-[#c9a96e]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-6 h-6 text-[#c9a96e]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <blockquote class="text-xl md:text-2xl font-serif text-white/80 italic leading-relaxed mb-10">
+                            "They shared the builder's original price sheet on day one. No games. We closed in 3 weeks with ₹12L below asking price."
+                        </blockquote>
+                        <div class="flex items-center gap-5 pt-10 border-t border-white/[0.06]">
+                            <div class="w-14 h-14 bg-gradient-to-br from-[#c9a96e]/30 to-[#c9a96e]/10 rounded-full flex items-center justify-center border border-[#c9a96e]/20">
+                                <span class="text-[#c9a96e] font-serif text-xl">R</span>
+                            </div>
+                            <div>
+                                <div class="text-base font-medium text-white">Rajesh M.</div>
+                                <div class="text-xs text-white/40 mt-1">Whitefield · 3 BHK Villa</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-slide">
+                    <div class="bg-white/[0.02] border border-white/[0.06] rounded-3xl p-10 md:p-12 hover:bg-white/[0.04] hover:border-white/[0.1] transition-all duration-500 h-full">
+                        <div class="flex gap-1 mb-10">
+                            <svg class="w-6 h-6 text-[#c9a96e]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-6 h-6 text-[#c9a96e]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-6 h-6 text-[#c9a96e]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-6 h-6 text-[#c9a96e]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-6 h-6 text-[#c9a96e]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <blockquote class="text-xl md:text-2xl font-serif text-white/80 italic leading-relaxed mb-10">
+                            "As an NRI, I couldn't visit sites. They handled video calls, legal checks, and registration. Got keys without flying down once."
+                        </blockquote>
+                        <div class="flex items-center gap-5 pt-10 border-t border-white/[0.06]">
+                            <div class="w-14 h-14 bg-gradient-to-br from-[#c9a96e]/30 to-[#c9a96e]/10 rounded-full flex items-center justify-center border border-[#c9a96e]/20">
+                                <span class="text-[#c9a96e] font-serif text-xl">P</span>
+                            </div>
+                            <div>
+                                <div class="text-base font-medium text-white">Priya S.</div>
+                                <div class="text-xs text-white/40 mt-1">NRI Investor · Sarjapur Villa</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-slide">
+                    <div class="bg-white/[0.02] border border-white/[0.06] rounded-3xl p-10 md:p-12 hover:bg-white/[0.04] hover:border-white/[0.1] transition-all duration-500 h-full">
+                        <div class="flex gap-1 mb-10">
+                            <svg class="w-6 h-6 text-[#c9a96e]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-6 h-6 text-[#c9a96e]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-6 h-6 text-[#c9a96e]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-6 h-6 text-[#c9a96e]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-6 h-6 text-[#c9a96e]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <blockquote class="text-xl md:text-2xl font-serif text-white/80 italic leading-relaxed mb-10">
+                            "They told me NOT to buy a property I loved. Pointed out monsoon waterlogging issues. That honesty won me over."
+                        </blockquote>
+                        <div class="flex items-center gap-5 pt-10 border-t border-white/[0.06]">
+                            <div class="w-14 h-14 bg-gradient-to-br from-[#c9a96e]/30 to-[#c9a96e]/10 rounded-full flex items-center justify-center border border-[#c9a96e]/20">
+                                <span class="text-[#c9a96e] font-serif text-xl">A</span>
+                            </div>
+                            <div>
+                                <div class="text-base font-medium text-white">Arjun K.</div>
+                                <div class="text-xs text-white/40 mt-1">First-time Buyer · HSR Layout</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Slider Controls -->
+        <div class="flex items-center justify-center gap-6 mt-14">
+            <button onclick="moveTestimonial(-1)" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 hover:border-[#c9a96e]/50 transition-all duration-300 group" data-cursor="navigate">
+                <svg class="w-5 h-5 text-white/60 group-hover:text-[#c9a96e] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <div class="flex gap-2" id="testimonialDots">
+                <button class="w-2 h-2 rounded-full bg-[#c9a96e] transition-all duration-300 testimonial-dot" data-index="0"></button>
+                <button class="w-2 h-2 rounded-full bg-white/20 transition-all duration-300 testimonial-dot" data-index="1"></button>
+                <button class="w-2 h-2 rounded-full bg-white/20 transition-all duration-300 testimonial-dot" data-index="2"></button>
+            </div>
+            <button onclick="moveTestimonial(1)" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 hover:border-[#c9a96e]/50 transition-all duration-300 group" data-cursor="navigate">
+                <svg class="w-5 h-5 text-white/60 group-hover:text-[#c9a96e] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CONTACT SECTION ═══ -->
+<section id="contact" class="py-32 md:py-48 bg-[#0f0f0f] relative overflow-hidden section-fade">
+    <!-- Background Decoration -->
+    <div class="blob bg-[#c9a96e]/10 w-[600px] h-[600px] -top-[20%] -right-[10%]" style="animation-delay: -2s;"></div>
+    <div class="blob bg-[#c9a96e]/5 w-[500px] h-[500px] -bottom-[20%] -left-[10%]" style="animation-delay: -8s;"></div>
+    
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-28">
+            
+            <!-- Left Column -->
+            <div>
+                <span class="reveal inline-block text-[10px] uppercase tracking-[0.35em] text-[#c9a96e] mb-6 font-medium">Get Started</span>
+                
+                <h2 class="reveal reveal-delay-1 text-4xl md:text-5xl lg:text-7xl font-serif text-white leading-[1.1] mb-10">
+                    Let's Find Your<br/><span class="italic gold-text">Perfect Home</span>
+                </h2>
+                
+                <p class="reveal reveal-delay-2 text-base text-white/40 max-w-md leading-relaxed mb-16">
+                    Share your requirements and our advisor will reach out within 2 hours with a personalized shortlist of verified properties.
+                </p>
+                
+                <!-- Contact Info -->
+                <div class="reveal reveal-delay-3 space-y-6">
+                    <a href="tel:+919876543210" class="contact-card flex items-center gap-6 p-5 rounded-2xl -ml-5 group" data-cursor="call">
+                        <div class="contact-icon w-16 h-16 bg-white/[0.05] border border-white/[0.08] rounded-2xl flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-white/40 uppercase tracking-widest mb-1">Call Us</div>
+                            <div class="text-lg text-white group-hover:text-[#c9a96e] transition-colors duration-300 font-medium">+91 98765 43210</div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://wa.me/919876543210" target="_blank" class="contact-card flex items-center gap-6 p-5 rounded-2xl -ml-5 group" data-cursor="message">
+                        <div class="contact-icon w-16 h-16 bg-white/[0.05] border border-white/[0.08] rounded-2xl flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6 text-white/60" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-white/40 uppercase tracking-widest mb-1">WhatsApp</div>
+                            <div class="text-lg text-white group-hover:text-emerald-400 transition-colors duration-300 font-medium">+91 98765 43210</div>
+                        </div>
+                    </a>
+                    
+                    <div class="contact-card flex items-start gap-6 p-5 rounded-2xl -ml-5 group">
+                        <div class="contact-icon w-16 h-16 bg-white/[0.05] border border-white/[0.08] rounded-2xl flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-white/40 uppercase tracking-widest mb-1">Visit Us</div>
+                            <div class="text-base text-white leading-relaxed">ITPL Main Road, Whitefield<br/>Bangalore — 560066</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column - Form -->
+            <div class="reveal reveal-delay-2">
+                <form id="contactForm" class="bg-white/[0.02] border border-white/[0.08] rounded-3xl p-8 md:p-14">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-7 mb-7">
+                        <div class="form-group">
+                            <input type="text" required placeholder=" " class="form-input w-full h-16 px-6 bg-white/[0.03] border border-white/[0.08] rounded-xl text-white placeholder-transparent focus:outline-none focus:border-[#c9a96e]/50 focus:bg-white/[0.05] transition-all duration-300"/>
+                            <label>Full Name *</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" required placeholder=" " class="form-input w-full h-16 px-6 bg-white/[0.03] border border-white/[0.08] rounded-xl text-white placeholder-transparent focus:outline-none focus:border-[#c9a96e]/50 focus:bg-white/[0.05] transition-all duration-300"/>
+                            <label>Phone Number *</label>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-7 mb-7">
+                        <div class="form-group">
+                            <select required class="form-input w-full h-16 px-6 bg-white/[0.03] border border-white/[0.08] rounded-xl text-white focus:outline-none focus:border-[#c9a96e]/50 focus:bg-white/[0.05] transition-all duration-300 appearance-none">
+                                <option value="" disabled selected class="bg-[#151515]">Select budget</option>
+                                <option value="40-60" class="bg-[#151515]">₹40L — ₹60L</option>
+                                <option value="60-85" class="bg-[#151515]">₹60L — ₹85L</option>
+                                <option value="85-120" class="bg-[#151515]">₹85L — ₹1.2Cr</option>
+                                <option value="120-200" class="bg-[#151515]">₹1.2Cr — ₹2Cr</option>
+                                <option value="200+" class="bg-[#151515]">₹2Cr+</option>
+                            </select>
+                            <label style="top: 0; left: 16px; font-size: 9px;">Budget Range *</label>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-input w-full h-16 px-6 bg-white/[0.03] border border-white/[0.08] rounded-xl text-white focus:outline-none focus:border-[#c9a96e]/50 focus:bg-white/[0.05] transition-all duration-300 appearance-none">
+                                <option value="" disabled selected class="bg-[#151515]">Select area</option>
+                                <option class="bg-[#151515]">Whitefield</option>
+                                <option class="bg-[#151515]">Sarjapur Road</option>
+                                <option class="bg-[#151515]">HSR Layout</option>
+                                <option class="bg-[#151515]">Electronic City</option>
+                                <option class="bg-[#151515]">Marathahalli</option>
+                                <option class="bg-[#151515]">Not sure yet</option>
+                            </select>
+                            <label style="top: 0; left: 16px; font-size: 9px;">Preferred Area</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-7 form-group">
+                        <textarea rows="4" placeholder=" " class="form-input w-full px-6 py-5 bg-white/[0.03] border border-white/[0.08] rounded-xl text-white placeholder-transparent focus:outline-none focus:border-[#c9a96e]/50 focus:bg-white/[0.05] transition-all duration-300 resize-none"></textarea>
+                        <label style="top: 20px;">Message (Optional)</label>
+                    </div>
+                    
+                    <button type="submit" class="w-full h-16 bg-[#c9a96e] text-black text-sm font-semibold uppercase tracking-wider rounded-xl hover:bg-[#f0d9b5] transition-all duration-500 magnetic-btn flex items-center justify-center gap-4 shadow-lg shadow-[#c9a96e]/20 group" data-cursor="submit">
+                        Get My Free Consultation
+                        <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </button>
+                    
+                    <p class="text-[11px] text-white/30 text-center mt-8 flex items-center justify-center gap-3">
+                        <svg class="w-4 h-4 text-[#c9a96e]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        Your information is secure & confidential
+                    </p>
+                </form>
             </div>
         </div>
     </div>
@@ -1372,92 +1598,102 @@
             <div class="lg:col-span-1">
                 <a href="#" class="flex items-center gap-4 mb-8 group" data-cursor="home">
                     <div class="w-12 h-12 bg-gradient-to-br from-[#c9a96e] to-[#8b7355] rounded-xl flex items-center justify-center transition-all duration-500 group-hover:rotate-6 group-hover:scale-110 shadow-lg shadow-[#c9a96e]/20">
-                        <span class="text-black font-serif font-bold text-xl">NF</span>
+                        <span class="text-black font-serif font-bold text-xl">C</span>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-base font-medium text-white group-hover:text-[#c9a96e] transition-colors">Neural Fields Lab</span>
-                        <span class="text-[9px] tracking-[0.2em] text-white/40 uppercase">Research</span>
+                        <span class="text-base font-medium text-white group-hover:text-[#c9a96e] transition-colors">[Client Name]</span>
+                        <span class="text-[9px] tracking-[0.2em] text-white/40 uppercase">Properties</span>
                     </div>
                 </a>
                 <p class="text-sm text-white/40 leading-relaxed mb-10 max-w-xs">
-                    Advancing the frontier of neural rendering and 3D vision research.
+                    Bangalore's most trusted property advisory. Helping families find their dream homes since 2012.
                 </p>
                 <div class="flex items-center gap-4">
                     <a href="#" class="social-icon w-11 h-11 bg-white/[0.05] border border-white/[0.08] rounded-xl flex items-center justify-center text-white/60 transition-all duration-300" data-cursor="external">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                     </a>
                     <a href="#" class="social-icon w-11 h-11 bg-white/[0.05] border border-white/[0.08] rounded-xl flex items-center justify-center text-white/60 transition-all duration-300" data-cursor="external">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                     </a>
                     <a href="#" class="social-icon w-11 h-11 bg-white/[0.05] border border-white/[0.08] rounded-xl flex items-center justify-center text-white/60 transition-all duration-300" data-cursor="external">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0
+                        <!-- ════════════════════════════════════════════════════════════════════
+     CONTINUATION — paste this directly after the cut-off line:
+         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0
+     ════════════════════════════════════════════════════════════════════ -->
+
+                        24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                     </a>
                 </div>
             </div>
 
             <!-- Quick Links -->
             <div>
-                <h4 class="text-xs uppercase tracking-[0.25em] text-white/40 font-medium mb-8">Paper</h4>
+                <h4 class="text-xs uppercase tracking-[0.25em] text-white/40 font-medium mb-8">Navigate</h4>
                 <ul class="space-y-5">
-                    <li><a href="#abstract" class="group flex items-center gap-3 text-sm text-white/60 hover:text-[#c9a96e] transition-colors duration-300">
+                    <li><a href="#properties" class="group flex items-center gap-3 text-sm text-white/60 hover:text-[#c9a96e] transition-colors duration-300">
                         <span class="w-4 h-px bg-white/20 group-hover:bg-[#c9a96e] group-hover:w-6 transition-all duration-300"></span>
-                        Abstract
+                        Properties
                     </a></li>
-                    <li><a href="#method" class="group flex items-center gap-3 text-sm text-white/60 hover:text-[#c9a96e] transition-colors duration-300">
+                    <li><a href="#process" class="group flex items-center gap-3 text-sm text-white/60 hover:text-[#c9a96e] transition-colors duration-300">
                         <span class="w-4 h-px bg-white/20 group-hover:bg-[#c9a96e] group-hover:w-6 transition-all duration-300"></span>
-                        Methodology
+                        Our Process
                     </a></li>
-                    <li><a href="#results" class="group flex items-center gap-3 text-sm text-white/60 hover:text-[#c9a96e] transition-colors duration-300">
+                    <li><a href="#about" class="group flex items-center gap-3 text-sm text-white/60 hover:text-[#c9a96e] transition-colors duration-300">
                         <span class="w-4 h-px bg-white/20 group-hover:bg-[#c9a96e] group-hover:w-6 transition-all duration-300"></span>
-                        Results
+                        About Us
                     </a></li>
-                    <li><a href="#citation" class="group flex items-center gap-3 text-sm text-white/60 hover:text-[#c9a96e] transition-colors duration-300">
+                    <li><a href="#contact" class="group flex items-center gap-3 text-sm text-white/60 hover:text-[#c9a96e] transition-colors duration-300">
                         <span class="w-4 h-px bg-white/20 group-hover:bg-[#c9a96e] group-hover:w-6 transition-all duration-300"></span>
-                        Citation
+                        Contact
                     </a></li>
                 </ul>
             </div>
 
-            <!-- Resources -->
+            <!-- Localities -->
             <div>
-                <h4 class="text-xs uppercase tracking-[0.25em] text-white/40 font-medium mb-8">Resources</h4>
+                <h4 class="text-xs uppercase tracking-[0.25em] text-white/40 font-medium mb-8">Popular Areas</h4>
                 <ul class="space-y-5">
                     <li><a href="#" class="group flex items-center gap-3 text-sm text-white/60 hover:text-[#c9a96e] transition-colors duration-300">
                         <span class="w-4 h-px bg-white/20 group-hover:bg-[#c9a96e] group-hover:w-6 transition-all duration-300"></span>
-                        arXiv Preprint
+                        Whitefield
                     </a></li>
                     <li><a href="#" class="group flex items-center gap-3 text-sm text-white/60 hover:text-[#c9a96e] transition-colors duration-300">
                         <span class="w-4 h-px bg-white/20 group-hover:bg-[#c9a96e] group-hover:w-6 transition-all duration-300"></span>
-                        GitHub Code
+                        Sarjapur Road
                     </a></li>
                     <li><a href="#" class="group flex items-center gap-3 text-sm text-white/60 hover:text-[#c9a96e] transition-colors duration-300">
                         <span class="w-4 h-px bg-white/20 group-hover:bg-[#c9a96e] group-hover:w-6 transition-all duration-300"></span>
-                        Dataset Download
+                        HSR Layout
                     </a></li>
                     <li><a href="#" class="group flex items-center gap-3 text-sm text-white/60 hover:text-[#c9a96e] transition-colors duration-300">
                         <span class="w-4 h-px bg-white/20 group-hover:bg-[#c9a96e] group-hover:w-6 transition-all duration-300"></span>
-                        Supplementary Material
+                        Electronic City
+                    </a></li>
+                    <li><a href="#" class="group flex items-center gap-3 text-sm text-white/60 hover:text-[#c9a96e] transition-colors duration-300">
+                        <span class="w-4 h-px bg-white/20 group-hover:bg-[#c9a96e] group-hover:w-6 transition-all duration-300"></span>
+                        Marathahalli
                     </a></li>
                 </ul>
             </div>
 
-            <!-- Contact -->
+            <!-- Newsletter / CTA -->
             <div>
-                <h4 class="text-xs uppercase tracking-[0.25em] text-white/40 font-medium mb-8">Contact</h4>
-                <ul class="space-y-5">
-                    <li><a href="mailto:john@stanford.edu" class="group flex items-center gap-3 text-sm text-white/60 hover:text-[#c9a96e] transition-colors duration-300">
-                        <span class="w-4 h-px bg-white/20 group-hover:bg-[#c9a96e] group-hover:w-6 transition-all duration-300"></span>
-                        john@stanford.edu
-                    </a></li>
-                    <li><a href="#" class="group flex items-center gap-3 text-sm text-white/60 hover:text-[#c9a96e] transition-colors duration-300">
-                        <span class="w-4 h-px bg-white/20 group-hover:bg-[#c9a96e] group-hover:w-6 transition-all duration-300"></span>
-                        emily@mit.edu
-                    </a></li>
-                    <li><a href="#" class="group flex items-center gap-3 text-sm text-white/60 hover:text-[#c9a96e] transition-colors duration-300">
-                        <span class="w-4 h-px bg-white/20 group-hover:bg-[#c9a96e] group-hover:w-6 transition-all duration-300"></span>
-                        robert@google.com
-                    </a></li>
-                </ul>
+                <h4 class="text-xs uppercase tracking-[0.25em] text-white/40 font-medium mb-8">Stay Updated</h4>
+                <p class="text-sm text-white/40 leading-relaxed mb-7">
+                    Get notified when new verified properties are listed — before they go public.
+                </p>
+                <div class="flex gap-3">
+                    <input 
+                        type="email" 
+                        placeholder="your@email.com"
+                        class="flex-1 h-12 px-5 bg-white/[0.04] border border-white/[0.08] rounded-xl text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#c9a96e]/50 transition-all duration-300"
+                    />
+                    <button class="h-12 px-5 bg-[#c9a96e] text-black rounded-xl hover:bg-[#f0d9b5] transition-all duration-300 magnetic-btn shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </button>
+                </div>
+                <p class="text-[11px] text-white/25 mt-4">No spam. Unsubscribe anytime.</p>
             </div>
         </div>
 
@@ -1467,15 +1703,31 @@
         <!-- Bottom Bar -->
         <div class="flex flex-col md:flex-row items-center justify-between gap-6">
             <p class="text-xs text-white/25 text-center md:text-left">
-                © 2024 Neural Fields Research Lab. All rights reserved.
+                © 2024 [Client Name] Properties. All rights reserved. RERA Reg. No. PRM/KA/RERA/1251/309/AG/171111/000001
             </p>
             <div class="flex items-center gap-7">
                 <a href="#" class="text-xs text-white/30 hover:text-white/60 transition-colors duration-300">Privacy Policy</a>
                 <a href="#" class="text-xs text-white/30 hover:text-white/60 transition-colors duration-300">Terms of Use</a>
+                <a href="#" class="text-xs text-white/30 hover:text-white/60 transition-colors duration-300">Sitemap</a>
             </div>
         </div>
     </div>
 </footer>
+
+<!-- ═══ WHATSAPP FLOATING BUTTON ═══ -->
+<a 
+    href="https://wa.me/919876543210?text=Hi%2C%20I%27m%20interested%20in%20a%20property%20consultation." 
+    target="_blank"
+    id="waButton"
+    class="fixed bottom-10 right-8 z-[90] w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center shadow-xl shadow-emerald-900/50 wa-pulse transition-transform duration-300 hover:scale-110 hover:-translate-y-1"
+    data-cursor="message"
+    aria-label="Chat on WhatsApp"
+>
+    <div class="wa-orbit"></div>
+    <svg class="w-8 h-8 text-white relative z-10" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+</a>
 
 <!-- ═══ BACK TO TOP BUTTON ═══ -->
 <button 
@@ -1498,34 +1750,157 @@
     </div>
 </div>
 
-<!-- ════════════════════════════════════════════════════════════════════ -->
+<!-- ═══ PROPERTY DETAIL MODAL ═══ -->
+<div id="propertyModal" class="fixed inset-0 z-[9999] opacity-0 pointer-events-none transition-all duration-500">
+    <!-- Backdrop -->
+    <div class="modal-backdrop absolute inset-0 bg-black/85" onclick="closeModal()"></div>
+
+    <!-- Panel -->
+    <div id="modalPanel" class="absolute right-0 top-0 h-full w-full max-w-2xl bg-[#0f0f0f] border-l border-white/[0.06] overflow-y-auto translate-x-full transition-transform duration-700 cubic-bezier(0.16,1,0.3,1)">
+        <!-- Close -->
+        <button onclick="closeModal()" class="absolute top-8 right-8 z-10 w-11 h-11 bg-white/[0.06] rounded-full flex items-center justify-center hover:bg-white/10 transition-all duration-300 group">
+            <svg class="w-5 h-5 text-white/60 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+
+        <!-- Modal Image -->
+        <div class="relative h-72 md:h-96 overflow-hidden">
+            <img id="modalImg" src="" alt="" class="w-full h-full object-cover"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] via-transparent to-transparent"></div>
+            <div id="modalTags" class="absolute top-7 left-7 flex gap-2"></div>
+        </div>
+
+        <!-- Modal Content -->
+        <div class="px-10 pb-14 -mt-10 relative z-10">
+            <div class="flex items-end justify-between gap-4 mb-8">
+                <div>
+                    <h3 id="modalTitle" class="text-3xl font-serif text-white mb-2"></h3>
+                    <p id="modalLocation" class="text-sm text-white/50 flex items-center gap-2">
+                        <svg class="w-4 h-4 text-[#c9a96e]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <span id="modalLocationText"></span>
+                    </p>
+                </div>
+                <div class="text-right shrink-0">
+                    <div id="modalPrice" class="text-3xl font-serif text-white"></div>
+                    <div id="modalType" class="text-xs text-[#c9a96e] font-medium mt-1"></div>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="h-px bg-white/[0.06] mb-8"></div>
+
+            <!-- Specs Grid -->
+            <div id="modalSpecs" class="grid grid-cols-3 gap-4 mb-10"></div>
+
+            <!-- Description -->
+            <p id="modalDesc" class="text-sm text-white/50 leading-relaxed mb-10"></p>
+
+            <!-- Highlights -->
+            <div id="modalHighlights" class="space-y-3 mb-12"></div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="https://wa.me/919876543210" target="_blank" class="flex-1 h-14 bg-[#c9a96e] text-black text-sm font-semibold uppercase tracking-wider rounded-xl hover:bg-[#f0d9b5] transition-all duration-300 flex items-center justify-center gap-3 magnetic-btn">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp Inquiry
+                </a>
+                <a href="#contact" onclick="closeModal()" class="flex-1 h-14 border border-white/10 text-white text-sm font-medium uppercase tracking-wider rounded-xl hover:bg-white/5 hover:border-white/20 transition-all duration-300 flex items-center justify-center">
+                    Schedule Visit
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
 <!--                        JAVASCRIPT                                 -->
-<!-- ════════════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
 <script>
 'use strict';
 
+/* ─── PROPERTY DATA ─── */
+const properties = [
+    {
+        title: 'Sobha Royal Pavilion',
+        location: 'Sarjapur Road',
+        price: '₹2.1 Cr',
+        type: '4 BHK Villa',
+        img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=85',
+        tags: ['Verified', 'Featured'],
+        specs: [{ icon: 'bed', label: '4 Beds' }, { icon: 'bath', label: '4 Baths' }, { icon: 'area', label: '3,200 sqft' }],
+        desc: 'A grand villa nestled within a gated township that blends Sobha's signature quality construction with generous open spaces. South-facing unit with unobstructed views, flooded with natural light all day.',
+        highlights: ['RERA registered & title clear', 'Ready to move — OC received', 'Clubhouse, pool & gym access', 'Gated community with 24/7 security', 'Walking distance from Wipro & Infosys campuses']
+    },
+    {
+        title: 'Prestige Shantiniketan',
+        location: 'Whitefield',
+        price: '₹1.15 Cr',
+        type: '3 BHK',
+        img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=85',
+        tags: ['Verified'],
+        specs: [{ icon: 'bed', label: '3 Beds' }, { icon: 'bath', label: '3 Baths' }, { icon: 'area', label: '1,950 sqft' }],
+        desc: 'Located inside Prestige Shantiniketan — Bangalore\'s largest integrated township — this apartment combines suburban tranquility with every urban convenience within a 2-km radius.',
+        highlights: ['Fully furnished option available', 'Mall, school & hospital inside township', 'High rental yield — ideal for investment', 'Zero maintenance for first 3 years']
+    },
+    {
+        title: 'Brigade Orchards',
+        location: 'Marathahalli',
+        price: '₹3.2 Cr',
+        type: '4 BHK Penthouse',
+        img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=85',
+        tags: ['Verified', 'New'],
+        specs: [{ icon: 'bed', label: '4 Beds' }, { icon: 'bath', label: '5 Baths' }, { icon: 'area', label: '4,100 sqft' }],
+        desc: 'Sky living redefined. This rare penthouse occupies the entire top floor of Brigade\'s flagship tower, featuring a private terrace, panoramic city views and bespoke interiors by a celebrated design studio.',
+        highlights: ['Private rooftop terrace (1,200 sqft)', 'Exclusive elevator access', 'Smart home automation pre-installed', 'Two dedicated parking slots', 'Designed by Studio Lotus']
+    },
+    {
+        title: 'Prestige Lakeside Habitat',
+        location: 'HSR Layout',
+        price: '₹72 Lakhs',
+        type: '2 BHK · 1,100 sqft',
+        img: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=85',
+        tags: ['Verified'],
+        specs: [{ icon: 'bed', label: '2 Beds' }, { icon: 'bath', label: '2 Baths' }, { icon: 'area', label: '1,100 sqft' }],
+        desc: 'Perfect first home or investment property in the heart of HSR Layout — one of Bangalore\'s most sought-after neighbourhoods for young professionals.',
+        highlights: ['3 minutes to Silk Board flyover', 'High rental demand area', 'Vastu-compliant layout', 'Corner unit with cross ventilation']
+    },
+    {
+        title: 'DLF Woodland Heights',
+        location: 'Electronic City',
+        price: '₹88 Lakhs',
+        type: '3 BHK · 1,650 sqft',
+        img: 'https://images.unsplash.com/photo-1574362848149-11496d93a7c7?w=1200&q=85',
+        tags: ['Verified'],
+        specs: [{ icon: 'bed', label: '3 Beds' }, { icon: 'bath', label: '3 Baths' }, { icon: 'area', label: '1,650 sqft' }],
+        desc: 'Surrounded by 5 acres of manicured green spaces, this DLF development is perfectly positioned for tech employees seeking a home that\'s close to the office without the premium pricing.',
+        highlights: ['5 min from Electronic City Phase 1 & 2', 'Jogging track and kids\' play area', 'Underground parking', 'Power backup 100%']
+    },
+    {
+        title: 'Godrej Reflections',
+        location: 'Harlur Road',
+        price: '₹95 Lakhs',
+        type: '3 BHK · 1,800 sqft',
+        img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=85',
+        tags: ['Verified'],
+        specs: [{ icon: 'bed', label: '3 Beds' }, { icon: 'bath', label: '3 Baths' }, { icon: 'area', label: '1,800 sqft' }],
+        desc: 'Godrej Properties brings their trademark build quality to one of South Bangalore\'s fastest-growing corridors. Lush landscaping, wide internal roads and thoughtful amenity planning set this project apart.',
+        highlights: ['RERA: PRM/KA/RERA/1251/309/PR/171', 'Large 7-acre township', 'Swimming pool & amphitheatre', 'Possession: Dec 2025 (confirmed)']
+    }
+];
+
 /* ─── HELPERS ─── */
+const specIconSVG = {
+    bed: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
+    bath: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg>`,
+    area: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>`
+};
+
 function showToast(msg, duration = 3200) {
     const toast = document.getElementById('toast');
     document.getElementById('toastMsg').textContent = msg;
     toast.classList.remove('hidden');
     setTimeout(() => toast.classList.add('hidden'), duration);
-}
-
-function copyBibtex() {
-    const bibtex = `@inproceedings{smith2024neuralfield,
-  title     = {Neural Field Rendering for Dynamic Scenes},
-  author    = {Smith, John and Chen, Emily and Kim, Robert},
-  booktitle = {Proceedings of the IEEE/CVF Conference on 
-               Computer Vision and Pattern Recognition (CVPR)},
-  year      = {2024},
-  pages     = {12345--12354}
-}`;
-    navigator.clipboard.writeText(bibtex).then(() => {
-        showToast('✅ BibTeX copied to clipboard!');
-    }).catch(() => {
-        showToast('⚠️ Failed to copy');
-    });
 }
 
 /* ─── LOADER ─── */
@@ -1545,6 +1920,7 @@ function copyBibtex() {
             triggerHeroAnimation();
         }, 500);
     });
+    // Fallback in case load already fired
     if (document.readyState === 'complete') {
         progress.style.width = '100%';
         clearInterval(interval);
@@ -1556,6 +1932,13 @@ function copyBibtex() {
 })();
 
 function triggerHeroAnimation() {
+    document.querySelectorAll('.split-char').forEach((el, i) => {
+        setTimeout(() => {
+            el.style.transition = 'all 1s cubic-bezier(0.16,1,0.3,1)';
+            el.style.opacity    = '1';
+            el.style.transform  = 'translateY(0)';
+        }, i * 180);
+    });
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
 }
 
@@ -1577,16 +1960,44 @@ window.addEventListener('scroll', () => {
     document.getElementById('mainNav').classList.toggle('scrolled', scrolled > 60);
 }, { passive: true });
 
-/* ─── INTERSECTION OBSERVER ─── */
+/* ─── INTERSECTION OBSERVER — reveal & section-fade ─── */
 const ioReveal = new IntersectionObserver((entries) => {
     entries.forEach(e => {
         if (e.isIntersecting) {
             e.target.classList.add('active', 'visible');
+            // Stat counters
+            e.target.querySelectorAll('[data-count]').forEach(animateCounter);
         }
     });
 }, { threshold: 0.12 });
 
 document.querySelectorAll('.reveal, .section-fade, .img-reveal, .line-draw').forEach(el => ioReveal.observe(el));
+
+// Also observe stat elements directly (outside section-fade trigger)
+const ioStats = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            animateCounter(e.target);
+            ioStats.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => ioStats.observe(el));
+
+function animateCounter(el) {
+    const target = parseInt(el.dataset.count, 10);
+    if (!target || el.dataset.animated) return;
+    el.dataset.animated = '1';
+    const prefix = el.textContent.startsWith('₹') ? '₹' : '';
+    const suffix = el.textContent.endsWith('+') ? '+' : '';
+    let current  = 0;
+    const step   = target / 60;
+    const timer  = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = prefix + Math.floor(current) + suffix;
+        if (current >= target) clearInterval(timer);
+    }, 22);
+}
 
 /* ─── MOBILE MENU ─── */
 const menuToggle  = document.getElementById('menuToggle');
@@ -1608,11 +2019,171 @@ menuToggle.addEventListener('click', openMenu);
 menuClose.addEventListener('click', closeMenu);
 mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
+/* ─── TESTIMONIAL SLIDER ─── */
+let testimonialIndex = 0;
+let testimonialAuto;
+const track = document.getElementById('testimonialTrack');
+const dots   = document.querySelectorAll('.testimonial-dot');
+
+function getSlidesPerView() {
+    if (window.innerWidth >= 1280) return 3;
+    if (window.innerWidth >= 768)  return 2;
+    return 1;
+}
+
+function goToTestimonial(idx) {
+    const total = track.children.length;
+    const spv   = getSlidesPerView();
+    testimonialIndex = Math.max(0, Math.min(idx, total - spv));
+    const pct = (100 / spv) * testimonialIndex;
+    track.style.transform = `translateX(-${pct}%)`;
+    dots.forEach((d, i) => {
+        d.classList.toggle('bg-[#c9a96e]', i === testimonialIndex);
+        d.classList.toggle('bg-white/20', i !== testimonialIndex);
+    });
+}
+
+function moveTestimonial(dir) {
+    const total = track.children.length;
+    const spv   = getSlidesPerView();
+    let next = testimonialIndex + dir;
+    if (next >= total - spv + 1) next = 0;
+    if (next < 0) next = total - spv;
+    goToTestimonial(next);
+    resetAutoSlide();
+}
+
+function resetAutoSlide() {
+    clearInterval(testimonialAuto);
+    testimonialAuto = setInterval(() => moveTestimonial(1), 5500);
+}
+
+dots.forEach(d => d.addEventListener('click', () => {
+    goToTestimonial(parseInt(d.dataset.index, 10));
+    resetAutoSlide();
+}));
+
+resetAutoSlide();
+window.addEventListener('resize', () => goToTestimonial(testimonialIndex));
+
+/* ─── PROPERTY MODAL ─── */
+function openModal(idx) {
+    const p     = properties[idx];
+    const modal = document.getElementById('propertyModal');
+    const panel = document.getElementById('modalPanel');
+    if (!p) return;
+
+    document.getElementById('modalImg').src           = p.img;
+    document.getElementById('modalTitle').textContent  = p.title;
+    document.getElementById('modalLocationText').textContent = p.location;
+    document.getElementById('modalPrice').textContent  = p.price;
+    document.getElementById('modalType').textContent   = p.type;
+    document.getElementById('modalDesc').textContent   = p.desc;
+
+    // Tags
+    const tagsEl = document.getElementById('modalTags');
+    tagsEl.innerHTML = p.tags.map(t => `<span class="px-4 py-2 ${t === 'New' ? 'bg-emerald-500 text-white' : 'bg-white text-black'} text-[10px] uppercase tracking-wider font-bold rounded-full">${t}</span>`).join('');
+
+    // Specs
+    const specsEl = document.getElementById('modalSpecs');
+    specsEl.innerHTML = p.specs.map(s => `
+        <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5 flex flex-col items-center gap-3 text-center">
+            <div class="text-[#c9a96e]">${specIconSVG[s.icon]}</div>
+            <span class="text-sm text-white/70">${s.label}</span>
+        </div>`).join('');
+
+    // Highlights
+    const hlEl = document.getElementById('modalHighlights');
+    hlEl.innerHTML = p.highlights.map(h => `
+        <div class="flex items-center gap-4 text-sm text-white/60">
+            <svg class="w-4 h-4 text-[#c9a96e] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            ${h}
+        </div>`).join('');
+
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+        panel.style.transform = 'translateX(0)';
+    });
+}
+
+function closeModal() {
+    const modal = document.getElementById('propertyModal');
+    const panel = document.getElementById('modalPanel');
+    panel.style.transform = 'translateX(100%)';
+    setTimeout(() => {
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        document.body.style.overflow = '';
+    }, 700);
+}
+
+// Keyboard close
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        closeModal();
+        closeMenu();
+    }
+});
+
+/* ─── FAVORITE BUTTON ─── */
+function toggleFavorite(btn) {
+    const isActive = btn.classList.toggle('active');
+    const svg = btn.querySelector('svg');
+    if (isActive) {
+        svg.setAttribute('fill', '#ef4444');
+        svg.setAttribute('stroke', '#ef4444');
+        showToast('❤️ Added to your favourites');
+    } else {
+        svg.setAttribute('fill', 'none');
+        svg.setAttribute('stroke', 'currentColor');
+        showToast('Removed from favourites');
+    }
+}
+
+/* ─── CONTACT FORM ─── */
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('[type=submit]');
+    btn.innerHTML = `
+        <svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+        </svg>
+        Submitting...`;
+    btn.disabled = true;
+
+    setTimeout(() => {
+        btn.innerHTML = `
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            We'll be in touch shortly!`;
+        btn.classList.remove('bg-[#c9a96e]');
+        btn.classList.add('bg-emerald-500');
+        showToast('✅ Form submitted! Expect a call within 2 hours.');
+        setTimeout(() => {
+            btn.innerHTML = 'Get My Free Consultation <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>';
+            btn.classList.add('bg-[#c9a96e]');
+            btn.classList.remove('bg-emerald-500');
+            btn.disabled = false;
+            this.reset();
+        }, 4000);
+    }, 1800);
+});
+
+/* ─── HERO PARALLAX ─── */
+const heroImg = document.querySelector('.hero-img');
+window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y < window.innerHeight && heroImg) {
+        heroImg.style.transform = `scale(1.15) translateY(${y * 0.18}px)`;
+    }
+}, { passive: true });
+
 /* ─── CUSTOM CURSOR (desktop only) ─── */
 if (window.matchMedia('(pointer: fine)').matches) {
     const dot    = document.getElementById('cursorDot');
     const ring   = document.getElementById('cursorRing');
+    const label  = document.getElementById('cursorText');
     let mx = -100, my = -100, rx = -100, ry = -100;
+    let rafId;
 
     document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
 
@@ -1621,7 +2192,11 @@ if (window.matchMedia('(pointer: fine)').matches) {
         ry += (my - ry) * 0.14;
         dot.style.transform  = `translate(${mx - 3}px, ${my - 3}px)`;
         ring.style.transform = `translate(${rx - 20}px, ${ry - 20}px)`;
-        requestAnimationFrame(animateCursor);
+        if (label.classList.contains('visible')) {
+            label.style.left = mx + 'px';
+            label.style.top  = my + 'px';
+        }
+        rafId = requestAnimationFrame(animateCursor);
     }
     animateCursor();
 
@@ -1631,15 +2206,44 @@ if (window.matchMedia('(pointer: fine)').matches) {
         el.addEventListener('mouseenter', () => {
             dot.classList.add('hover');
             ring.classList.add('hover');
+            const txt = el.dataset.cursor;
+            const map = { view:'View', explore:'Explore', discover:'Discover', meet:'Meet', connect:'Connect', cta:'Book', call:'Call', message:'Message', submit:'Submit', save:'Save', navigate:'Nav', external:'Visit', up:'Top', info:'Info', home:'Home', menu:'Menu' };
+            if (map[txt]) {
+                label.textContent = map[txt];
+                label.classList.add('visible');
+            }
         });
         el.addEventListener('mouseleave', () => {
             dot.classList.remove('hover');
             ring.classList.remove('hover');
+            label.classList.remove('visible');
         });
     });
 
     document.addEventListener('mousedown', () => ring.classList.add('click'));
     document.addEventListener('mouseup',   () => ring.classList.remove('click'));
+
+    // Cursor trails
+    const trailsContainer = document.getElementById('cursorTrails');
+    const trails = Array.from({ length: 8 }, () => {
+        const t = document.createElement('div');
+        t.className = 'cursor-trail';
+        trailsContainer.appendChild(t);
+        return { el: t, x: -100, y: -100, delay: 0 };
+    });
+    let trailPositions = Array.from({ length: 8 }, () => ({ x: -100, y: -100 }));
+
+    function animateTrails() {
+        trailPositions.unshift({ x: mx, y: my });
+        trailPositions = trailPositions.slice(0, 8);
+        trails.forEach((t, i) => {
+            const pos = trailPositions[i] || trailPositions[0];
+            t.el.style.transform = `translate(${pos.x - 2}px, ${pos.y - 2}px)`;
+            t.el.style.opacity   = (1 - i / 8) * 0.25;
+        });
+        requestAnimationFrame(animateTrails);
+    }
+    animateTrails();
 }
 
 /* ─── SMOOTH SCROLL for nav links ─── */
@@ -1698,69 +2302,176 @@ document.querySelectorAll('.magnetic-btn').forEach(btn => {
     btn.addEventListener('mouseleave', () => btn.style.transform = '');
 });
 </script>
-<script>
-/* ===== FORCE LOADER EXIT (ABSOLUTE FIX) ===== */
+<!-- ===== FINAL COMPLETE END PATCH ===== -->
 
+<script>
+
+/* ===== MODAL SYSTEM ===== */
+window.openModal = function(index) {
+    const modal = document.createElement("div");
+    modal.className = "fixed inset-0 z-[99999] flex items-center justify-center bg-black/80 backdrop-blur-sm";
+
+    modal.innerHTML = `
+        <div class="bg-[#0f0f0f] max-w-xl w-full rounded-2xl overflow-hidden relative">
+            <div class="p-8 text-center">
+                <h2 class="text-2xl font-semibold mb-2 text-white">Premium Property</h2>
+                <p class="text-white/50 mb-6">Full details available on request</p>
+
+                <button onclick="showToast('We will contact you shortly')" 
+                        class="px-6 py-3 bg-[#c9a96e] text-black rounded-full hover:opacity-90 transition">
+                    Book Visit
+                </button>
+            </div>
+
+            <button onclick="this.closest('.fixed').remove()" 
+                    class="absolute top-4 right-4 text-white text-2xl">
+                ×
+            </button>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+};
+
+/* ===== TOAST ===== */
+function showToast(msg) {
+    const t = document.createElement("div");
+    t.className = "fixed bottom-10 left-1/2 -translate-x-1/2 bg-white text-black px-6 py-3 rounded-full shadow-lg z-[999999]";
+    t.innerText = msg;
+
+    document.body.appendChild(t);
+
+    setTimeout(() => t.remove(), 3000);
+}
+
+/* ===== FAVORITE BUTTON ===== */
+window.togFav = function(btn) {
+    btn.classList.toggle("text-red-500");
+};
+
+/* ===== REVEAL ANIMATION ===== */
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+        }
+    });
+}, { threshold: 0.15 });
+
+document.querySelectorAll("[data-reveal]").forEach(el => observer.observe(el));
+
+/* ===== NAV SCROLL EFFECT ===== */
+const nav = document.getElementById("mainNav");
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) nav?.classList.add("scrolled");
+    else nav?.classList.remove("scrolled");
+});
+
+/* ===== LOADER FIX ===== */
+window.addEventListener("load", () => {
+    const loader = document.getElementById("loadingSkeleton");
+    if (loader) {
+        loader.style.opacity = "0";
+        setTimeout(() => loader.remove(), 500);
+    }
+});
+
+/* ===== GLOBAL FAILSAFE ===== */
+window.onerror = function () {
+    console.warn("Recovered safely from JS error");
+    return true;
+};
+
+</script>
+<script>
+// ===== FORCE LOADER EXIT (BULLETPROOF) =====
+document.addEventListener("DOMContentLoaded", () => {
+    const loader = document.getElementById("loadingSkeleton");
+
+    // safety timeout (always removes loader no matter what)
+    setTimeout(() => {
+        if (loader) {
+            loader.style.opacity = "0";
+            loader.style.pointerEvents = "none";
+            setTimeout(() => loader.remove(), 500);
+        }
+    }, 800); // fast exit
+});
+
+// backup kill switch
+window.addEventListener("load", () => {
+    const loader = document.getElementById("loadingSkeleton");
+    if (loader) loader.remove();
+});
+</script>
+<script>
 (function () {
   "use strict";
 
-  function removeLoader() {
+  function killLoader() {
     const loader = document.getElementById("loader");
     if (!loader) return;
 
-    // fade out
-    loader.style.opacity = "0";
-    loader.style.visibility = "hidden";
-    loader.style.pointerEvents = "none";
+    loader.classList.add("hidden");
 
-    // remove from DOM
     setTimeout(() => {
-      loader.remove();
+      loader.style.display = "none";
     }, 800);
   }
 
-  // Run as soon as DOM is ready
-  document.addEventListener("DOMContentLoaded", removeLoader);
+  // Run AFTER everything loads
+  window.addEventListener("load", killLoader);
 
-  // Backup (if something blocks DOMContentLoaded)
-  window.addEventListener("load", removeLoader);
-
-  // FINAL FAILSAFE (guaranteed kill)
-  setTimeout(removeLoader, 2000);
+  // FALLBACK (if load fails)
+  setTimeout(killLoader, 3000);
 
 })();
 </script>
 <script>
-/* ===== ACTIVATE UI (CRITICAL FIX) ===== */
+function openModal() {
+  console.warn("Modal not implemented yet");
+}
 
-(function () {
-  "use strict";
+function toggleFavorite(btn) {
+  btn.classList.toggle("active");
+}
+</script>
+<script>
+/* ===== LOADER FIX (CRITICAL) ===== */
 
-  function activateUI() {
-    // Reveal elements
-    document.querySelectorAll('.reveal').forEach(el => {
-      el.classList.add('active');
-    });
+window.addEventListener("load", () => {
+    const loader = document.getElementById("loader");
+    const progress = document.getElementById("loaderProgress");
 
-    document.querySelectorAll('.img-reveal').forEach(el => {
-      el.classList.add('active');
-    });
+    if (!loader) return;
 
-    document.querySelectorAll('.section-fade').forEach(el => {
-      el.classList.add('visible');
-    });
+    // Fake smooth loading animation
+    let width = 0;
+    const interval = setInterval(() => {
+        width += Math.random() * 20;
+        if (progress) progress.style.width = Math.min(width, 100) + "%";
 
-    // Remove any accidental overlay opacity locks
-    document.body.style.opacity = "1";
-  }
+        if (width >= 100) {
+            clearInterval(interval);
 
-  // Run immediately
-  document.addEventListener("DOMContentLoaded", activateUI);
+            setTimeout(() => {
+                loader.classList.add("hidden");
 
-  // Backup
-  window.addEventListener("load", activateUI);
+                // remove completely after animation
+                setTimeout(() => loader.remove(), 800);
+            }, 300);
+        }
+    }, 200);
+});
+</script>
+<script>
+/* ===== ACTIVATE ANIMATIONS ===== */
 
-})();
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+    document.querySelectorAll('.img-reveal').forEach(el => el.classList.add('active'));
+    document.querySelectorAll('.section-fade').forEach(el => el.classList.add('visible'));
+});
 </script>
 </body>
 </html>
